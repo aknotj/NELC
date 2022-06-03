@@ -1,0 +1,30 @@
+<% if user_signed_in? %>
+  <div class="d-block d-sm-none py-2">
+    <ul class="nav justify-content-center">
+      <li class="nav-link">
+        <%= link_to new_post_path do %>
+          <i class="fas fa-edit"></i>
+        <% end %>
+      </li>
+      <li class="nav-link">
+        <%= link_to rooms_path do %>
+          <i class="fas fa-comment-dots"></i>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+  
+  <div class="d-none d-sm-block py-2">
+    <div class="text-center">
+      <p>NELC</p>
+    </div>
+  </div>
+<% else %>
+
+<div class="d-none d-sm-block py-2">
+  <div class="text-center">
+    <p>NELC</p>
+  </div>
+</div>
+
+<% end %>

@@ -8,10 +8,20 @@
 
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= link_to "sign out", destroy_user_session_path, method: :delete %>
-    <%= yield %>
+    <header class="fixed-top">
+      <%= render "layouts/header" %>
+    </header>
+    <main>
+      <div class="container my-1">
+        <%= yield %>
+      </div>
+    </main>
+    <footer class="fixed-bottom">
+      <%= render "layouts/footer" %>
+    </footer>
   </body>
 </html>
