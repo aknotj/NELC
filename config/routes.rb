@@ -27,12 +27,14 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :show, :edit, :update, :destroy] do
       resource :relationship, only: [:create, :destroy]
     end
-    
+
     resources :posts do
       resource :bookmark, only: [:create, :destroy]
       resources :comments, only: [:create, :destroy]
     end
+
+    resources :rooms, only: [:create, :show, :index]
   end
-  
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
