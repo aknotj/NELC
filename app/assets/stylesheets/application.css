@@ -13,3 +13,39 @@
  *= require_tree .
  *= require_self
  */
+/* 全体レイアウト */
+a{
+  color: inherit;
+}
+
+a:visited{
+  color:inherit;
+}
+
+a:hover{
+  color:inherit;
+}
+
+body{
+  background-color: #76A29C;
+}
+
+header, footer{
+  background-color: #4D8880;
+  color: white;
+}
+
+
+
+.bg-myrtle{
+  background-color: #76A29C;
+}
+
+.bg-myrtle-darker{
+  background-color: #4D8880;
+}
+
+.bg-myrtle-dark{
+  background-color: #346F67;
+}
+
