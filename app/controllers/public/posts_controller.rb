@@ -1,13 +1,13 @@
 class Public::PostsController < ApplicationController
   def new
   end
-  
+
   def create
   end
 
   def edit
   end
-  
+
   def update
   end
 
@@ -19,7 +19,10 @@ class Public::PostsController < ApplicationController
 
   def index
   end
-  
+
+  def by_category
+  end
+
   def destroy
   end
 
