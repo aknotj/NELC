@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   scope module: :public do
     root to: "home#top"
     get "/home", to: "home#home"
+    get '/search', to: "searches#search"
     resources :users, only: [:index, :show, :edit, :update, :destroy]
 
   end
