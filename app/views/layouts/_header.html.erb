@@ -1,0 +1,89 @@
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <% if user_signed_in? %>
+      <div class="navbar-brand">
+        <%= link_to home_path do %>
+          NELC
+        <% end %>
+      </div>
+      <!-- smより大きいnavbar -->
+      <div class="d-none d-sm-block">
+        <ul class="nav">
+          <li class="nav-link">
+            <%= link_to new_post_path do %>
+              <i class="fas fa-edit"></i>
+              <ruby>New Post<rt>　新規投稿　</rt></ruby>
+            <% end %>
+          </li>
+          <li class="nav-link">
+            <%= link_to rooms_path do %>
+              <i class="fas fa-comment-dots"></i>
+              <ruby>Chat<rt>チャット</rt></ruby>
+            <% end %>
+          </li>
+          <li class="nav-link">
+            <%= link_to search_path do %>
+              <i class="fas fa-search"></i>
+              <ruby>Search<rt>　検索　</rt></ruby>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+
+      <!-- xsのnavbar -->
+      <div class="d-block d-sm-none">
+        <ul class="nav">
+          <li class="nav-link">
+            <%= link_to search_path do %>
+              <i class="fas fa-search"></i>
+              <ruby>Search<rt>　検索　</rt></ruby>
+            <% end %>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link" id="navbarDropdown" role="button" data-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+              <i class="fas fa-caret-down"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+              <li class="dropdown-item">
+                <%= link_to user_path(current_user) do %>
+                  Profile<small>　プロフィール</small>
+                <% end %>
+              </li>
+              <li class="dropdown-item">
+                  My Friends<small>　ともだち</small>
+              </li>
+              <li class="dropdown-item">
+                <%= link_to rooms_path do %>
+                  Chat<small>　チャット</small>
+                <% end %>
+              </li>
+              <div class="dropdown-divider"></div>
+              <li class="dropdown-item"><%= link_to "Log out", destroy_user_session_path, method: :delete %><small>　ログアウト</small></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    <% else %>
+      <div class="navbar-brand">
+        <%= link_to root_path do %>
+          NELC
+        <% end %>
+      </div>
+      <ul class="nav">
+        <li class="nav-link">
+          <%= link_to new_user_registration_path do %>
+            <i class="fas fa-user-plus"></i>
+            <ruby>Join<rt>新規登録</rt></ruby>
+          <% end %>
+        </li>
+        <li class="nav-link">
+          <%= link_to new_user_session_path do %>
+            <i class="fas fa-sign-in-alt"></i>
+            <ruby>Log in<rt>ログイン</rt></ruby>
+          <% end %>
+        </li>
+      </ul>
+    <% end %>
+
+  </div>
+</nav>
