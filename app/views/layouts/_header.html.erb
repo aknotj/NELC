@@ -12,7 +12,7 @@
           <li class="nav-link">
             <%= link_to new_post_path do %>
               <i class="fas fa-edit"></i>
-              <ruby>New Post<rt>　新規投稿　</rt></ruby>
+              <ruby>New Post<rt>　ブログ　</rt></ruby>
             <% end %>
           </li>
           <li class="nav-link">
@@ -22,9 +22,21 @@
             <% end %>
           </li>
           <li class="nav-link">
+            <%= link_to user_path(current_user) do %>
+              <i class="fas fa-user-circle"></i>
+              <ruby>Profile<rt>プロフィール</rt></ruby>
+            <% end %>
+          </li>
+          <li class="nav-link">
+            
+              <i class="fas fa-user-friends"></i>
+              <ruby>Friends<rt>ともだち</rt></ruby>
+
+          </li>
+          <li class="nav-link">
             <%= link_to search_path do %>
               <i class="fas fa-search"></i>
-              <ruby>Search<rt>　検索　</rt></ruby>
+              <ruby>Search<rt>けんさく</rt></ruby>
             <% end %>
           </li>
         </ul>
@@ -36,7 +48,7 @@
           <li class="nav-link">
             <%= link_to search_path do %>
               <i class="fas fa-search"></i>
-              <ruby>Search<rt>　検索　</rt></ruby>
+              <ruby>Search<rt>けんさく</rt></ruby>
             <% end %>
           </li>
           <li class="nav-item dropdown">

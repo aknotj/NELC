@@ -28,6 +28,8 @@ a:hover{
 
 body{
   background-color: #76A29C;
+  padding-top: 60px;
+  padding-bottom: 50px;
 }
 
 header, footer{
