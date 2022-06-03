@@ -6,7 +6,9 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :users, only: [:index, :show, :update]
-    resources :posts, only: [:index, :show, :update]
+    resources :posts, only: [:index, :show, :update] do
+      resources :comments, only: [:index, :show, :update]
+    end
   end
 
 
