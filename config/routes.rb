@@ -12,7 +12,6 @@ Rails.application.routes.draw do
   end
 
 
-
   devise_for :users, skip: [:passwords], controllers: {
     registrations: 'public/registrations',
     sessions: 'public/sessions'
@@ -26,7 +25,7 @@ Rails.application.routes.draw do
     get "/home", to: "home#home"
     get '/search', to: "searches#search"
     resources :users, only: [:index, :show, :edit, :update, :destroy]
-
+    resource :relationship, only: [:create, :destroy]
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
