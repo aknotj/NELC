@@ -28,7 +28,7 @@ a:hover{
 
 body{
   background-color: #76A29C;
-  padding-top: 60px;
+  padding-top: 55px;
   padding-bottom: 50px;
 }
 
@@ -37,6 +37,12 @@ header, footer{
   color: white;
 }
 
+
+/* 色・背景色 */
+
+.main-content{
+  background-color: rgba(255,255,255, 0.8);
+}
 
 
 .bg-myrtle{
@@ -51,3 +57,19 @@ header, footer{
   background-color: #346F67;
 }
 
+.btn-myrtle{
+  background-color: #76A29C;
+  color: white;
+  border: 1px solid #346F67;
+  border-radius: 5px;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+
+
+/* サイズ・ポジション */
+
+.mx-width-50{
+  max-width: 500px;
+}
