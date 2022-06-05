@@ -21,7 +21,7 @@
 
     <div class="col-lg-7">
       <div class="row justify-content-center my-4">
-        <table class="col-9 col-md-5">
+        <table class="col-9 col-md-5 mt-2 align-self-start">
           <tbody>
             <tr>
               <th>Gender</th>
@@ -53,12 +53,12 @@
           </tbody>
         </table>
         <div class="col-10 col-md-6 py-1">
-          <p class="introduction">
+          <small class="introduction">
             <%= current_user.introduction %>
             <% if current_user.introduction.blank? %>
-              <small><%= link_to "Add introduction", edit_user_path(current_user) %></small>
+              <%= link_to "Add introduction", edit_user_path(current_user) %>
             <% end %>
-          </p>
+          </small>
         </div>
       </div>
     </div>
