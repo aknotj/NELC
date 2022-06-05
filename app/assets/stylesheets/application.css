@@ -83,6 +83,11 @@ header, footer{
   margin-left: 10px;
 }
 
+.flag{
+  margin-left: 10px;
+  height: 20px;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
 
 
 /* アイテムごとの詳細レイアウト*/
