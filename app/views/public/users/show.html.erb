@@ -1,2 +1,16 @@
-<h1>Public::Users#show</h1>
-<p>Find me in app/views/public/users/show.html.erb</p>
+<div class="row">
+  <div class="d-none d-md-block col-md-2 bg-light">
+    <%= render "layouts/sidebar" %>
+  </div>
+
+  <div class="col-md-8">
+    <% if @user == current_user %>
+      <%= render "my_profile", user: @user, users: @users %>
+    <% else %>
+      <%= render "show", user: @user, users: @users %>
+    <% end %>
+  </div>
+
+  <div class="col-md-2 bg-light">
+    <%= render "public/searches/search" %>
+  </div>

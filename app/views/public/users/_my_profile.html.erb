@@ -1,0 +1,90 @@
+<div class="profile">
+  <div class="heading">
+    <h2>Profile</h2>
+    <p>プロフィール</p>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-5">
+      <div class="row justify-content-center">
+        <div class="col-4">
+          <%= image_tag current_user.get_profile_image(80,80), class: "rounded rounded-circle img-border" %>
+        </div>
+        <div class="col-5">
+          <h4 class="mt-2"><%= current_user.name %></h4>
+          <% unless current_user.name_jap.blank? %>
+            <p><%= current_user.name_jap %></p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-7">
+      <div class="row justify-content-center my-4">
+        <table class="col-9 col-md-5">
+          <tbody>
+            <tr>
+              <th>Gender</th>
+              <td>
+                <%= current_user.gender %>
+                <% if current_user.gender.blank? %>
+                  <small>Not selected</small>
+                <% end %>
+              </td>
+            </tr>
+            <tr>
+              <th>Speaks</th>
+              <td>
+                <%= current_user.native_language %>
+                <% if current_user.native_language.blank? %>
+                  <small>Not selected</small>
+                <% end %>
+              </td>
+            </tr>
+            <tr>
+              <th>Learning</th>
+              <td>
+                <%= current_user.learning_language %>
+                <% if current_user.learning_language.blank? %>
+                  <small>Not selected</small>
+                <% end %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="col-10 col-md-6 py-1">
+          <p class="introduction">
+            <%= current_user.introduction %>
+            <% if current_user.introduction.blank? %>
+              <small><%= link_to "Add introduction", edit_user_path(current_user) %></small>
+            <% end %>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row justify-content-around">
+    <div class="col-8 col-md-5 btn btn-outline-dark my-1">
+      <%= link_to new_post_path, class: "btn-block" do %>
+        <i class="fas fa-edit"></i> New Post
+      <% end %>
+    </div>
+    <div class="col-8 col-md-5 btn btn-outline-dark my-1">
+      <%= link_to "Edit profile", edit_user_path(current_user), class: "btn-block" %>
+    </div>
+  </div>
+</div>
+
+
+<div class="relationships my-3 ">
+  <h4>Friends <small>ともだち</small></h4>
+  <%= render "friends", users: users %>
+</div>
+
+<hr>
+
+<div class="posts my-3">
+  <h4>Posts <small>とうこう</small></h4>
+  <%= render "posts", user: current_user, posts: current_user.posts%>
+</div>

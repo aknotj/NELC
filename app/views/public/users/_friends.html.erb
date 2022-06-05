@@ -1,0 +1,17 @@
+<div class="container flex-user-cards">
+  <% users.each do |user| %>
+    <div class="card user-card">
+      <%= link_to user_path(user) do %>
+        <div class="card-img-top"><%= image_tag user.get_profile_image(50,50), class: "rounded rounded-circle" %></div>
+        <div class="card-body">
+          <p class="card-text">
+            <ruby><%= user.name %><rt><%= user.name_jap %></rt></ruby>
+          </p>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+  <div class="btn btn-outline-dark btn-block">
+    <%= link_to "See all friends", users_path, class: "btn-block" %>
+  </div>
+</div>

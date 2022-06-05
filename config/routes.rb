@@ -24,19 +24,20 @@ Rails.application.routes.draw do
     root to: "home#top"
     get "/home", to: "home#home"
     get '/search', to: "searches#search"
-  
+
+    get "users/:id/posts" => "users#posts", as:"user_posts"
     resources :users, only: [:index, :show, :edit, :update, :destroy] do
       resource :relationship, only: [:create, :destroy]
     end
 
     get "/bookmarks" => "bookmarks#index"
-    
+
     get "posts/by_category"
     resources :posts do
       resource :bookmark, only: [:create, :destroy]
       resources :comments, only: [:create, :destroy]
     end
-  
+
     resources :rooms, only: [:create, :show, :index]
     resources :messages, only: [:create]
   end

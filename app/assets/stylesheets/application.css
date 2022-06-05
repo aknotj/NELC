@@ -73,3 +73,38 @@ header, footer{
 .mx-width-50{
   max-width: 500px;
 }
+
+.img-border{
+  border: 2px solid #fff;
+}
+
+.heading{
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+
+
+/* アイテムごとの詳細レイアウト*/
+.flex-user-cards{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.user-card{
+  padding-top: 10px;
+  width: 8.5rem;
+  text-align: center;
+  display: inline-block;
+  margin-bottom: 5px;
+}
+
+.user-card:hover{
+  background-color: #f8f9fa;
+}
+
+.post-card{
+  margin-bottom: 5px;
+  box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.2);
+}
