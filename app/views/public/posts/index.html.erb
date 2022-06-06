@@ -1,2 +1,23 @@
-<h1>Public::Posts#index</h1>
-<p>Find me in app/views/public/posts/index.html.erb</p>
+<div class="row">
+  <div class="d-none d-md-block col-md-2 bg-light">
+    <%= render "layouts/sidebar" %>
+  </div>
+
+  <div class="col-md-8">
+      <div class="row heading">
+        <h2 class="mr-3">All posts</h2>
+        <p><ruby>全ての投稿<rt>すべてのとうこう</rt></ruby></p>
+      </div>
+    <div class="posts-index">
+      <%= render "index", posts: @posts %>
+
+      <div class="row justify-content-center">
+        <%= paginate @posts %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-2 bg-light">
+    <%= render "public/searches/search" %>
+  </div>
+</div>
