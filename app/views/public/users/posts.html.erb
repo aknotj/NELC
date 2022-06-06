@@ -1,1 +1,30 @@
-<%= @user.name %>
+<div class="row">
+  <div class="d-none d-md-block col-md-2 bg-light">
+    <%= render "layouts/sidebar" %>
+  </div>
+
+  <div class="col-md-8">
+    <% if @user == current_user %>
+      <div class="row heading">
+        <h2 class="mr-3">Posts</h2>
+        <p><ruby>投稿一覧<rt>とうこういちらん</rt></ruby></p>
+      </div>
+    <% else %>
+      <div class="row heading">
+        <h2 class="mr-3">Posts by <%= @user.name %></h2>
+        <p><%= @user.name %>さんの<ruby>投稿一覧<rt>とうこういちらん</rt></ruby></p>
+      </div>
+    <% end %>
+    <div class="user-posts-index">
+      <%= render "posts", posts: @posts %>
+
+      <div class="row justify-content-center">
+        <%= paginate @posts %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-2 bg-light">
+    <%= render "public/searches/search" %>
+  </div>
+</div>

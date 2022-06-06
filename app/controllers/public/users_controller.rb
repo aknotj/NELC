@@ -24,7 +24,7 @@ class Public::UsersController < ApplicationController
 
   def posts
     @user = User.find(params[:id])
-    @posts = @user.posts
+    @posts = @user.posts.page(params[:page])
   end
 
   private

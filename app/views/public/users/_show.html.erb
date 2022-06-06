@@ -72,5 +72,8 @@
 
 <div class="posts my-3">
   <h4>Posts <small>とうこう</small></h4>
-  <%= render "posts", user: user, posts: user.posts %>
+  <%= render "posts", user: current_user, posts: current_user.posts%>
+  <div class="btn btn-outline-dark btn-block">
+    <%= link_to "See all posts", user_posts_path(user), class: "btn-block" %>
+  </div>
 </div>

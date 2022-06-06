@@ -1,14 +1,15 @@
-  <div class="container">
-
-        <div class="card post-card">
-          <div class="card-body">
-            <h5 class="card-title">Post title</h5>
-            <p class="card-text text-truncate">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <p class="card-text text-right"><small class="text-muted">Last updated 3 mins ago</small></p>
-          </div>
+<% @posts.each do |post| %>
+  <div class="card post-card">
+    <div class="post-card-body">
+      <div class="d-flex">
+        <div class="h6"><%= link_to post.title, post_path(post) %></div>
+        <div class="small ml-auto">
+          <%= image_tag post.user.get_profile_image(20,20), class: "rounded rounded-circle" %>
+          <%= link_to post.user.name, user_path(post.user) %>
         </div>
-
-      <div class="btn btn-outline-dark btn-block">
-        <%= link_to "See all posts", user_posts_path(user), class: "btn-block" %>
       </div>
+      <small class="text-truncate"><%= post.body %></small>
+      <div class="text-right"><small class="text-muted text-right"><%= time_ago_in_words(post.created_at) %> ago</small></div>
+    </div>
   </div>
+<% end %>
