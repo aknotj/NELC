@@ -98,7 +98,6 @@ header, footer{
 }
 
 .user-card{
-  padding-top: 10px;
   width: 8.5rem;
   text-align: center;
   display: inline-block;
@@ -114,8 +113,16 @@ header, footer{
   box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.2);
 }
 
+.post-card-body{
+  padding: 5px 10px 2px;
+}
+
 .post-content{
   min-height: 500px;
   padding-top: 20px;
   font-size: smaller;
+}
+
+.posts-index{
+  min-height: 500px;
 }

@@ -1,0 +1,15 @@
+<% @posts.each do |post| %>
+  <div class="card post-card">
+    <div class="post-card-body">
+      <div class="d-flex">
+        <div class="h6"><%= link_to post.title, post_path(post) %></div>
+        <div class="small ml-auto">
+          <%= image_tag post.user.get_profile_image(20,20), class: "rounded rounded-circle" %>
+          <%= link_to post.user.name, user_path(post.user) %>
+        </div>
+      </div>
+      <small class="text-truncate"><%= post.body %></small>
+      <div class="text-right"><small class="text-muted text-right"><%= time_ago_in_words(post.created_at) %> ago</small></div>
+    </div>
+  </div>
+<% end %>
