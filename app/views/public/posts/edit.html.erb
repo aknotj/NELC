@@ -1,2 +1,19 @@
-<h1>Public::Posts#edit</h1>
-<p>Find me in app/views/public/posts/edit.html.erb</p>
+<div class="row">
+  <div class="d-none d-md-block col-md-2 bg-light">
+    <%= render "layouts/sidebar" %>
+  </div>
+
+  <div class="col-md-8">
+    <div class="row heading">
+      <h2 class="mr-3">Edit post</h2>
+      <p><ruby>編集<rt>編集</rt></ruby></p>
+    </div>
+    <div class="my-4">
+      <%= render "form", post: @post %>
+    </div>
+  </div>
+
+  <div class="col-md-2 bg-light">
+    <%= render "public/searches/search" %>
+  </div>
+</div>

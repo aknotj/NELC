@@ -18,6 +18,7 @@ class Public::PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    @categories = @post.categories.pluck(:name).join(",") #登録済みカテゴリーをform valueに表示
   end
 
   def update
@@ -25,7 +26,7 @@ class Public::PostsController < ApplicationController
     categories = params[:post][:name].split(/,|、/)
     if  @post.update(post_params)
       @post.save_categories(categories)
-      redirect_to blog_post_path(@post.blog_id, @post)
+      redirect_to post_path(@post)
     end
   end
 
