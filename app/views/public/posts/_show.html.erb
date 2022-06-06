@@ -1,0 +1,42 @@
+<div class="post-title">
+  <div class="row heading border-bottom">
+    <h3 class="mr-3"><%= post.title %></h3>
+  </div>
+
+  <div class="row text-muted small m-2">
+    <div class="col-8">
+      Posted on <%= post.created_at.strftime("%Y-%m-%d %H:%M") %> by <%= link_to post.user.name, user_path(post.user.id) %><br>
+      Categories:
+      <% if post.categories.any? %>
+        <% post.categories.each do |category| %>
+         <span><%= category.name %> </span>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="col-4 text-right">
+      <% if post.user == current_user %>
+        <p><%= link_to "Edit post", edit_post_path(post), class: "text-muted" %></p>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="post-content">
+  <p class="text-break"><%=safe_join(post.body.split("\n"),tag(:br))%></p>
+</div>
+
+<div class="pagination row small">
+    <div class="mx-auto">
+    <p><% if post.previous.present? %>
+      <%= link_to "Previous", post_path(post.previous) %>
+    <% else %>
+      <span class="text-muted">Previous</span>
+    <% end %> |
+    <% if post.next.present? %>
+      <%= link_to "Next", post_path(post.next) %>
+    <% else %>
+      <span class="text-muted">Next</span>
+    <% end %>
+    </p>
+  </div>
+</div>

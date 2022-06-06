@@ -113,3 +113,9 @@ header, footer{
   margin-bottom: 5px;
   box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.2);
 }
+
+.post-content{
+  min-height: 500px;
+  padding-top: 20px;
+  font-size: smaller;
+}
