@@ -13,7 +13,11 @@
 
   <body>
     <header class="fixed-top">
-      <%= render "layouts/header" %>
+      <% if admin_signed_in? %>
+        <%= render "layouts/admin_header" %>
+      <% else %>
+        <%= render "layouts/header" %>
+      <% end %>
     </header>
     <main>
       <div class="container main-content">

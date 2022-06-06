@@ -12,7 +12,7 @@
           <li class="nav-link">
             <%= link_to new_post_path do %>
               <i class="fas fa-edit"></i>
-              <ruby>New Post<rt>　ブログ　</rt></ruby>
+              <ruby>New Post<rt>とうこう</rt></ruby>
             <% end %>
           </li>
           <li class="nav-link">
@@ -39,12 +39,24 @@
               <ruby>Search<rt>けんさく</rt></ruby>
             <% end %>
           </li>
+          <li class="nav-link">
+            <%= link_to destroy_user_session_path, method: :delete do %>
+              <i class="fas fa-sign-out-alt"></i>
+              <ruby>Log out<rt>ログアウト</rt></ruby>
+            <% end %>
+          </li>
         </ul>
       </div>
 
       <!-- xsのnavbar -->
       <div class="d-block d-md-none">
         <ul class="nav">
+          <li class="nav-link">
+            <%= link_to new_post_path do %>
+              <i class="fas fa-edit"></i>
+              <ruby>New Post<rt>とうこう</rt></ruby>
+            <% end %>
+          </li>
           <li class="nav-link">
             <%= link_to search_path do %>
               <i class="fas fa-search"></i>
