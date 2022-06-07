@@ -126,3 +126,7 @@ header, footer{
 .posts-index{
   min-height: 500px;
 }
+
+.comment{
+  background-color: white;
+}
