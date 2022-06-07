@@ -54,12 +54,28 @@
         </table>
         <div class="col-10 col-md-6 py-1">
           <small class="introduction">
-            <%= user.introduction %>
+            <% if user == current_user && current_user.introduction.blank? %>
+              <%= link_to "Add introduction", edit_user_path(current_user) %>
+            <% else %>
+              <%= user.introduction %>
+            <% end %>
           </small>
         </div>
       </div>
     </div>
   </div>
+  <% if user == current_user %>
+  <div class="row justify-content-around">
+    <div class="col-8 col-md-5 btn btn-outline-dark my-1">
+      <%= link_to new_post_path, class: "btn-block" do %>
+        <i class="fas fa-edit"></i> New Post
+      <% end %>
+    </div>
+    <div class="col-8 col-md-5 btn btn-outline-dark my-1">
+      <%= link_to "Edit profile", edit_user_path(current_user), class: "btn-block" %>
+    </div>
+  </div>
+  <% end %>
 </div>
 
 
