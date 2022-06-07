@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="d-none d-md-block col-md-2 bg-light">
+    <%= render "layouts/sidebar" %>
+  </div>
+
+  <div class="col-md-8">
+      <div class="row heading">
+        <h2 class="mr-3">Bookmarks</h2>
+        <p class="my-auto">ブックマーク</p>
+      </div>
+    <div class="posts-index">
+      <%= render "public/posts/index", posts: @posts %>
+
+      <div class="row justify-content-center">
+        <%= paginate @posts %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-2 bg-light">
+    <%= render "public/searches/search" %>
+  </div>
+</div>
