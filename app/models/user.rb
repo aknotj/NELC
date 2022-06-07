@@ -15,6 +15,7 @@ class User < ApplicationRecord
   has_many :following, through: :active_relationships, source: :followed, dependent: :destroy
   has_many :followers, through: :passive_relationships, source: :follower, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :bookmarks, ->{order('created_at desc')}, dependent: :destroy
 
   #ゲストユーザー情報を探し、存在しなければ作成
   def self.guest

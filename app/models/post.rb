@@ -3,6 +3,8 @@ class Post < ApplicationRecord
   has_many :post_categories, dependent: :destroy
   has_many :categories, through: :post_categories
   has_many :comments, ->{order('created_at desc')}, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
+  
 
   validates :user_id, presence: true
   validates :title, presence: true, length: {maximum: 50}
@@ -34,6 +36,10 @@ class Post < ApplicationRecord
 
   def next
     Post.where(user_id: self.user_id).where("id > ?", self.id).order("id ASC").first
+  end
+
+  def bookmarked_by?(user)
+    bookmarks.find_by(user_id: user.id).present?
   end
 
 end
