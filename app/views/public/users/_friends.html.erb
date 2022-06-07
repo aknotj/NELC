@@ -38,3 +38,7 @@
     </div>
   </div>
 <% end %>
+<div class="text-right">
+  <%= link_to "Following", user_following_path(@user) %> |
+  <%= link_to "Followers", user_followers_path(@user) %>
+</div>

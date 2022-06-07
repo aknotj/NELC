@@ -4,12 +4,17 @@
   </div>
 
   <div class="col-md-8">
-    <div class="row heading pr-3">
+    <div class="row heading pr-3 mb-2">
       <h2 class="mr-3">Friends</h2>
       <p class="my-auto"><ruby>友達<rt>ともだち</rt></ruby></p>
       <div class="ml-auto my-auto">
+        <% unless @user == current_user %>
+          <h5 class="mb-0"><%= @user.name %></h5>
+        <% end %>
+        <small>
         <%= link_to "Following", user_following_path(@user) %> |
         <%= link_to "Followers", user_followers_path(@user) %>
+        </small>
       </div>
     </div>
     <% if @user.friends.any? %>
