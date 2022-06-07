@@ -40,3 +40,18 @@
     </p>
   </div>
 </div>
+
+<div class="container small">
+  <a data-toggle="collapse" href="#comments" role="button" aria-expanded="false" aria-controls="comments">
+    <%= post.comments.count %> comments
+  </a>
+  <div class="collapse" id="comments">
+    <div class="comments">
+      <%= render "public/comments/comments", post: post %>
+    </div>
+
+    <div class="form">
+      <%= render "public/comments/form", post: post, comment: comment %>
+    </div>
+  </div>
+</div>

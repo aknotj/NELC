@@ -1,0 +1,6 @@
+<div class="form-group">
+  <%= form_with model: [post, comment], method: :post do |f|%>
+    <%= f.text_area :content, class: "form-control mb-1", "rows" => "2" %>
+    <%= f.submit "Submit" %>
+  <% end %>
+</div>
