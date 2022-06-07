@@ -9,6 +9,13 @@ class Public::UsersController < ApplicationController
     @user = User.find(params[:id])
     @users = @user.friends.take(5)
     @posts = @user.posts.limit(3)
+    if @user.is_friend_with?(current_user)
+      rooms = current_user.entries.pluck(:room_id)
+      entries = Entry.find_by(user_id: @user.id, room_id: rooms)
+      unless entries.nil?
+        @room = entries.room
+      end
+    end
   end
 
   def edit
