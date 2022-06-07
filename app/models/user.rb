@@ -16,6 +16,9 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relationships, source: :follower, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :bookmarks, ->{order('created_at desc')}, dependent: :destroy
+  has_many :entries, dependent: :destroy
+  has_many :rooms, through: :entries
+  has_many :messages, dependent: :destroy
 
   #ゲストユーザー情報を探し、存在しなければ作成
   def self.guest
@@ -39,7 +42,7 @@ class User < ApplicationRecord
   def friends
     following & followers
   end
-  
+
   def follow(user)
     active_relationships.create(followed_id: user.id)
   end
@@ -58,6 +61,11 @@ class User < ApplicationRecord
 
   def is_friend_with?(user)
     following?(user) && followed_by?(user)
+  end
+
+  def has_room_with?(user)
+    rooms = Entry.pluck(:room_id)
+    Entry.find_by(user_id: user.id, room_id: rooms).present?
   end
 
 end

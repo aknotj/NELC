@@ -4,11 +4,7 @@
   </div>
 
   <div class="col-md-8">
-    <% if @user == current_user %>
-      <%= render "my_profile", user: current_user, users: @users %>
-    <% else %>
       <%= render "show", user: @user, users: @users %>
-    <% end %>
   </div>
 
   <div class="col-md-2 bg-light">

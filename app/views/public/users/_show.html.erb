@@ -5,23 +5,43 @@
   </div>
 
   <div class="row">
-    <div class="col-lg-5">
+    <div class="col-lg-5 mb-2">
       <div class="row justify-content-center">
         <div class="col-4">
           <%= image_tag user.get_profile_image(80,80), class: "rounded rounded-circle img-border" %>
         </div>
         <div class="col-5">
-          <h4 class="mt-2"><%= user.name %></h4>
-          <% unless user.name_jap.blank? %>
-            <p><%= user.name_jap %></p>
-          <% end %>
+          <div class="row">
+            <div class="mr-2">
+              <% unless user.name_jap.blank? %>
+                <small><%= user.name_jap %></small>
+              <% end %>
+              <p class="h4"><%= user.name %></p>
+            </div>
+            <div class="small text-muted my-auto">
+                <% if user.is_friend_with?(current_user) %>
+                  <small class="text-muted">Friend</small>
+                <% elsif user.followed_by?(current_user) %>
+                  <small class="text-muted">Following</small>
+                <% elsif current_user.followed_by?(user) %>
+                  <small class="text-muted">Follows you</small>
+                <% end %>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+    <div class="col-lg-1 text-center">
+      <% if user.followed_by?(current_user) %>
+        <%= link_to "Unfollow", user_relationship_path(user.id), method: :delete, class: "btn btn-sm btn-outline-dark" %>
+      <% elsif user != current_user %>
+        <%= link_to "Follow", user_relationship_path(user.id), method: :post, class: "btn btn-sm btn-outline-dark" %>
+      <% end %>
+    </div>
 
-    <div class="col-lg-7">
+    <div class="col-lg-6">
       <div class="row justify-content-center my-4">
-        <table class="col-9 col-md-5 mt-2 align-self-start">
+        <table class="col-9 col-md-5 align-self-start">
           <tbody>
             <tr>
               <th>Gender</th>
@@ -54,11 +74,43 @@
         </table>
         <div class="col-10 col-md-6 py-1">
           <small class="introduction">
-            <%= user.introduction %>
+            <% if user == current_user && current_user.introduction.blank? %>
+              <%= link_to "Add introduction", edit_user_path(current_user) %>
+            <% else %>
+              <%= user.introduction %>
+            <% end %>
           </small>
         </div>
       </div>
     </div>
+  </div>
+
+  <div class="row justify-content-around">
+    <% if user == current_user %>
+      <div class="col-8 col-md-5 btn btn-outline-dark my-1">
+        <%= link_to new_post_path, class: "btn-block" do %>
+          <i class="fas fa-edit"></i> New Post
+        <% end %>
+      </div>
+      <div class="col-8 col-md-5 btn btn-outline-dark my-1">
+        <%= link_to "Edit profile", edit_user_path(current_user), class: "btn-block" %>
+      </div>
+    <% elsif current_user.has_room_with?(user) %>
+      <div class="col-8 col-md-5 btn btn-outline-dark my-1">
+          <%= link_to 'Chat room', room_path(room) %>
+      </div>
+      <div class="col-8 col-md-5 btn btn-outline-dark my-1">
+        <%= link_to "Unfollow", user_relationship_path(user.id), method: :delete %>
+      </div>
+      <% elsif current_user.is_friend_with?(user) %>
+      <div class="col-8 col-md-5 btn btn-outline-dark my-1">
+          <%= link_to 'Chat room', rooms_path(user_id: user.id), method: :post %>
+      </div>
+      <div class="col-8 col-md-5 btn btn-outline-dark my-1">
+        <%= link_to "Unfollow", user_relationship_path(user.id), method: :delete %>
+      </div>
+    <% end %>
+
   </div>
 </div>
 

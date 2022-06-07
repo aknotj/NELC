@@ -4,15 +4,20 @@
   </div>
 
   <div class="col-md-8">
-    <div class="row heading pr-3">
+    <div class="row heading pr-3 mb-2">
       <h2 class="mr-3">Following</h2>
       <p class="my-auto">フォロー</p>
       <div class="ml-auto my-auto">
-        <%= link_to "Friends", user_friends_path(@user) %> |
+        <% unless @user == current_user %>
+          <h5 class="mb-0"><%= @user.name %></h5>
+        <% end %>
+        <small>
+        <%= link_to "Following", user_following_path(@user) %> |
         <%= link_to "Followers", user_followers_path(@user) %>
+        </small>
       </div>
     </div>
-    <% if @user.friends.any? %>
+    <% if @user.following.any? %>
       <%= render "public/users/index", users: @users %>
     <% elsif @user == current_user %>
       <div class="text-center p-5">
