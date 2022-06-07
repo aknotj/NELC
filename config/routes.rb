@@ -28,6 +28,9 @@ Rails.application.routes.draw do
     get "users/:id/posts" => "users#posts", as:"user_posts"
     resources :users, only: [:index, :show, :edit, :update, :destroy] do
       resource :relationship, only: [:create, :destroy]
+      get "friends" => "relationships#friends", as: "friends"
+      get "followers" => "relationships#followers", as: "followers"
+      get "following" => "relationships#following", as: "following"
     end
 
     get "/bookmarks" => "bookmarks#index"

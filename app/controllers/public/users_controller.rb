@@ -7,7 +7,7 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @users = User.all.limit(5) #Reminder: change User.all to @user.friends
+    @users = @user.friends.take(5)
     @posts = @user.posts.limit(3)
   end
 

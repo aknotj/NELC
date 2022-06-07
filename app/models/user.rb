@@ -35,4 +35,29 @@ class User < ApplicationRecord
     profile_image.variant(resize_to_limit: [width, height]).processed
   end
 
+  #friend follow関係
+  def friends
+    following & followers
+  end
+  
+  def follow(user)
+    active_relationships.create(followed_id: user.id)
+  end
+
+  def unfollow(user)
+    active_relationships.find_by(followed_id: user.id).destroy
+  end
+
+  def following?(user)
+    following.include?(user)
+  end
+
+  def followed_by?(user)
+    followers.include?(user)
+  end
+
+  def is_friend_with?(user)
+    following?(user) && followed_by?(user)
+  end
+
 end

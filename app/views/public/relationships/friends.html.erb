@@ -1,0 +1,44 @@
+<div class="row">
+  <div class="d-none d-md-block col-md-2 bg-light">
+    <%= render "layouts/sidebar" %>
+  </div>
+
+  <div class="col-md-8">
+    <div class="row heading pr-3">
+      <h2 class="mr-3">Friends</h2>
+      <p class="my-auto"><ruby>友達<rt>ともだち</rt></ruby></p>
+      <div class="ml-auto my-auto">
+        <%= link_to "Following", user_following_path(@user) %> |
+        <%= link_to "Followers", user_followers_path(@user) %>
+      </div>
+    </div>
+    <% if @user.friends.any? %>
+      <%= render "public/users/index", users: @users %>
+    <% elsif @user == current_user %>
+      <div class="text-center p-5">
+        <p class="mb-0">Find people to become friends!</p>
+        <small>まだ友達はいません。ユーザーを検索して友達を作ろう！</small>
+        <div class="my-3">
+          <%= link_to "Search", search_path, class: "btn btn-sm btn-outline-dark" %>
+        </div>
+      </div>
+    <% elsif @user.followed_by?(current_user) %>
+      <div class="text-center p-2">
+        <p class="mb-0"><%= @user.name %> has no friends yet.</p>
+        <small>まだ友達はいません。</small>
+      </div>
+    <% else %>
+      <div class="text-center p-2">
+        <p class="mb-0">Follow them to become their first study buddy!</p>
+        <small>まだ友達はいません。フォローして話しかけてみよう！</small>
+        <div class="my-3">
+          <%= link_to "Follow", user_relationship_path(@user), method: :post, class: "btn btn-sm btn-outline-dark" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="col-md-2 bg-light">
+    <%= render "public/searches/search" %>
+  </div>
+</div>
