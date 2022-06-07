@@ -9,12 +9,16 @@ class Public::UsersController < ApplicationController
     @user = User.find(params[:id])
     @users = @user.friends.take(5)
     @posts = @user.posts.limit(3)
-    if @user.is_friend_with?(current_user)
-      rooms = current_user.entries.pluck(:room_id)
-      entries = Entry.find_by(user_id: @user.id, room_id: rooms)
-      unless entries.nil?
-        @room = entries.room
-      end
+    #userと共通のroomを探し、なければ作成
+    rooms = current_user.entries.pluck(:room_id)
+    entries = Entry.find_by(user_id: @user.id, room_id: rooms)
+    unless entries.nil?
+      @room = entries.room
+    else
+      @room = Room.new
+      @room.save
+      Entry.create(user_id: current_user.id, room_id: @room.id)
+      Entry.create(user_id: @user.id, room_id: @room.id)
     end
   end
 

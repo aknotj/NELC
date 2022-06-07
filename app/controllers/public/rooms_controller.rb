@@ -11,22 +11,6 @@ class Public::RoomsController < ApplicationController
     @message = Message.new
   end
 
-  def create
-    @user = User.find(params[:user_id])
-    rooms = current_user.entries.pluck(:room_id)
-    entries = Entry.find_by(user_id: @user.id, room_id: rooms)
-    unless entries.nil?
-      @room = entries.room
-    else
-      @room = Room.new
-      @room.save
-      Entry.create(user_id: current_user.id, room_id: @room.id)
-      Entry.create(user_id: @user.id, room_id: @room.id)
-    end
-    redirect_to room_path(@room)
-  end
-
-
   private
 
   #自分が入っている（entryがある）ルーム以外は入れない

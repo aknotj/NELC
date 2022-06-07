@@ -95,16 +95,9 @@
       <div class="col-8 col-md-5 btn btn-outline-dark my-1">
         <%= link_to "Edit profile", edit_user_path(current_user), class: "btn-block" %>
       </div>
-    <% elsif current_user.has_room_with?(user) %>
-      <div class="col-8 col-md-5 btn btn-outline-dark my-1">
-          <%= link_to 'Chat room', room_path(room) %>
-      </div>
-      <div class="col-8 col-md-5 btn btn-outline-dark my-1">
-        <%= link_to "Unfollow", user_relationship_path(user.id), method: :delete %>
-      </div>
       <% elsif current_user.is_friend_with?(user) %>
       <div class="col-8 col-md-5 btn btn-outline-dark my-1">
-          <%= link_to 'Chat room', rooms_path(user_id: user.id), method: :post %>
+          <%= link_to 'Chat room', room_path(room) %>
       </div>
       <div class="col-8 col-md-5 btn btn-outline-dark my-1">
         <%= link_to "Unfollow", user_relationship_path(user.id), method: :delete %>
