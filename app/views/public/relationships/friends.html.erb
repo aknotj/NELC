@@ -4,9 +4,13 @@
   </div>
 
   <div class="col-md-8">
-    <div class="row heading">
+    <div class="row heading pr-3">
       <h2 class="mr-3">Friends</h2>
       <p class="my-auto"><ruby>友達<rt>ともだち</rt></ruby></p>
+      <div class="ml-auto my-auto">
+        <%= link_to "Following", user_following_path(@user) %> |
+        <%= link_to "Followers", user_followers_path(@user) %>
+      </div>
     </div>
     <% if @user.friends.any? %>
       <%= render "public/users/index", users: @users %>

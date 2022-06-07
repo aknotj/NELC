@@ -11,20 +11,20 @@ class Public::RelationshipsController < ApplicationController
     current_user.unfollow(user)
     redirect_to user_path(user)
   end
-  
+
   def friends
     @user = User.find(params[:user_id])
     @users = @user.friends
   end
-  
+
   def following
     @user = User.find(params[:user_id])
-    @users = @user.followings
+    @users = @user.following
   end
-  
+
   def followers
     @user = User.find(params[:user_id])
     @users = @user.followers
   end
-  
+
 end
