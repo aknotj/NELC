@@ -33,12 +33,9 @@
   <div class="text-center p-2">
     <p class="mb-0">Follow them to become their first study buddy!</p>
     <small>まだ友達はいません。フォローして話しかけてみよう！</small>
-    <div class="my-3">
-      <%= link_to "Follow", user_relationship_path(user), method: :post, class: "btn btn-sm btn-outline-dark" %>
-    </div>
   </div>
 <% end %>
-<div class="text-right">
+<div class="text-center mb-2">
   <%= link_to "Following", user_following_path(@user) %> |
   <%= link_to "Followers", user_followers_path(@user) %>
 </div>

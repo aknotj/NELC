@@ -12,8 +12,20 @@
               <ruby><%= user.name %><rt><%= user.name_jap %></rt></ruby>
             <% end %>
           </h5>
-          <%= image_tag "ja_icon.png", class:"flag" %>
-          <div class="ml-auto btn btn-sm btn-outline-dark">Follow</div>
+          <div class="language px-2">
+            <%= image_tag "ja_icon.png", class:"flag" %>
+          </div>
+          <div class="ml-auto">
+            <small>
+              <% if user.is_friend_with?(current_user) %>
+                Friend
+              <% elsif user.followed_by?(current_user) %>
+                Following
+              <% elsif current_user.followed_by?(user) %>
+                Follows you
+              <% end %>
+            </small>
+          </div>
         </div>
         <div class="card-text">
           <p><%= user.introduction %></p>

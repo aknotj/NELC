@@ -12,6 +12,7 @@ class Public::RoomsController < ApplicationController
   end
 
   def create
+    @user = User.find(params[:user_id])
     rooms = current_user.entries.pluck(:room_id)
     entries = Entry.find_by(user_id: @user.id, room_id: rooms)
     unless entries.nil?
