@@ -29,13 +29,17 @@
     <p class="mb-0"><%= user.name %> has no friends yet.</p>
     <small>まだ友達はいません。</small>
   </div>
+  <div class="text-center mb-2">
+    <%= link_to "Following", user_following_path(@user) %> |
+    <%= link_to "Followers", user_followers_path(@user) %>
+  </div>
 <% else %>
   <div class="text-center p-2">
     <p class="mb-0">Follow them to become their first study buddy!</p>
     <small>まだ友達はいません。フォローして話しかけてみよう！</small>
   </div>
+  <div class="text-center mb-2">
+    <%= link_to "Following", user_following_path(@user) %> |
+    <%= link_to "Followers", user_followers_path(@user) %>
+  </div>
 <% end %>
-<div class="text-center mb-2">
-  <%= link_to "Following", user_following_path(@user) %> |
-  <%= link_to "Followers", user_followers_path(@user) %>
-</div>

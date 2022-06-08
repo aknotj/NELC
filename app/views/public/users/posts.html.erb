@@ -14,7 +14,22 @@
       </div>
     <% end %>
     <div class="user-posts-index">
-      <%= render "posts", posts: @posts %>
+      <% if @user.posts.any? %>
+        <%= render "public/posts/index", posts: @posts %>
+      <% elsif @user == current_user %>
+        <div class="text-center p-2">
+          <p class="mb-0">You have not posted anything yet.</p>
+          <small>投稿がありません。最初の投稿をしてみよう！</small>
+          <div class="my-3">
+            <%= link_to "New Post", new_post_path, class: "btn btn-sm btn-outline-dark" %>
+          </div>
+        </div>
+      <% else %>
+        <div class="text-center p-2">
+          <p class="mb-0"><%= user.name %> has no posts yet.</p>
+          <small>まだ投稿がありません。</small>
+        </div>
+      <% end %>
 
       <div class="row justify-content-center">
         <%= paginate @posts %>
