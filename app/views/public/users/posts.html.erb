@@ -28,7 +28,7 @@
             </div>
           <% else %>
             <div class="text-center p-2">
-              <p class="mb-0"><%= user.name %> has no posts yet.</p>
+              <p class="mb-0"><%= @user.name %> has no posts yet.</p>
               <small>まだ投稿がありません。</small>
             </div>
           <% end %>
@@ -41,7 +41,7 @@
       <div class="col-md-4 side">
         <div class="latests my-3">
           <p class="my-2"><span class="h5">Latest Posts</span> 最新の投稿</p>
-          <%= render "public/posts/latest", posts: @latest_posts %>
+          <%= render "public/posts/latest", posts: @posts %>
         </div>
         <div class="categories my-3 border-top">
           <p class="my-2"><span class="h5">Categories</span> カテゴリー別</p>
