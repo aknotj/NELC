@@ -1,0 +1,9 @@
+<ul class="list-unstyled m-2">
+  <% categories.each do |category| %>
+    <li>
+      <%= link_to posts_by_category_path(category_id: category.id) do %>
+        <%= category.name %> <span class="small">(<%= category.posts.count %>)</span>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
