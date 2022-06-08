@@ -1,13 +1,11 @@
-<div class="row">
-    <%= render "layouts/sidebar" %>
+<div class="row content-body">
+  <%= render "layouts/sidebar" %>
 
-  <div class="col-md-8 content-body">
+  <div class="col-md-8">
     <%= render "chat", room: @room,
                       message: @message,
                       user: @user %>
   </div>
 
-  <div class="d-none d-md-block col-md-2 bg-light">
-    <%= render "public/searches/search" %>
-  </div>
+  <%= render "public/searches/search" %>
 </div>
