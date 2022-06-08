@@ -2,8 +2,22 @@
   <%= render "layouts/sidebar" %>
 
   <div class="col-md-9 col-lg-8 pb-3">
-    <%= render "show", post: @post, comment: @comment %>
+    <div class="row">
+      <div class="col-md-8 posts">
+        <%= render "show", post: @post, comment: @comment %>
+      </div>
+    
+      <div class="col-md-4 side">
+        <div class="latests my-3">
+          <p class="my-2"><span class="h5">Latest Posts</span> 最新の投稿</p>
+          <%= render "latest", posts: @latest_posts %>
+        </div>
+        <div class="categories my-3 border-top">
+          <p class="my-2"><span class="h5">Categories</span> カテゴリー別</p>
+          <%= render "categories", categories: @categories %>
+        </div>
+      </div>
+    </div>
   </div>
-
   <%= render "public/searches/search" %>
 </div>

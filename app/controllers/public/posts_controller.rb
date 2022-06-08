@@ -33,6 +33,9 @@ class Public::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @comment = Comment.new
+    user = @post.user
+    @latest_posts = user.posts.all.limit(4)
+    @categories = Category.tagged_by(user).order_by_posts.limit(10)
   end
 
   def drafts
@@ -40,9 +43,14 @@ class Public::PostsController < ApplicationController
 
   def index
     @posts = Post.page(params[:page])
+    @categories = Category.order_by_posts.limit(10)
   end
 
   def by_category
+    @category = Category.find(params[:category_id])
+    @posts = @category.posts.page(params[:page])
+    @latest_posts = Post.all.limit(4)
+    @categories = Category.order_by_posts.limit(10)
   end
 
   def destroy

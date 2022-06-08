@@ -36,6 +36,7 @@ class Public::UsersController < ApplicationController
   def posts
     @user = User.find(params[:id])
     @posts = @user.posts.page(params[:page])
+    @categories = Category.tagged_by(@user).order_by_posts
   end
 
   private
