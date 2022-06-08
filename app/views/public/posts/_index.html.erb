@@ -1,15 +1,23 @@
-<% @posts.each do |post| %>
-  <div class="card post-card">
-    <div class="post-card-body">
-      <div class="d-flex">
-        <div class="h6"><%= link_to post.title, post_path(post) %></div>
-        <div class="small ml-auto">
-          <%= image_tag post.user.get_profile_image(20,20), class: "rounded rounded-circle" %>
-          <%= link_to post.user.name, user_path(post.user) %>
+<ul class="list-group">
+  <% @posts.each do |post| %>
+    <%= link_to post_path(post), class: "btn btn-light" do %>
+      <li class="list-item d-flex">
+        <div class="flex-grow-1 p-2">
+          <div class="d-flex mb-0">
+            <h5><%= post.title %></h5>
+            <div class="ml-auto">
+              <p>
+                <%= image_tag post.user.get_profile_image(20,20), class: "rounded rounded-circle" %>
+                <%= post.user.name %>
+              </p>
+            </div>
+          </div>
+          <div class="d-flex small">
+            <p class="text-truncate"><%= post.body %></p>
+            <span class="small text-muted ml-auto"><%= post.created_at.strftime("%m/%d/%y %H:%M") %></span>
+          </div>
         </div>
-      </div>
-      <small class="text-truncate"><%= post.body %></small>
-      <div class="text-right"><small class="text-muted text-right"><%= time_ago_in_words(post.created_at) %> ago</small></div>
-    </div>
-  </div>
-<% end %>
+      </li>
+    <% end %>
+  <% end %>
+</ul>

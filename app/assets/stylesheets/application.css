@@ -110,23 +110,10 @@ header, footer{
   background-color: #f8f9fa;
 }
 
-.post-card{
-  margin-bottom: 5px;
-  box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.2);
-}
-
-.post-card-body{
-  padding: 5px 10px 2px;
-}
-
 .post-content{
   min-height: 500px;
-  padding-top: 20px;
-  font-size: smaller;
-}
-
-.posts-index{
-  min-height: 500px;
+  padding: 20px;
+  font-size: small;
 }
 
 .comment{
