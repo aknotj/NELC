@@ -1,0 +1,23 @@
+<div class="chat-screen">
+  <div class="row heading border-bottom">
+    <h3 class="mr-3"><%= user.name %></h3>
+  </div>
+
+  <div class="messages">
+    <%= render "messages", room: room %>
+  </div>
+  
+  <div class="message-form">
+    <div class="container">
+      <%= form_with model: message, local: false do |f| %>
+        <div class="input-group">
+          <%= f.hidden_field :room_id, value: params[:id] %>
+          <%= f.text_field :message, class: "form-control" %>
+          <div class="input-group-append">
+            <%= f.submit "送信", id: "chat-btn", class: "btn btn-outline-secondary" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
