@@ -1,11 +1,8 @@
-<div class="row content-body">
-  <div class="d-none d-md-block col-md-2 bg-light">
+<div class="row">
     <%= render "layouts/sidebar" %>
-  </div>
 
-  <div class="col-md-8">
+  <div class="col-md-8 content-body">
     <%= render "chat", room: @room,
-                      messages: @messages,
                       message: @message,
                       user: @user %>
   </div>

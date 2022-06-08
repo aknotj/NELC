@@ -1,2 +1,13 @@
-<h1>Public::Rooms#index</h1>
-<p>Find me in app/views/public/rooms/index.html.erb</p>
+<div class="row content-body">
+  <%= render "layouts/sidebar" %>
+
+  <div class="col-md-8">
+    <div class="row heading">
+      <h2 class="mr-3">Chat Rooms</h2>
+      <p>チャットルーム<ruby>一覧<rt>いちらん</rt></ruby></p>
+    </div>
+    <%= render "index", users: @users %>
+  </div>
+  
+  <%= render "public/searches/search" %>
+</div>

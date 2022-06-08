@@ -1,4 +1,12 @@
-<div class="overflow-auto conversation">
+<!-- ページ読み込み時にスクロールする -->
+<script>
+  $(function () {
+    const element = document.getElementById('scroll');
+    element.scrollTo(0, element.scrollHeight);
+  });
+</script>
+
+<div class="overflow-auto conversation" id="scroll">
   <% room.messages.each do |message| %>
   <!-- 自分の投稿を右に表示 -->
     <% if message.user_id == current_user.id %>
