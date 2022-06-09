@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="col-md-4 col-lg-3 text-center">
+
+    <div class="row heading">
+      <h2>User Info</h2>
+    </div>
+    <%= image_tag user.get_profile_image(80,80), class: "rounded rounded-circle img-border" %>
+    <p><%= user.name %></p>
+    <p>Gender:
+      <%= user.gender %>
+      <% if user.gender.blank? %>
+        <small>N/A</small>
+      <% end %>
+    </p>
+    <p>Speaks: <%= user.native_language %>
+      <% if user.native_language.blank? %>
+        <small>N/A</small>
+      <% end %>
+    </p>
+    <p>
+      <%= user.learning_language %>
+      <% if user.learning_language.blank? %>
+        <small>N/A</small>
+      <% end %>
+    </p>
+    <p><%= user.introduction %>
+      <% if user.introduction.blank? %>
+        <small>No introduction</small>
+      <% end %>
+    </p>
+
+    <hr>
+      <div class="user-status">
+        <p><u>Deactivate User</u></p>
+        <%= form_with model: user, url: admin_user_path(user.id), method: :patch do |f| %>
+          <%= f.radio_button :is_deactivated, false %>
+          <%= f.label :is_deactivated, "Activate" %><br>
+          <%= f.radio_button :is_deactivated, true %>
+          <%= f.label :is_deactivated, "Diactivate" %><br>
+          <%= f.submit "update" %>
+        <% end %>
+      </div>
+    <hr>
+  </div>
+  <div class="col-md-8 mt-3">
+    <div class="posts">
+      <h4>Posts by this user <small>(<%= user.posts.count %> posts)</small></h4>
+      <%= render "admin/posts/index", posts: user.posts %>
+    </div>
+  </div>
+</div>
