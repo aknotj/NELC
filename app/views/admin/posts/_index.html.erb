@@ -1,10 +1,13 @@
 <div class="list-group">
   <% posts.each do |post| %>
     <%= link_to admin_post_path(post), class: "btn btn-light border-bottom" do %>
-      <div class="list-gitem d-flex">
+      <div class="list-item d-flex">
         <div class="flex-grow-1 p-2">
           <div class="d-flex mb-0">
             <h5><%= post.title %></h5>
+            <% if post.is_deleted? %>
+              <div class="text-danger small mx-3">Deleted</div>
+            <% end %>
             <div class="ml-auto">
               <p>
                 <%= image_tag post.user.get_profile_image(20,20), class: "rounded rounded-circle" %>

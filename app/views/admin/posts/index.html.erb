@@ -1,28 +1,10 @@
-<div class="container bg-light">
-  <h2>All posts</h2>
+<div class="row content-body">
+  <%= render "layouts/sidebar" %>
 
-  <div class="container py-2">
-    <div class="row mb-2 border-bottom">
-      <div class="col-1">id</div>
-      <div class="col-4">Title</div>
-      <div class="col-3">User name</div>
-      <div class="col-2">Status</div>
+  <div class="col-md-9 col-lg-10">
+    <div class="row heading">
+      <h2>All Posts</h2>
     </div>
-    <% @posts.each do |post| %>
-      <%= link_to admin_post_path(post) do %>
-        <div class="row mb-2">
-          <div class="col-1"><%= post.id %></div>
-          <div class="col-4"><%= post.title %></div>
-          <div class="col-3"><%= post.user.name %></div>
-          <div class="col-2">
-            <% if post.is_deleted? %>
-              <div class="text-danger">Deleted</div>
-            <% else %>
-              Visible
-            <% end %>
-          </div>
-        </div>
-      <% end %>
-    <% end %>
+    <%= render "index", posts: @posts %>
   </div>
-</div> 
+</div>
