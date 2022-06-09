@@ -1,6 +1,6 @@
 <div class="list-group">
   <% posts.each do |post| %>
-    <%= link_to admin_post_path(post), class: "btn btn-light" do %>
+    <%= link_to admin_post_path(post), class: "btn btn-light border-bottom" do %>
       <div class="list-gitem d-flex">
         <div class="flex-grow-1 p-2">
           <div class="d-flex mb-0">
@@ -13,11 +13,14 @@
             </div>
           </div>
           <div class="d-flex small">
-            <p class="text-truncate"><%= post.body %></p>
+            <p class="text-truncate mb-1"><%= post.body %></p>
             <span class="small text-muted ml-auto"><%= post.created_at.strftime("%m/%d/%y %H:%M") %></span>
           </div>
         </div>
       </div>
     <% end %>
   <% end %>
+</div>
+<div class="row justify-content-center">
+  <%= paginate posts %>
 </div>

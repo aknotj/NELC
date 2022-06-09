@@ -3,6 +3,11 @@
 
     <div class="row heading">
       <h2>User Info</h2>
+      <% if user.is_deactivated? %>
+        <div class="mt-auto mx-2">
+          <p class="text-danger">Deactivated User</p>
+        </div>
+      <% end %>
     </div>
     <%= image_tag user.get_profile_image(80,80), class: "rounded rounded-circle img-border" %>
     <p><%= user.name %></p>
@@ -43,9 +48,9 @@
     <hr>
   </div>
   <div class="col-md-8 mt-3">
-    <div class="posts">
-      <h4>Posts by this user <small>(<%= user.posts.count %> posts)</small></h4>
-      <%= render "admin/posts/index", posts: user.posts %>
+    <h4>Posts by this user <small>(<%= user.posts.count %> posts)</small></h4>
+    <div class="posts mt-3">
+      <%= render "admin/posts/index", posts: posts %>
     </div>
   </div>
 </div>
