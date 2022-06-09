@@ -11,6 +11,23 @@ class Public::RoomsController < ApplicationController
     @message = Message.new
   end
 
+  def create
+    #paramsで送られたuserと共通のroomを探し、なければ作成
+    user = User.find(params[:user_id])
+    rooms = current_user.entries.pluck(:room_id)
+    entry = Entry.find_by(user_id: user.id, room_id: rooms)
+    unless entry.nil?
+      room = Room.find(entry.room_id)
+      redirect_to room_path(room)
+    else
+      room = Room.new
+      room.save
+      Entry.create(user_id: current_user.id, room_id: room.id)
+      Entry.create(user_id: user.id, room_id: room.id)
+      redirect_to room_path(room)
+    end
+  end
+
   private
 
   #自分が入っている（entryがある）ルーム以外は入れない
