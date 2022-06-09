@@ -42,4 +42,18 @@ class Post < ApplicationRecord
     bookmarks.find_by(user_id: user.id).present?
   end
 
+  #検索
+  def self.search_for(language, content)
+    posts = Post.where("title LIKE ?", "%"+content.to_s+"%").or(Post.where("body LIKE ?", "%"+content.to_s+"%"))
+    if language == "japanese"
+      posts.where(language: "japanese")
+    elsif language == "english"
+      posts.where(language: "english")
+    elsif language == "other"
+      posts.where(language: "other")
+    else
+      posts
+    end
+  end
+
 end

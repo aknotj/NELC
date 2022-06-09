@@ -1,2 +1,21 @@
-<h1>Public::Searches#search</h1>
-<p>Find me in app/views/public/searches/search.html.erb</p>
+<div class="row content-body">
+  <%= render "layouts/sidebar" %>
+
+  <div class="col-md-9 col-lg-8">
+    <div class="row heading">
+      <h2 class="mr-3">Search Results for <%= @model %></h2>
+      <p class="my-auto"><ruby>検索結果<rt>けんさくけっか</rt></ruby></p>
+    </div>
+    <div class="m-3">
+      <p class="mb-0">Filtered: <%= @name %> <%= @language %> <%= @gender %></p>
+      <p>Keywords: <%= @conent %></p>
+    </div>
+    <% if @model == "Usersr" %>
+      <%= render 'public/users/index', users: @records %>
+    <% elsif @model == "Posts" %>
+      <%= render 'public/posts/index', posts: @records %>
+    <% end %>
+  </div>
+
+  <%= render "public/searches/search" %>
+</div>

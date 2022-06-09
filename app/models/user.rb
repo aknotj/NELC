@@ -68,4 +68,40 @@ class User < ApplicationRecord
     Entry.find_by(user_id: user.id, room_id: rooms).present?
   end
 
+  #検索
+  def self.search_for(language, name, gender, content)
+    user = User.where("name LIKE ?", "%"+name.to_s+"%").where("introduction LIKE ?", "%"+content.to_s+"%")
+    male = user.where(gender: "male")
+    female = user.where(gender: "female")
+    other = user.where(gender: "other")
+    if language == "japanese"
+      if gender == "male"
+        male.where(native_language: "Japanese")
+      elsif gender == "female"
+        female.where(native_language: "Japanese")
+      elsif gender == "other"
+        other.where(native_language: "Japanese")
+      else
+        user.where(native_language: "Japanese")
+      end
+    elsif language == "english"
+      if gender == "male"
+        male.where(native_language: "English")
+      elsif gender == "female"
+        female.where(native_language: "English")
+      elsif gender == "other"
+        other.where(native_language: "English")
+      else
+        user.where(native_language: "English")
+      end
+    elsif gender == "male"
+        male
+    elsif gender == "female"
+        female
+    elsif gender == "other"
+        other
+    else
+      user
+    end
+  end
 end
