@@ -26,7 +26,7 @@
           <%= f.select :gender, options_for_select({"Male" => "male",
                                                     "Female" => "female",
                                                     "Other" => "other" }),
-                                                  {},
+                                                  {include_blank: "Select a gender"},
                                                   {class: "form-control"} %>
         </div>
       </div>
@@ -39,7 +39,7 @@
           <%= f.select :native_language,
                         options_for_select({"English" => "English",
                                             "Japanese" => "Japanese"}),
-                                            {},
+                                            {include_blank: "Select a language"},
                                             {class: "form-control"} %>
         </div>
       </div>
@@ -52,7 +52,7 @@
           <%= f.select :learning_language,
                         options_for_select({"English" => "English",
                                             "Japanese" => "Japanese"}),
-                                            {},
+                                            {include_blank: "Select a language"},
                                             {class: "form-control"} %>
         </div>
       </div>
