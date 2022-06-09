@@ -1,2 +1,28 @@
-<h1>Admin::Posts#index</h1>
-<p>Find me in app/views/admin/posts/index.html.erb</p>
+<div class="container bg-light">
+  <h2>All posts</h2>
+
+  <div class="container py-2">
+    <div class="row mb-2 border-bottom">
+      <div class="col-1">id</div>
+      <div class="col-4">Title</div>
+      <div class="col-3">User name</div>
+      <div class="col-2">Status</div>
+    </div>
+    <% @posts.each do |post| %>
+      <%= link_to admin_post_path(post) do %>
+        <div class="row mb-2">
+          <div class="col-1"><%= post.id %></div>
+          <div class="col-4"><%= post.title %></div>
+          <div class="col-3"><%= post.user.name %></div>
+          <div class="col-2">
+            <% if post.is_deleted? %>
+              <div class="text-danger">Deleted</div>
+            <% else %>
+              Visible
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div> 

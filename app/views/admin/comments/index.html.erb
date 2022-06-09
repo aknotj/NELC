@@ -1,2 +1,28 @@
-<h1>Admin::Comments#index</h1>
-<p>Find me in app/views/admin/comments/index.html.erb</p>
+<div class="container bg-light">
+  <h2>All comments on post <%= link_to @post.title, admin_post_path(@post) %></h2>
+
+  <div class="container py-2">
+    <div class="row mb-2 border-bottom">
+      <div class="col-2">Comment id</div>
+      <div class="col-4">Comment</div>
+      <div class="col-3">Commented by</div>
+      <div class="col-2">Status</div>
+    </div>
+    <% @post.comments.each do |comment| %>
+      <%= link_to admin_post_comment_path(post_id: @post, id: comment.id) do %>
+        <div class="row mb-2">
+          <div class="col-2"><%= comment.id %></div>
+          <div class="col-4"><%= comment.content %></div>
+          <div class="col-3"><%= comment.user.name %></div>
+          <div class="col-2">
+            <% if comment.is_deleted? %>
+              <div class="text-danger">Deleted</div>
+            <% else %>
+              Visible
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div> 

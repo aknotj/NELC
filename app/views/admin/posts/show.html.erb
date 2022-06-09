@@ -1,2 +1,47 @@
-<h1>Admin::Posts#show</h1>
-<p>Find me in app/views/admin/posts/show.html.erb</p>
+<div class="container bg-light">
+  <h2><%= @post.title %></h2>
+  <% if @post.is_deleted? %>
+    <p class="text-danger">Deleted</p>
+  <% end %>
+
+  <div class="container py-2">
+    <table class="table">
+      <tbody>
+        <tr>
+          <td>Author</td>
+          <td><%= link_to @post.user.name, admin_user_path(@post.user) %></td>
+        </tr>
+        <tr>
+          <td>Content</td>
+          <td><%= @post.body %></td>
+        </tr>
+        <tr>
+          <td>Created at</td>
+          <td><%= @post.created_at.strftime('%m/%d/%Y %H:%M') %></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <ul>
+      <% @post.comments.each do |comment| %>
+        <li>
+          "<%= link_to comment.content, admin_post_comment_path(post_id: @post, id: comment.id) %>"
+           by <%= link_to comment.user.name, admin_user_path(comment.user) %>
+        </li>
+      <% end %>
+    </ul>
+
+
+
+    <div class="user-status">
+    Delete post
+    <%= form_with model: @post, url: admin_post_path(@post), method: :patch do |f| %>
+      <%= f.radio_button :is_deleted, false %>
+      <%= f.label :is_deleted, "Visible" %>
+      <%= f.radio_button :is_deleted, true %>
+      <%= f.label :is_deleted, "Deleted" %>
+      <%= f.submit "update" %>
+    <% end %>
+    </div>
+  </div>
+</div> 

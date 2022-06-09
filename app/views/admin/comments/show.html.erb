@@ -1,2 +1,40 @@
-<h1>Admin::Comments#show</h1>
-<p>Find me in app/views/admin/comments/show.html.erb</p>
+<div class="container bg-light">
+  <h2>Comment made by <%= @comment.user.name %></h2>
+  <% if @comment.is_deleted? %>
+    <p class="text-danger">Deleted</p>
+  <% end %>
+
+  <div class="container py-2">
+    <table class="table">
+      <tbody>
+        <tr>
+          <td>Commented post title</td>
+          <td><%= link_to @post.title, admin_post_path(@post) %></td>
+        </tr>
+        <tr>
+          <td>Comment</td>
+          <td>"<%= @comment.content %>"</td>
+        </tr>
+        <tr>
+          <td>Commented by</td>
+          <td><%= @comment.user.name %></td>
+        </tr>
+        <tr>
+          <td>Created at</td>
+          <td><%= @comment.created_at.strftime('%m/%d/%Y %H:%M') %></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="user-status">
+    Delete comment
+    <%= form_with model: @comment, url: admin_post_comment_path(@comment), method: :patch do |f| %>
+      <%= f.radio_button :is_deleted, false %>
+      <%= f.label :is_deleted, "Visible" %>
+      <%= f.radio_button :is_deleted, true %>
+      <%= f.label :is_deleted, "Deleted" %>
+      <%= f.submit "update" %>
+    <% end %>
+    </div>
+  </div>
+</div>

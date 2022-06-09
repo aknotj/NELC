@@ -1,2 +1,44 @@
-<h1>Admin::Users#show</h1>
-<p>Find me in app/views/admin/users/show.html.erb</p>
+<div class="container bg-light">
+  <h2><%= @user.name %></h2>
+  <% if @user.is_deactivated? %>
+    <p class="text-danger">Disactivated</p>
+  <% end %>
+
+  <div class="container py-2">
+    <table class="table">
+      <tbody>
+        <tr>
+          <td>Name in Japanese</td>
+          <td><%= @user.name_jap %></td>
+        </tr>
+        <tr>
+          <td>Gender</td>
+          <td><%= @user.gender %></td>
+        </tr>
+        <tr>
+          <td>Speaks</td>
+          <td><%= @user.native_language %></td>
+        </tr>
+        <tr>
+          <td>Learning</td>
+          <td><%= @user.learning_language %></td>
+        </tr>
+        <tr>
+          <td>Introduction</td>
+          <td><%= @user.introduction %></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="user-status">
+    Deactivate user
+    <%= form_with model: @user, url: admin_user_path(@user.id), method: :patch do |f| %>
+      <%= f.radio_button :is_deactivated, false %>
+      <%= f.label :is_deactivated, "Activate" %>
+      <%= f.radio_button :is_deactivated, true %>
+      <%= f.label :is_deactivated, "Diactivate" %>
+      <%= f.submit "update" %>
+    <% end %>
+    </div>
+  </div>
+</div> 
