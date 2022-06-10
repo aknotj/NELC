@@ -9,17 +9,23 @@
 
       <div class="col-lg-4">
         <hr>
-          <div class="post-status text-center">
-            <p><u>Delete comment</u></p>
-            <%= form_with model: @comment, url: admin_post_comment_path(@comment.post, @comment), method: :patch do |f| %>
-              <%= f.radio_button :is_deleted, false %>
-              <%= f.label :is_deleted, "Visible" %>
-              <%= f.radio_button :is_deleted, true %>
-              <%= f.label :is_deleted, "Delete" %><br>
-              <%= f.submit "update" %>
-            <% end %>
-          </div>
+        <div class="post-status text-center">
+          <p><u>Delete comment</u></p>
+          <%= form_with model: @comment, url: admin_post_comment_path(@comment.post, @comment), method: :patch do |f| %>
+            <%= f.radio_button :is_deleted, false %>
+            <%= f.label :is_deleted, "Visible" %>
+            <%= f.radio_button :is_deleted, true %>
+            <%= f.label :is_deleted, "Delete" %><br>
+            <%= f.submit "update" %>
+          <% end %>
+        </div>
         <hr>
+        <div class="container">
+          Other Comments on this post (<%= @post.comments.count %>)
+          <div class="comments small my-3">
+            <%= render "admin/comments/index", comments: @comments %>
+          </div>
+        </div>
       </div>
     </div>
   </div>

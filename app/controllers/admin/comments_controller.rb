@@ -1,12 +1,8 @@
 class Admin::CommentsController < ApplicationController
-  def index
-    @post = Post.find(params[:post_id])
-    @comments = @post.comments.all
-  end
-
   def show
     @comment = Comment.find(params[:id])
     @post = @comment.post
+    @comments = @post.comments.page(params[:page])
   end
 
   def update
