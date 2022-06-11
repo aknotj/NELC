@@ -4,7 +4,7 @@ class Room < ApplicationRecord
   has_many :messages, dependent: :destroy
 
   def is_valid? #相手が存在しないルームを表示しない
-    users.count == 2
+    users.active.count == 2
   end
 
   def users_except(user) #チャットの相手を探す

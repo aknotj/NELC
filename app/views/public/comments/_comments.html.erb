@@ -1,4 +1,4 @@
-<% post.comments.each do |comment| %>
+<% comments.each do |comment| %>
   <hr class="my-0" />
   <div class="row py-2 px-4">
     <div class="col-1 profile-image p-2">
@@ -10,7 +10,7 @@
         <div class="text-muted small mr-1">
           <%= time_ago_in_words(comment.created_at) %> ago
         </div>
-        <% if comment.user == current_user or post.user == current_user %>
+        <% if comment.user == current_user or comment.post.user == current_user %>
           <%= link_to post_comment_path(comment.post, comment), method: :delete do %>
             <i class="fas fa-trash-alt"></i>
           <% end %>

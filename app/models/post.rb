@@ -5,6 +5,8 @@ class Post < ApplicationRecord
   has_many :comments, ->{order('created_at desc')}, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
   
+  scope :published, -> { where(is_deleted: false) }
+  
   default_scope -> {order('posts.id desc')}
   validates :user_id, presence: true
   validates :title, presence: true, length: {maximum: 50}
@@ -31,11 +33,11 @@ class Post < ApplicationRecord
 
   #post showページネーション
   def previous
-    Post.where(user_id: self.user_id).where("id < ?", self.id).order("id DESC").first
+    Post.published.where(user_id: self.user_id).where("id < ?", self.id).order("id DESC").first
   end
 
   def next
-    Post.where(user_id: self.user_id).where("id > ?", self.id).order("id ASC").first
+    Post.published.where(user_id: self.user_id).where("id > ?", self.id).order("id ASC").first
   end
 
   def bookmarked_by?(user)
@@ -44,7 +46,7 @@ class Post < ApplicationRecord
 
   #検索
   def self.search_for(language, content)
-    posts = Post.where("title LIKE ?", "%"+content.to_s+"%").or(Post.where("body LIKE ?", "%"+content.to_s+"%"))
+    posts = Post.published.where("title LIKE ?", "%"+content.to_s+"%").or(Post.published.where("body LIKE ?", "%"+content.to_s+"%"))
     if language == "japanese"
       posts.where(language: "japanese")
     elsif language == "english"

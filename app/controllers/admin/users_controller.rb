@@ -7,7 +7,7 @@ class Admin::UsersController < ApplicationController
     @user = User.find(params[:id])
     @posts = @user.posts.page(params[:page]).per(6)
   end
-  
+
   def update
     @user = User.find(params[:id])
     @user.update(is_deactivated: false)
@@ -28,7 +28,7 @@ class Admin::UsersController < ApplicationController
       @user.bookmarks.destroy_all
       @user.entries.destroy_all
       @user.messages.destroy_all
-      redirect_to admin_user_path(@)
+      redirect_to admin_user_path(@user)
     end
   end
 
