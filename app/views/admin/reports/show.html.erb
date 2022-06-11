@@ -1,2 +1,78 @@
-<h1>Admin::Reports#show</h1>
-<p>Find me in app/views/admin/reports/show.html.erb</p>
+<div class="row content-body">
+  <%= render "layouts/sidebar" %>
+
+  <div class="col-md-9 col-lg-10">
+    <div class="row heading">
+      <h2>Report: <%= @report.user.name %></h2>
+      <% if @report.is_closed? %>
+        <div class="mx-4 my-auto">
+          <p class="text-danger mb-0">CLOSED</p>
+        </div>
+      <% end %>
+
+      <div class="container py-2">
+        <table class="table">
+          <tbody>
+            <tr>
+              <td>Case No.</td>
+              <td><%= @report.id %></td>
+            </tr>
+            <tr>
+              <td>Reported by</td>
+              <td><%= link_to @report.user.name, admin_user_path(@report.user) %></td>
+            </tr>
+            <tr>
+              <td>Reported Subject</td>
+              <td>
+                <% if @report.model == "user" %>
+                  <%= link_to @report.subject, admin_user_path(@report.subject_id) %>
+                <% elsif @report.model == "post" %>
+                  <%= link_to @report.subject, admin_post_path(@report.post_id) %>
+                <% elsif @report.model == "comment" %>
+                  comment: "<%= link_to @report.subject, admin_post_comment_path(id: @report.subject_id, post_id: @subject.post_id) %>" on post <%= link_to @report.subject.post.title, admin_post_path(@report.post_id) %>
+                <% end %>
+              </td>
+            </tr>
+            <tr>
+              <td>Details</td>
+              <td><%= @report.detail %></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="report-status">
+        <% if @report.is_closed? %>
+          Note
+          <div class="container">
+            <p><%= @report.note %></p>
+          </div>
+          
+          <a data-toggle="collapse" href="#update_report" role="button" aria-expanded="false" aria-controls="update_report">
+          <small>Reopen this case?</small>
+          </a>
+
+          <div class="collapse" id="update_report">
+            <%= form_with model: @report, url: admin_report_path(@report.id), method: :patch do |f| %>
+              <%= f.label :note, class: "mb-0" %>
+              <%= f.text_area :note, class: "form-control", value: @report_note %>
+              <%= f.check_box :is_closed, checked_value: true %>
+              <%= f.label :is_closed, "Uncheck to reopen" %>
+              <%= f.submit "update" %>
+            <% end %>
+          </div>
+            <% else %>
+              Close this case
+
+              <%= form_with model: @report, url: admin_report_path(@report.id), method: :patch do |f| %>
+                <%= f.label :note, class: "mb-0" %>
+                <%= f.text_area :note, class: "form-control" %>
+                <%= f.check_box :is_closed, checked_value: true %>
+                <%= f.label :is_closed, "Close" %>
+                <%= f.submit "update" %>
+              <% end %>
+            <% end %>
+        </div>
+
+    </div>
+  </div>
+</div>
