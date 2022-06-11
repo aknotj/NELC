@@ -1,4 +1,5 @@
 class Public::BookmarksController < ApplicationController
+  before_action :ensure_post_visibility, only: [:create]
 
   def create
     @post = Post.find(params[:post_id])
@@ -17,4 +18,12 @@ class Public::BookmarksController < ApplicationController
     posts = Post.find(bookmarks)
     @posts = Kaminari.paginate_array(posts).page(params[:page])
   end
+  
+  def ensure_post_visibility
+    post = Post.find(params[:post_id])
+    unless post.is_deleted == false
+      redirect_to bookmarks_path
+    end
+  end
+  
 end

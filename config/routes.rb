@@ -5,9 +5,11 @@ Rails.application.routes.draw do
   }
 
   namespace :admin do
+    get "users/:id/confirm" => "users#confirm", as: "user_confirm"
+    patch "users/:id/deactivate" => "users#deactivate", as: "user_deactivate"
     resources :users, only: [:index, :show, :update]
     resources :posts, only: [:index, :show, :update] do
-      resources :comments, only: [:index, :show, :update]
+      resources :comments, only: [:show, :update]
     end
   end
 

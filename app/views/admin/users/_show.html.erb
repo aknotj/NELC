@@ -37,13 +37,8 @@
     <hr>
       <div class="user-status">
         <p><u>Deactivate User</u></p>
-        <%= form_with model: user, url: admin_user_path(user.id), method: :patch do |f| %>
-          <%= f.radio_button :is_deactivated, false %>
-          <%= f.label :is_deactivated, "Activate" %><br>
-          <%= f.radio_button :is_deactivated, true %>
-          <%= f.label :is_deactivated, "Diactivate" %><br>
-          <%= f.submit "update" %>
-        <% end %>
+        <%= link_to "Activate", admin_user_path(user), method: :patch, class: "btn btn-light" %>
+        <%= link_to "deactivate", admin_user_confirm_path(user), class: "btn btn-warning" %>
       </div>
     <hr>
   </div>

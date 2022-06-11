@@ -2,7 +2,7 @@ class Public::UsersController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update]
 
   def index
-    @users = User.all
+    @users = User.active.all
   end
 
   def show
@@ -24,7 +24,7 @@ class Public::UsersController < ApplicationController
 
   def posts
     @user = User.find(params[:id])
-    @posts = @user.posts.page(params[:page])
+    @posts = @user.posts.published.page(params[:page])
     @categories = Category.tagged_by(@user).order_by_posts
   end
 
