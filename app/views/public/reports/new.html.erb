@@ -1,11 +1,12 @@
 <div class="mx-width-50 content-body mx-auto">
   <div class="text-center mt-3">
-    <h4>Report: <%= params[:object] %></h4>
-    <p><%= params[:object] %> を通報</p>
+    <h4>Report: <%= params[:subject] %></h4>
+    <p><%= params[:subject] %> を通報</p>
     <div class="small text-right">
       <%= link_to "English", new_report_en_path(model: params[:model],
-                                          object_id: params[:object_id],
-                                          object: params[:object]) %>
+                                          subject_id: params[:subject_id],
+                                          post_id: params[:post_id],
+                                          subject: params[:subject]) %>
     </div>
   </div>
   <div class="container">
@@ -37,6 +38,7 @@
       <div class="hidden_field">
         <%= f.hidden_field :model, value: params[:model] %>
         <%= f.hidden_field :object_id, value: params[:object_id] %>
+        <%= f.hidden_field :post_id, value: params[:post_id] %>
       </div>
 
       <div class="actions row justify-content-center my-3">

@@ -23,7 +23,7 @@ class Public::ReportsController < ApplicationController
   private
 
   def report_params
-   params.require(:report).permit(:category, :detail, :model, :object_id)
+   params.require(:report).permit(:category, :detail, :model, :subject_id, :post_id)
   end
 
 end

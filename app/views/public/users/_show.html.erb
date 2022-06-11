@@ -6,8 +6,8 @@
       <small class="text-muted">
         <i class="far fa-flag"></i> 
         <%= link_to "Report User", new_report_path(model: "user", 
-                                                  object_id: params[:id],
-                                                  object: "#{user.name}") %>
+                                                  subject_id: params[:id],
+                                                  subject: "#{user.name}") %>
       </small>
     </p>
   </div>

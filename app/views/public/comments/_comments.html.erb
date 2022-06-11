@@ -11,8 +11,9 @@
           <small class="text-muted">
             <i class="far fa-flag"></i>
             <%= link_to "Report", new_report_path(model: "comment",
-                                                  object_id: params[:id],
-                                                  object: "a comment by #{comment.user.name}") %>
+                                                  subject_id: params[:id],
+                                                  post_id: params[:post_id]
+                                                  subject: "a comment by #{comment.user.name}") %>
           </small>
         </p>
       </div>
