@@ -2,6 +2,14 @@
   <div class="row heading">
     <h2 class="mr-3">Profile</h2>
     <p class="mt-auto">プロフィール</p>
+    <p class="ml-auto px-3 small">
+      <small class="text-muted">
+        <i class="far fa-flag"></i> 
+        <%= link_to "Report User", new_report_path(model: "user", 
+                                                  object_id: params[:id],
+                                                  object: "#{user.name}") %>
+      </small>
+    </p>
   </div>
 
   <div class="row">
@@ -98,9 +106,6 @@
       <% elsif current_user.is_friend_with?(user) %>
       <div class="col-8 col-md-5 btn btn-outline-dark my-1">
           <%= link_to 'Chat room', rooms_path(user_id: user.id), method: :post %>
-      </div>
-      <div class="col-8 col-md-5 btn btn-outline-dark my-1">
-        <%= link_to "Unfollow", user_relationship_path(user.id), method: :delete %>
       </div>
     <% end %>
 

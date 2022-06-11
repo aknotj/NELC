@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_06_232241) do
+ActiveRecord::Schema.define(version: 2022_06_11_042713) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -125,6 +125,19 @@ ActiveRecord::Schema.define(version: 2022_06_06_232241) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "reports", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "model", null: false
+    t.integer "object_id", null: false
+    t.integer "category", null: false
+    t.text "detail"
+    t.text "note"
+    t.boolean "is_closed", default: false, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_reports_on_user_id"
+  end
+
   create_table "rooms", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -162,4 +175,5 @@ ActiveRecord::Schema.define(version: 2022_06_06_232241) do
   add_foreign_key "post_categories", "categories"
   add_foreign_key "post_categories", "posts"
   add_foreign_key "posts", "users"
+  add_foreign_key "reports", "users"
 end
