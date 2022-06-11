@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     resources :posts, only: [:index, :show, :update] do
       resources :comments, only: [:show, :update]
     end
+    resources :reports, only: [:index, :show, :update]
   end
 
 
@@ -45,6 +46,8 @@ Rails.application.routes.draw do
 
     resources :rooms, only: [:create, :show, :index]
     resources :messages, only: [:create]
+    get "reports/en/new" => "reports#new_en", as: "new_report_en"
+    resources :reports, only: [:new, :create, :show]
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

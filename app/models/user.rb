@@ -20,6 +20,7 @@ class User < ApplicationRecord
   has_many :entries
   has_many :rooms, through: :entries
   has_many :messages, dependent: :destroy
+  has_many :reports
 
   #ゲストユーザー情報を探し、存在しなければ作成
   def self.guest
