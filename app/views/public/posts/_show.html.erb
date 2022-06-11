@@ -1,6 +1,14 @@
 <div class="post-title">
   <div class="row heading border-bottom">
     <h3 class="mr-3"><%= post.title %></h3>
+    <p class="ml-auto px-3 small">
+      <small class="text-muted">
+        <i class="far fa-flag"></i> 
+        <%= link_to "Report Post", new_report_path(model: "post", 
+                                                  object_id: params[:id],
+                                                  object: "#{post.title}") %>
+      </small>
+    </p>
   </div>
 
   <div class="row text-muted small m-2">
