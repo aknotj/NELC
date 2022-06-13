@@ -54,10 +54,12 @@ header, footer{
 
 .bg-myrtle-darker{
   background-color: #4D8880;
+  color: white;
 }
 
 .bg-myrtle-dark{
   background-color: #346F67;
+  color: white;
 }
 
 .btn-myrtle{

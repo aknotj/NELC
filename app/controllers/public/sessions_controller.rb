@@ -22,15 +22,18 @@ class Public::SessionsController < Devise::SessionsController
   def new_guest
     user = User.guest
     sign_in user
-    redirect_to home_path, notice: "Signed in as a guest user"
+    flash[:notice] = "Signed in as a guest user"
+    redirect_to home_path
   end
 
   protected
-  
+
   def check_user_status
     user = User.find_by(name: params[:user][:name])
-    if user.valid_password?(params[:user][:password]) && user.is_deactivated == true
-      redirect_to new_user_registration_path
+    if user
+      if user.valid_password?(params[:user][:password]) && user.is_deactivated == true
+        redirect_to new_user_registration_path
+      end
     end
   end
   # If you have extra params to permit, append them to the sanitizer.
