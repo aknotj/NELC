@@ -4,7 +4,24 @@
   <div class="col-md-9 col-lg-8 pb-3">
     <div class="row">
       <div class="col-md-8 posts">
-        <%= render "show", post: @post, comment: @comment, comments: @comments %>
+        <%= render "show", post: @post %>
+        
+        <% if @post.is_published? %>
+          <div class="container small">
+            <a data-toggle="collapse" href="#comments" role="button" aria-expanded="false" aria-controls="comments">
+              <%= @comments.count %> comments
+            </a>
+            <div class="collapse" id="comments">
+              <div class="comments">
+                <%= render "public/comments/comments", comments: @comments %>
+              </div>
+          
+              <div class="form">
+                <%= render "public/comments/form", post: @post, comment: @comment %>
+              </div>
+            </div>
+          </div>
+        <% end %>
       </div>
     
       <div class="col-md-4 side">
