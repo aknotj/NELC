@@ -1,5 +1,5 @@
 class Public::BookmarksController < ApplicationController
-  before_action :ensure_post_visibility, only: [:create]
+  before_action :authenticate_user!
 
   def create
     @post = Post.find(params[:post_id])
