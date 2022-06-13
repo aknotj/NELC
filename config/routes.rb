@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     root to: "home#top"
     get "/home", to: "home#home"
     get '/search', to: "searches#search"
+    resources :searches, only: [:new]
 
     get "users/:id/posts" => "users#posts", as:"user_posts"
     resources :users, only: [:index, :show, :edit, :update, :destroy] do
