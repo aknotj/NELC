@@ -2,9 +2,14 @@
   <%= render "layouts/sidebar" %>
 
   <div class="col-md-9 col-lg-8">
-    <div class="row heading">
+    <div class="row heading pr-3">
       <h2 class="mr-3">New post</h2>
       <p><ruby>新規投稿<rt>しんきとうこう</rt></ruby></p>
+      <div class="ml-auto">
+        <%= link_to posts_drafts_path do %>
+          Draft <small>下書き</small>
+        <% end %>
+      </div>
     </div>
     <div class="my-4">
       <%= render "form", post: @post %>

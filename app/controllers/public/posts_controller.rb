@@ -1,5 +1,5 @@
 class Public::PostsController < ApplicationController
-  before_action :ensure_correct_user, only: [:edit, :update, :destroy, :drafts]
+  before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
   def new
     @post = Post.new
@@ -10,7 +10,11 @@ class Public::PostsController < ApplicationController
     categories = params[:post][:name].split(/,|、/) #半角、全角カンマで区切る
     if @post.save
       @post.save_categories(categories)
-      redirect_to post_path(@post)
+      if params[:post][:is_published] == "true"
+        redirect_to post_path(@post)
+      elsif params[:post][:is_published] == "false"
+        redirect_to posts_drafts_path
+      end
     else
       render :new
     end
@@ -26,7 +30,11 @@ class Public::PostsController < ApplicationController
     categories = params[:post][:name].split(/,|、/)
     if  @post.update(post_params)
       @post.save_categories(categories)
-      redirect_to post_path(@post)
+      if params[:post][:is_published] == "true"
+        redirect_to post_path(@post)
+      elsif params[:post][:is_published] == "false"
+        redirect_to posts_drafts_path
+      end
     end
   end
 
@@ -40,6 +48,9 @@ class Public::PostsController < ApplicationController
   end
 
   def drafts
+    @posts = current_user.posts.draft.page(params[:page])
+    @categories = Category.order_by_posts.limit(10)
+
   end
 
   def index
@@ -49,7 +60,7 @@ class Public::PostsController < ApplicationController
 
   def by_category
     @category = Category.find(params[:category_id])
-    @posts = @category.posts.page(params[:page])
+    @posts = @category.posts.published.page(params[:page])
     @latest_posts = Post.all.limit(4)
     @categories = Category.order_by_posts.limit(10)
   end
@@ -68,6 +79,6 @@ class Public::PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :body, :language)
+    params.require(:post).permit(:title, :body, :language, :is_published)
   end
 end
