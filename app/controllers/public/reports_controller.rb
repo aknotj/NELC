@@ -1,4 +1,6 @@
 class Public::ReportsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :ensure_correct_user, only: [:show]
 
   def new
     @report = current_user.reports.new
@@ -24,6 +26,13 @@ class Public::ReportsController < ApplicationController
 
   def report_params
    params.require(:report).permit(:category, :detail, :model, :subject_id, :post_id)
+  end
+  
+  def ensure_correct_user
+    report = Report.find(params[:id])
+    unless report.user == current_user
+      redirect_to root_path
+    end
   end
 
 end

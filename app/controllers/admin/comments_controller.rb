@@ -1,4 +1,6 @@
 class Admin::CommentsController < ApplicationController
+  before_action :authenticate_admin!
+  
   def show
     @comment = Comment.find(params[:id])
     @post = @comment.post

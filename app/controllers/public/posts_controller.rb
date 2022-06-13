@@ -1,4 +1,5 @@
 class Public::PostsController < ApplicationController
+  before_action :authenticate_user!
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
   def new
@@ -50,7 +51,6 @@ class Public::PostsController < ApplicationController
   def drafts
     @posts = current_user.posts.draft.page(params[:page])
     @categories = Category.order_by_posts.limit(10)
-
   end
 
   def index
@@ -66,6 +66,8 @@ class Public::PostsController < ApplicationController
   end
 
   def destroy
+    @post = Post.find(params[:id]).destroy
+    redirect_to user_posts_path(@post.user)
   end
 
 
