@@ -1,5 +1,5 @@
 class Public::UsersController < ApplicationController
-  before_action :ensure_correct_user, only: [:edit, :update]
+  before_action :ensure_correct_user, only: [:edit, :update, :confirm, :withdraw]
 
   def index
     @users = User.active.all
@@ -27,6 +27,17 @@ class Public::UsersController < ApplicationController
     @posts = @user.posts.published.page(params[:page])
     @categories = Category.tagged_by(@user).order_by_posts
   end
+
+  def confirm
+    @user = current_user
+  end
+
+  def withdraw
+    current_user.deactivate
+    reset_session
+    redirect_to root_path
+  end
+
 
   private
 

@@ -1,0 +1,30 @@
+<div class="mx-width-50 content-body mx-auto">
+
+  <div class="mt-4">
+    <div class="heading">
+      <h3>Are you sure?</h3>
+      <p>本当にアカウントを削除しますか？</p>
+    </div>
+
+    <div class="body mt-5">
+      <hr>
+      <p>
+        We're sorry to hear you'd like to delete your account.<br>
+        When you press the button below, your posts, comments, bookmarks, friendships and all other data will be removed permanentle and will not be recoverable.
+      </p>
+      <p class="small">
+        ボタンを押すことで、このアカウントで行った投稿、コメント、ブックマークなどの
+        すべてのデータが削除されます。
+      </p>
+    </div>
+
+    <div class="text-center mt-5">
+      <%= link_to "Delete account", user_withdraw_path, class: "btn btn-sm btn-danger", method: :patch %>
+    </div>
+
+    <div class="text-center mt-5">
+      <%= link_to "Back to Home", home_path, class: "btn btn-sm btn-outline-dark" %>
+    </div>
+
+  </div>
+</div>
