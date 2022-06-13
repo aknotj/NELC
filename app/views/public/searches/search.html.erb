@@ -2,19 +2,61 @@
   <%= render "layouts/sidebar" %>
 
   <div class="col-md-9 col-lg-8">
-    <div class="row heading">
-      <h2 class="mr-3">Search Results for <%= @model %></h2>
-      <p class="my-auto"><ruby>検索結果<rt>けんさくけっか</rt></ruby></p>
+
+    <div class="search-form container">
+      <div class="heading">
+        <h2 class="mr-3">Search Results for <%= @model %></h2>
+        <p><ruby>検索結果<rt>けんさくけっか</rt></ruby></p>
+      </div>
+      <div class="d-block d-lg-none container my-3">
+        <div class="collapse-btn text-right">
+          <a data-toggle="collapse" href="#collapseSearch" role="button" aria-expanded="false" aria-controls="collapseSearch">
+            < New Search <small>新しく検索する</small> >
+          </a>
+        </div>
+        <div class="collapse" id="collapseSearch">
+          <ul class="nav nav-tabs" id="searchTab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <a class="nav-link active" id="user-tab" data-toggle="tab" href="#user" role="tab" aria-controls="user" aria-selected="true">
+                Users <small>ユーザー</small>
+              </a>
+            </li>
+            <li class="nav-item ml-1" role="presentation">
+              <a class="nav-link" id="posts-tab" data-toggle="tab" href="#posts" role="tab" aria-controls="posts" aria-selected="false">
+                Posts <small><ruby>投稿<rt>とうこう</rt></ruby></small>
+              </a>
+            </li>
+          </ul>
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="user" role="tabpanel" aria-labelledby="user-tab">
+              <div class="p-3 bg-light">
+                <%= render "public/searches/users" %>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="posts" role="tabpanel" aria-labelledby="posts-tab">
+              <div class="p-3 bg-light">
+                <%= render "public/searches/posts" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <% if @model == "Users" %>
+        <%= render 'public/users/index', users: @records %>
+      <% elsif @model == "Posts" %>
+        <%= render 'public/posts/index', posts: @records %>
+      <% end %>
+      <% if @records.blank? %>
+        <div class="text-center my-2">
+          <p class="mb-0">No <%= @model %> matched your search. Please try again!</p>
+          <small>内容を変えて検索しなおしてください</small>
+        </div>
+      <% end %>
+      <div class="row justify-content-center">
+        <%= paginate @records %>
+      </div>
     </div>
-    <div class="m-3">
-      <p class="mb-0">Filtered: <%= @name %> <%= @language %> <%= @gender %></p>
-      <p>Keywords: <%= @conent %></p>
-    </div>
-    <% if @model == "Usersr" %>
-      <%= render 'public/users/index', users: @records %>
-    <% elsif @model == "Posts" %>
-      <%= render 'public/posts/index', posts: @records %>
-    <% end %>
   </div>
 
   <%= render "public/searches/search" %>

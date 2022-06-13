@@ -7,9 +7,9 @@ class Public::SearchesController < ApplicationController
     @gender = params[:gender]
     @content = params[:content]
     if @model == "Users"
-      @records = User.search_for(@language, @name, @gender, @content)
+      @records = User.search_for(@language, @name, @gender, @content).page(params[:page])
     elsif @model == "Posts"
-      @records = Post.search_for(@language, @content)
+      @records = Post.search_for(@language, @content).page(params[:page])
     end
   end
 end

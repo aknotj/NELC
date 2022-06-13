@@ -1,0 +1,29 @@
+<div class="row content-body">
+  <%= render "layouts/sidebar" %>
+
+  <div class="col-md-9">
+    <div class="d-block container">
+      <div class="row heading">
+        <h2 class="mr-3">Search</h2>
+        <p class="my-auto"><ruby>検索<rt>けんさく</rt></ruby></p>
+      </div>
+
+      <div class="container">
+        <div class="bg-light row">
+          <div class="user col-md-6 py-2">
+            <h5>Users <small>ユーザー<ruby>検索<rt>けんさく</rt></ruby></small></h5>
+            <%= render "public/searches/users" %>
+            <hr class="d-block d-md-none">
+          </div>
+          <div class="keyword col-md-6 py-2">
+            <h5>Posts <small><ruby>投稿検索<rt>とうこうけんさく</rt></ruby></small></h5>
+              <%= render "public/searches/posts" %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="">
+
+    </div>
+  </div>
+</div>
