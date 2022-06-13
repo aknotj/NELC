@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     resources :posts, only: [:index, :show, :update] do
       resources :comments, only: [:show, :update]
     end
+    get "reports/pending"
     resources :reports, only: [:index, :show, :update]
   end
 

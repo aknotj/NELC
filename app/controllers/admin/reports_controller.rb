@@ -4,6 +4,10 @@ class Admin::ReportsController < ApplicationController
   def index
     @reports = Report.page(params[:page])
   end
+  
+  def pending
+    @reports = Report.pending.page(params[:page])
+  end
 
   def show
     @report = Report.find(params[:id])
