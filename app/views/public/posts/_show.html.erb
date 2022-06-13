@@ -1,10 +1,15 @@
 <div class="post-title">
   <div class="row heading border-bottom">
     <h3 class="mr-3"><%= post.title %></h3>
+    <% unless post.is_published? %>
+      <h5 class="mx-auto text-danger my-auto">
+        DRAFT <small>下書き</small>
+      <h5>
+    <% end %>
     <p class="ml-auto px-3 small">
       <small class="text-muted">
-        <i class="far fa-flag"></i> 
-        <%= link_to "Report Post", new_report_path(model: "post", 
+        <i class="far fa-flag"></i>
+        <%= link_to "Report Post", new_report_path(model: "post",
                                                   post_id: params[:post_id],
                                                   subject: "#{post.title}") %>
       </small>

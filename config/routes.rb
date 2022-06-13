@@ -39,6 +39,7 @@ Rails.application.routes.draw do
 
     get "/bookmarks" => "bookmarks#index"
 
+    get "posts/drafts"
     get "posts/by_category"
     resources :posts do
       resource :bookmark, only: [:create, :destroy]

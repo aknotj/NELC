@@ -5,7 +5,8 @@ class Post < ApplicationRecord
   has_many :comments, ->{order('created_at desc')}, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
 
-  scope :published, -> { where(is_deleted: false) }
+  scope :published, -> { where(is_deleted: false, is_published: true) }
+  scope :draft, -> { where(is_published: false) }
 
   default_scope -> {order('posts.id desc')}
   validates :user_id, presence: true
