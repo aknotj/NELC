@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
 
   enum gender: {male: 0, female: 1, other: 2}
-  
+
   scope :active, -> { where(is_deactivated: :false)}
 
   has_one_attached :profile_image
@@ -21,6 +21,9 @@ class User < ApplicationRecord
   has_many :rooms, through: :entries
   has_many :messages, dependent: :destroy
   has_many :reports
+  has_many :active_notifications, class_name: "Notification", foreign_key: "sender_id"
+  has_many :passive_notifications, class_name: "Notification", foreign_key: "recipient_id"
+
 
   #ゲストユーザー情報を探し、存在しなければ作成
   def self.guest
@@ -106,4 +109,18 @@ class User < ApplicationRecord
       user
     end
   end
+
+  #フォロー通知
+  def create_notification_follow(current_user)
+    #過去のフォロー通知がないか確認
+    record = Notification.where(sender_id: current_user.id, recipient_id: id, action: "follow")
+    unless record.present?
+      notification = current_user.active_notifications.new(
+        recipient_id: id,
+        action: "follow"
+        )
+      notification.save if notification.valid?
+    end
+  end
+
 end
