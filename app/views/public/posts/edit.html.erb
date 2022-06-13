@@ -9,7 +9,7 @@
     <div class="my-4">
       <%= render "form", post: @post %>
       <div class="text-right pr-3">
-        <%= link_to post_path(@post), method: :destroy do %>
+        <%= link_to post_path(@post), method: :delete do %>
           Delete post <small>削除</small>
         <% end %>
       </div>
