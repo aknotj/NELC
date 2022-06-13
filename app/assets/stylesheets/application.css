@@ -69,6 +69,13 @@ header, footer{
   padding-right: 8px;
 }
 
+.nav-link:hover{
+  color: #1d3632;
+}
+
+.navbar a{
+  text-decoration: none;
+}
 
 
 /* サイズ・ポジション */
@@ -157,4 +164,15 @@ header, footer{
 }
 .message-to small{
   color: #F5F5F5;
+}
+
+.notification-badge{
+  font-size: x-small;
+  color: black;
+  display: inline-block;
+  text-align: center;
+  width: 15px;
+  background-color: #ffbf00;
+  border-radius: 15px;
+  vertical-align: text-top;
 }

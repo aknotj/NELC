@@ -4,9 +4,9 @@ class Post < ApplicationRecord
   has_many :categories, through: :post_categories
   has_many :comments, ->{order('created_at desc')}, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
-  
+
   scope :published, -> { where(is_deleted: false) }
-  
+
   default_scope -> {order('posts.id desc')}
   validates :user_id, presence: true
   validates :title, presence: true, length: {maximum: 50}
@@ -55,6 +55,19 @@ class Post < ApplicationRecord
       posts.where(language: "other")
     else
       posts
+    end
+  end
+
+  #コメント通知
+  def create_notification_comment(current_user, comment_id)
+    unless user_id == current_user.id
+      notification = current_user.active_notifications.new(
+        recipient_id: user_id,
+        post_id: id,
+        comment_id: comment_id,
+        action: "comment"
+        )
+      notification.save if notification.valid?
     end
   end
 

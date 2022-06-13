@@ -12,7 +12,7 @@
             <i class="far fa-flag"></i>
             <%= link_to "Report", new_report_path(model: "comment",
                                                   subject_id: params[:id],
-                                                  post_id: params[:post_id]
+                                                  post_id: params[:post_id],
                                                   subject: "a comment by #{comment.user.name}") %>
           </small>
         </p>

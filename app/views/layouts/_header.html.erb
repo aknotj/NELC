@@ -27,6 +27,14 @@
               <ruby>Friends<rt>ともだち</rt></ruby>
             <% end %>
           </li>
+          <li class="nav-link">
+            <%= link_to notifications_path do %>
+              <i class="fas fa-bell"></i>
+              <% if current_user.passive_notifications.any? %>
+                <span class="notification-badge"><%= current_user.passive_notifications.count %></span>
+              <% end %>
+            <% end %>
+          </li>
           <li class="nav-item dropdown">
             <a class="nav-link" id="navbarDropdown" role="button" data-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
               <i class="fas fa-caret-down"></i>
@@ -61,6 +69,14 @@
             <%= link_to search_path do %>
               <i class="fas fa-search"></i>
               <ruby>Search<rt>けんさく</rt></ruby>
+            <% end %>
+          </li>
+          <li class="nav-link">
+            <%= link_to notifications_path do %>
+              <i class="fas fa-bell"></i>
+              <% if current_user.passive_notifications.any? %>
+                <span class="notification-badge"><%= current_user.passive_notifications.count %></span>
+              <% end %>
             <% end %>
           </li>
           <li class="nav-item dropdown">
