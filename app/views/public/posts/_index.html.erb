@@ -1,6 +1,6 @@
 <ul class="list-group">
   <% posts.each do |post| %>
-    <% unless post.is_published == false %>
+    <% unless post.is_published == false && post.user != current_user %>
       <%= link_to post_path(post), class: "btn btn-light" do %>
         <li class="list-item d-flex">
           <div class="container py-1 px-0">
