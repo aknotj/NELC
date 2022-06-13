@@ -21,7 +21,7 @@
     <p class="mb-0">Find people to become friends!</p>
     <small>まだ友達はいません。ユーザーを検索して友達を作ろう！</small>
     <div class="my-3">
-      <%= link_to "Search", search_path, class: "btn btn-sm btn-outline-dark" %>
+      <%= link_to "Search", new_search_path, class: "btn btn-sm btn-outline-dark" %>
     </div>
   </div>
 <% elsif user.followed_by?(current_user) %>
