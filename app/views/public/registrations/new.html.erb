@@ -6,6 +6,8 @@
 
   <div class="container">
     <%= form_with model: @user, url: user_registration_path, method: :post do |f| %>
+      <%= render "layouts/errors", obj: @user %>
+
       <div class="form-group row">
         <div class="col-2">
           <%= f.label :name %>
@@ -33,7 +35,7 @@
             <% end %>
           </small>
         </div>
-        <div class="col-12 col-sm-10">
+        <div class="col-10 ml-auto">
           <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
         </div>
       </div>

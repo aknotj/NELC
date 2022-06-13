@@ -14,6 +14,7 @@ class Admin::PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post.update(post_params)
     redirect_to admin_post_path(@post)
+    flash[:notice] = "The post status has been successfully updated"
   end
 
   private

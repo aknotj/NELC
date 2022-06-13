@@ -1,0 +1,23 @@
+<div class="text-center">
+  <div id="flash" style="display:none;">
+    <% if notice %>
+      <div class="bg-myrtle-dark">
+        <%= notice %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<script>
+  function sleep(msec) {
+    return new Promise(function(resolve) {
+      setTimeout(function() {resolve()}, msec);
+    })
+  };
+  $(document).ready(function (){
+    $('#flash').slideDown(1000,async function start(){
+      await sleep(2000);
+      $('#flash').slideUp(1000);
+    });
+  });
+</script>

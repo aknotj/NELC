@@ -11,6 +11,7 @@ class Admin::CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
     @comment.update(comment_params)
     redirect_to admin_post_comment_path(@comment)
+    flash[:notice] = "The comment status has been successfully updated"
   end
 
 

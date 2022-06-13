@@ -3,7 +3,7 @@ class Public::UsersController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update, :confirm, :withdraw]
 
   def index
-    @users = User.active.all
+    @users = User.active.page(params[:page])
   end
 
   def show
@@ -20,6 +20,7 @@ class Public::UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update(user_params)
       redirect_to user_path(@user)
+      flash[:notice] = "Your changes have been successfully saved!　変更が保存されました"
     end
   end
 
@@ -37,6 +38,7 @@ class Public::UsersController < ApplicationController
     current_user.deactivate
     reset_session
     redirect_to root_path
+    flash[:notice] = "Your account has been successfully deleted! アカウントが削除されました" 
   end
 
 

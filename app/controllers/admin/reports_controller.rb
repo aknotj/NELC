@@ -4,6 +4,10 @@ class Admin::ReportsController < ApplicationController
   def index
     @reports = Report.page(params[:page])
   end
+  
+  def pending
+    @reports = Report.pending.page(params[:page])
+  end
 
   def show
     @report = Report.find(params[:id])
@@ -14,6 +18,7 @@ class Admin::ReportsController < ApplicationController
     @report = Report.find(params[:id])
     @report.update(report_params)
     redirect_to admin_report_path(@report)
+    flash[:notice] = "The report has been successfully updated"
   end
 
 private

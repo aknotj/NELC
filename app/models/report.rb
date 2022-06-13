@@ -15,6 +15,8 @@ class Report < ApplicationRecord
                   other: 5
                   }
 
+  default_scope -> {order('created_at desc')}
+
   def subject
     if model == "user"
       User.find(subject_id).name
@@ -23,6 +25,10 @@ class Report < ApplicationRecord
     elsif model == "comment"
       Comment.find(id: subject_id, post_id: post_id)
     end
+  end
+
+  def self.pending
+    where(is_closed: false)
   end
 
 end

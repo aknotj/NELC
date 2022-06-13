@@ -8,7 +8,7 @@ class Post < ApplicationRecord
   scope :published, -> { where(is_deleted: false, is_published: true) }
   scope :draft, -> { where(is_published: false) }
 
-  default_scope -> {order('posts.id desc')}
+  default_scope -> {order('created_at desc')}
   validates :user_id, presence: true
   validates :title, presence: true, length: {maximum: 50}
   validates :body, presence: true, length: {maximum: 300}
