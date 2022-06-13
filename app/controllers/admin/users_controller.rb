@@ -14,6 +14,7 @@ class Admin::UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.update(is_deactivated: false)
     redirect_to admin_user_path(@user)
+    flash[:notice] = "The user status has been successfully updated"
   end
 
   def confirm
@@ -24,6 +25,7 @@ class Admin::UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.deactivate
     redirect_to admin_user_path(@user)
+    flash[:notice] = "The user has been deactivated"
   end
 
   private
