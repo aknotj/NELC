@@ -13,8 +13,10 @@ class Public::PostsController < ApplicationController
       @post.save_categories(categories)
       if params[:post][:is_published] == "true"
         redirect_to post_path(@post)
+        flash[:notice] = "Your post has been successfully published. 投稿しました"
       elsif params[:post][:is_published] == "false"
         redirect_to posts_drafts_path
+        flash[:notice] = "Your post has been saved as draft. 下書きを保存しました"
       end
     else
       render :new
@@ -33,8 +35,10 @@ class Public::PostsController < ApplicationController
       @post.save_categories(categories)
       if params[:post][:is_published] == "true"
         redirect_to post_path(@post)
+        flash[:notice] = "Your post has been successfully published. 投稿しました"
       elsif params[:post][:is_published] == "false"
         redirect_to posts_drafts_path
+        flash[:notice] = "Your post has been saved as draft. 下書きを保存しました"
       end
     end
   end
@@ -68,6 +72,7 @@ class Public::PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id]).destroy
     redirect_to user_posts_path(@post.user)
+    flash[:notice] = "Your post has been successfully deleted. 投稿を削除しました"
   end
 
 
