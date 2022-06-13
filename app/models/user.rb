@@ -24,6 +24,7 @@ class User < ApplicationRecord
   has_many :active_notifications, class_name: "Notification", foreign_key: "sender_id"
   has_many :passive_notifications, class_name: "Notification", foreign_key: "recipient_id"
 
+  validates :name, presence: true, uniqueness: true
 
   #ゲストユーザー情報を探し、存在しなければ作成
   def self.guest
@@ -121,6 +122,17 @@ class User < ApplicationRecord
         )
       notification.save if notification.valid?
     end
+  end
+  
+  def deactivate
+    update(is_deactivated: true)
+    posts.update_all(is_deleted: true)
+    comments.update_all(is_deleted: true)
+    active_relationships.destroy_all
+    passive_relationships.destroy_all
+    bookmarks.destroy_all
+    entries.destroy_all
+    messages.destroy_all
   end
 
 end

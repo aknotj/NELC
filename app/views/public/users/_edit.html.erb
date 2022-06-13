@@ -81,7 +81,14 @@
         </div>
       </div>
     <% end %>
-    <div>
-      <%= link_to "Back", user_path(user) %>
+    <div class="row">
+      <div class="col">
+        <%= link_to "Back", user_path(user) %>
+      </div>
+      <div class="ml-auto">
+        <%= link_to user_confirm_path do %>
+          Delete account <small>退会する</small>
+        <% end %>
+      </div>
     </div>
   </div>

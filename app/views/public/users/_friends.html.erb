@@ -13,7 +13,7 @@
       </div>
     <% end %>
     <div class="btn btn-outline-dark btn-block">
-      <%= link_to "See all friends", users_path, class: "btn-block" %>
+      <%= link_to "See all friends", user_friends_path(@user), class: "btn-block" %>
     </div>
   </div>
 <% elsif user == current_user %>
