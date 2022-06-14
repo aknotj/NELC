@@ -4,15 +4,11 @@ class Public::BookmarksController < ApplicationController
   def create
     @post = Post.find(params[:post_id])
     current_user.bookmarks.create(post_id: @post.id)
-    redirect_to request.referer
-    flash[:notice] = "Added to Bookmarks! ブックマークに保存しました"
   end
 
   def destroy
     @post = Post.find(params[:post_id])
     current_user.bookmarks.find_by(post_id: @post.id).destroy
-    redirect_to request.referer
-    flash[:notice] = "Removed from Bookmarks. ブックマークを外しました"
   end
 
   def index
