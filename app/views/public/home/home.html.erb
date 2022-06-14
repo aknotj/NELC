@@ -3,26 +3,32 @@
 
   <div class="col-md-9 col-lg-8">
     <div class="row heading align-items-center justify-content-center">
-        <p class="mr-3 lead">
-          <% if Time.now >= Time.parse("7:00") and Time.now <= Time.parse("11:59") %>
-            Good Morning! <br>
-          <% elsif Time.now >= Time.parse("12:00") and Time.now <= Time.parse("17:59") %>
-            Good Afternoon!
-          <% else %>
-            Good Evening!
-          <% end %>
-        </p>
-        <p class="small d-block">
-          <% if Time.now >= Time.parse("7:00") and Time.now <= Time.parse("11:59") %>
-            おはよう、<%= current_user.name %>さん! <br>
-          <% elsif Time.now >= Time.parse("12:00") and Time.now <= Time.parse("17:59") %>
-            こんにちは、<%= current_user.name %>さん!
-          <% else %>
-            こんばんは、<%= current_user.name %>さん!
-          <% end %>
-        </p>
+      <p class="mr-3 lead">
+        <% if Time.now >= Time.parse("7:00") and Time.now <= Time.parse("11:59") %>
+          Good Morning! <br>
+        <% elsif Time.now >= Time.parse("12:00") and Time.now <= Time.parse("17:59") %>
+          Good Afternoon!
+        <% else %>
+          Good Evening!
+        <% end %>
+      </p>
+      <p class="small d-block">
+        <% if Time.now >= Time.parse("7:00") and Time.now <= Time.parse("11:59") %>
+          おはよう、<%= current_user.name %>さん! <br>
+        <% elsif Time.now >= Time.parse("12:00") and Time.now <= Time.parse("17:59") %>
+          こんにちは、<%= current_user.name %>さん!
+        <% else %>
+          こんばんは、<%= current_user.name %>さん!
+        <% end %>
+      </p>
     </div>
     <div class="posts-index">
+      <div class="container">
+        <div class="row">
+          <h4 class="mr-3">New posts</h4>
+          <p><ruby>新しい投稿<rt>あたらしいとうこう</rt></ruby></p>
+        </div>
+      </div>
       <%= render "public/posts/index", posts: @posts %>
       <div class="row justify-content-center">
         <%= paginate @posts %>
