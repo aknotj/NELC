@@ -1,0 +1,6 @@
+  <ul class="mx-3 list-unstyled">
+    <li><%= link_to "Friends", user_friends_path(current_user) %></li>
+    <li><%= link_to "Following", user_following_path(current_user) %></li>
+    <li><%= link_to "Followers", user_followers_path(current_user) %></li>
+    <li><%= link_to "See all users", users_path %></li>
+  </ul>

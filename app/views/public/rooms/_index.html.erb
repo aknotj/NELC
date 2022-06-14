@@ -1,31 +1,31 @@
 <ul class="list-group">
   <% rooms.each do |room| %>
     <% if room.is_valid? %>
-    <%= link_to room_path(room), class: "btn btn-light" do %>
-      <li class="list-item d-flex">
-
-        <div class="col-2 align-self-center">
-          <% user = room.users_except(current_user) %>
-          <%= image_tag user.get_profile_image(100,100), class: "rounded rounded-circle img-fluid" %>
-        </div>
-
-        <div class="flex-grow-1 p-2">
-          <div class="d-flex mb-0">
-            <h5><%= user.name %></h5>
-            <span class="ml-auto small">
-              <small class="text-muted">
-                Change
-                <%= user.created_at.strftime("%B %Y")%>
-              </small>
-            </span>
+      <%= link_to room_path(room), class: "btn btn-light" do %>
+        <li class="list-item d-flex">
+  
+          <div class="col-2 align-self-center">
+            <% user = room.users_except(current_user) %>
+            <%= image_tag user.get_profile_image(100,100), class: "rounded rounded-circle img-fluid" %>
           </div>
-          <div class="text-left small text-muted">
-            Message content
+  
+          <div class="flex-grow-1 p-2">
+            <div class="d-flex mb-0">
+              <h5><%= user.name %></h5>
+              <span class="ml-auto small">
+                <small class="text-muted">
+                  Change
+                  <%= user.created_at.strftime("%B %Y")%>
+                </small>
+              </span>
+            </div>
+            <div class="text-left small text-muted">
+              Message content
+            </div>
           </div>
-        </div>
-
-      </li>
-    <% end %>
+  
+        </li>
+      <% end %>
     <% end %>
   <% end %>
 </ul>
