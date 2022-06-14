@@ -75,8 +75,8 @@ class User < ApplicationRecord
   end
 
   #検索
-  def self.search_for(language, name, gender, content)
-    user = User.where("name LIKE ?", "%"+name.to_s+"%").where("introduction LIKE ?", "%"+content.to_s+"%")
+  def self.search_for(language, name, gender)
+    user = User.where("name LIKE ?", "%"+name.to_s+"%")
     male = user.where(gender: "male")
     female = user.where(gender: "female")
     other = user.where(gender: "other")
