@@ -10,6 +10,8 @@ class Public::CommentsController < ApplicationController
       @comment.post.create_notification_comment(current_user, @comment.id)
       @comments = @post.comments
       render "comments"
+    else
+      render "error"
     end
   end
 
