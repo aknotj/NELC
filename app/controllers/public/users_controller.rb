@@ -21,6 +21,8 @@ class Public::UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to user_path(@user)
       flash[:notice] = "Your changes have been successfully saved!　変更が保存されました"
+    else
+      render :edit
     end
   end
 
