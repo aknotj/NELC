@@ -4,15 +4,13 @@ class Public::BookmarksController < ApplicationController
   def create
     @post = Post.find(params[:post_id])
     current_user.bookmarks.create(post_id: @post.id)
-    redirect_to request.referer
-    flash[:notice] = "Added to Bookmarks! ブックマークに保存しました"
+    render "bookmark"
   end
 
   def destroy
     @post = Post.find(params[:post_id])
     current_user.bookmarks.find_by(post_id: @post.id).destroy
-    redirect_to request.referer
-    flash[:notice] = "Removed from Bookmarks. ブックマークを外しました"
+    render "bookmark"
   end
 
   def index
@@ -20,12 +18,12 @@ class Public::BookmarksController < ApplicationController
     posts = Post.find(bookmarks)
     @posts = Kaminari.paginate_array(posts).page(params[:page])
   end
-  
+
   def ensure_post_visibility
     post = Post.find(params[:post_id])
     unless post.is_deleted == false
       redirect_to bookmarks_path
     end
   end
-  
+
 end

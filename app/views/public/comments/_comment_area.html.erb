@@ -1,0 +1,13 @@
+<div class="container small" id="comment-area">
+  <div class="btn" id="comments-open">Comments</div>
+
+  <div id="comments">
+    <div class="post_comments">
+      <%= render "public/comments/comments", comments: comments %>
+    </div>
+
+    <div class="post-comments-form">
+      <%= render "public/comments/form", post: post, comment: comment %>
+    </div>
+  </div>
+</div>

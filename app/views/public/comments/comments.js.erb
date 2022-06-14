@@ -1,0 +1,2 @@
+$("#comment-form")[0].reset();
+$('.post_comments').html("<%= j(render "public/comments/comments", post: @post, comment: @comment, comments: @comments) %>");

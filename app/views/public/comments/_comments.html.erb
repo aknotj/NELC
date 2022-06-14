@@ -22,9 +22,7 @@
           <%= time_ago_in_words(comment.created_at) %> ago
         </div>
         <% if comment.user == current_user or comment.post.user == current_user %>
-          <%= link_to post_comment_path(comment.post, comment), method: :delete do %>
-            <i class="fas fa-trash-alt"></i>
-          <% end %>
+          <%= render "public/comments/delete-btn", comment: comment %>
         <% end %>
       </div>
       <p class="my-0">

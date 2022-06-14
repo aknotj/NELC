@@ -7,20 +7,9 @@
         <%= render "show", post: @post %>
         
         <% if @post.is_published? %>
-          <div class="container small">
-            <a data-toggle="collapse" href="#comments" role="button" aria-expanded="false" aria-controls="comments">
-              <%= @comments.count %> comments
-            </a>
-            <div class="collapse" id="comments">
-              <div class="comments">
-                <%= render "public/comments/comments", comments: @comments %>
-              </div>
-          
-              <div class="form">
-                <%= render "public/comments/form", post: @post, comment: @comment %>
-              </div>
-            </div>
-          </div>
+          <%= render "public/comments/comment_area", comments: @comments,
+                                                    comment: @comment,
+                                                    post: @post %>
         <% end %>
       </div>
     
