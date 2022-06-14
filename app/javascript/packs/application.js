@@ -11,6 +11,7 @@ import "jquery";
 import "popper.js";
 import "bootstrap";
 import "../stylesheets/application";
+import "script.js";
 import '@fortawesome/fontawesome-free/js/all';
 
 Rails.start()
