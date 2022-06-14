@@ -6,6 +6,10 @@
       <%= render "public/comments/comments", comments: comments %>
     </div>
 
+    <div id="comment-error">
+      <%= render "layouts/errors", obj: comment %>
+    </div>
+
     <div class="post-comments-form">
       <%= render "public/comments/form", post: post, comment: comment %>
     </div>

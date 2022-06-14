@@ -1,0 +1,11 @@
+<div class="user-info row align-items-center my-3">
+  <div class="col-5">
+    <%= image_tag current_user.get_profile_image(50,50), class: "round rounded-circle" %>
+  </div>
+  <div class="col-6">
+    <% if current_user.name_jap.present? %>
+      <small><%= current_user.name_jap %></small>
+    <% end %>
+    <%= current_user.name %>
+  </div>
+</div>

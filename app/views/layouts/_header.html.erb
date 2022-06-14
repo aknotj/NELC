@@ -65,6 +65,12 @@
       <!-- xsのnavbar -->
       <div class="d-block d-md-none">
         <ul class="nav">
+          <li class="nav-link d-none d-sm-block">
+            <%= link_to new_post_path do %>
+              <i class="fas fa-edit"></i>
+              <ruby>New Post<rt>とうこう</rt></ruby>
+            <% end %>
+          </li>
           <li class="nav-link">
             <%= link_to new_search_path do %>
               <i class="fas fa-search"></i>
