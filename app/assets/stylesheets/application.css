@@ -178,3 +178,7 @@ header, footer{
   border-radius: 15px;
   vertical-align: text-top;
 }
+
+.trash-btn{
+  font-size: 12px;
+}

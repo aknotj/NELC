@@ -120,7 +120,7 @@
 
 <div class="posts my-3">
   <h4>Posts <small>とうこう</small></h4>
-  <%= render "public/posts/index", posts: current_user.posts%>
+  <%= render "public/posts/index", posts: user.posts %>
   <div class="container mt-2">
     <div class="btn btn-outline-dark btn-block">
       <%= link_to "See all posts", user_posts_path(user), class: "btn-block" %>

@@ -3,56 +3,30 @@
     <h2>Notifications</h2>
   </div>
 
-  <div class="container">
+  <div class="container" id="update-all">
     <% if @notifications.any? %>
       <div class="delete-btn text-right small my-2">
-        <%= link_to "Delete all notifications", notifications_update_all_path, method: :patch %>
+        <%= render "update-all" %>
       </div>
-      <div class="my-2">
+      <div class="notification small">
         <% @notifications.each do |notification| %>
-          <div class="row py-3 border-bottom">
-            <div class="col-1 image">
-              <%= image_tag notification.sender.get_profile_image(30,30), class: "rounded rounded-circle" %>
-            </div>
-
-            <div class="col-11 notification-body small">
-              <% if notification.action == "follow" %>
-                <div class="row notification-heading small">
-                  <div class="col">
-                    フォローされました
-                  </div>
-                  <div class="col text-right">
-                    <small class="text-muted"><%= time_ago_in_words(notification.created_at) %> ago</small>
-                      &nbsp;
-                      <%= link_to notification_path(notification), method: :patch do %>
-                        <i class="fas fa-trash"></i>
-                      <% end %>
-                    </small>
-                  </div>
-                </div>
-                <div class="notification-details">
+          <div class="alert alert-dismissible fade show mb-0" role="alert">
+            <div class="row align-items-center">
+              <div class="col-1"><%= image_tag notification.sender.get_profile_image(30,30), class: "rounded rounded-circle" %></div>
+              <div class="col-11">
+                <% if notification.action == "follow" %>
+                  <span>フォローされました</span><span class="ml-3 text-muted"><%= time_ago_in_words(notification.created_at) %> ago</span><br>
                   <strong><%= link_to notification.sender.name, user_path(notification.sender) %></strong>
                   started following you!
-                </div>
-              <% elsif notification.action == "comment" %>
-                <div class="row notification-heading small">
-                  <div class="col">
-                    あなたの投稿にコメントされました
-                  </div>
-                  <div class="col text-right">
-                    <small class="text-muted"><%= time_ago_in_words(notification.created_at) %> ago</small>
-                      &nbsp;
-                      <%= link_to notification_path(notification), method: :patch do %>
-                        <i class="fas fa-trash"></i>
-                      <% end %>
-                    </small>
-                  </div>
-                </div>
-                <div class="notification-details">
+                <% elsif notification.action == "comment" %>
+                  <span>新着コメントがあります</span><span class="ml-3 text-muted"><%= time_ago_in_words(notification.created_at) %> ago</span><br>
                   <strong><%= link_to notification.sender.name, user_path(notification.sender) %></strong>
-                  left a comment on your post "<%= link_to notification.comment.post.title, post_path(notification.post_id) %>" !
-                </div>
-              <% end %>
+                  left a comment on you post "<%= link_to notification.comment.post.title, post_path(notification.post_id) %>" !
+                <% end %>
+              </div>
+            </div>
+            <div type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <%= render "delete-btn", notification: notification %>
             </div>
           </div>
         <% end %>
