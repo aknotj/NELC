@@ -1,2 +1,31 @@
-<h1>Public::Home#top</h1>
-<p>Find me in app/views/public/home/top.html.erb</p>
+<div class="content-body d-flex flex-column">
+  <div class="bg-white row justify-content-center">
+    <%= image_tag "people_bubble.jpg", class: "top-image" %>
+  </div>
+  <div class="container col-md-10 col-lg-8">
+    <div class="text-right">
+      <div class="top-lead-en">Learn together!</div>
+      <div class="col-10 col-md-8 ml-auto small">
+        NELC は英語を勉強している人と日本語を勉強している人を繋げるコミュニティです！
+        ランゲージエクスチェンジパートナーや学習仲間との交流や、学習記録やライティングの練習のためのブログを活用して、
+        一緒に楽しく英語を学びましょう！
+      </div>
+    </div>
+    <div class="mt-3 md-mt-1">
+      <div class="top-lead-ja">一緒に学ぼう!</div>
+      <div class="col-10 col-md-8 small">
+        NELC connects English lerners and Japanese learners from all around the world!
+        It is a community where you can make language exchange partners, get tips from your inspiring fellow lerners,
+        and even create your own blog to share your learning process and achievements.
+      </div>
+    </div>
+    <div class="buttons text-center my-3">
+      <%= link_to "Join Now!", new_user_registration_path, class: "btn btn-myrtle text-light" %>
+      <p class="small mb-0 mt-2">or <%= link_to "Log in", new_user_session_path %>
+      </p>
+    </div>
+  </div>
+  <div class="credit text-right mt-auto small">
+    <a href="https://jp.freepik.com/vectors" class="small text-muted">Vector4stock - jp.freepik.com によって作成された background ベクトル</a>
+  </div>
+</div>

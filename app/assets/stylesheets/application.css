@@ -48,6 +48,10 @@ header, footer{
   padding-bottom: 55px;
 }
 
+.bg-white{
+  background-color: white;
+}
+
 .bg-myrtle{
   background-color: #76A29C;
 }
@@ -63,12 +67,15 @@ header, footer{
 }
 
 .btn-myrtle{
-  background-color: #76A29C;
-  color: white;
-  border: 1px solid #346F67;
+  background-color: #4D8880;
   border-radius: 5px;
   padding-left: 8px;
   padding-right: 8px;
+}
+
+.btn-myrtle:hover{
+  background-color: #346F67;
+  color: black;
 }
 
 .nav-link:hover{
@@ -79,6 +86,10 @@ header, footer{
   text-decoration: none;
 }
 
+.top-image{
+  max-height: 40vh;
+  max-width: 100%;
+}
 
 /* サイズ・ポジション */
 
@@ -182,3 +193,19 @@ header, footer{
 .trash-btn{
   font-size: 12px;
 }
+
+.top-lead-en{
+  font-family: "Trebuchet MS", "Lucia Grande", Arial, Sans-serif;
+  font-size: 46px;
+  text-shadow: 3px 2px 0 #fff;
+
+}
+
+.top-lead-ja{
+  font-family: "Trebuchet MS", "Lucia Grande", Arial, Sans-serif;
+  font-size: 38px;
+  text-shadow: 3px 2px 0 #fff;
+}
+
+
+
