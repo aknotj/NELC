@@ -48,6 +48,13 @@ header, footer{
   padding-bottom: 55px;
 }
 
+.admin-body{
+  min-height: 100vh;
+  padding: 55px 20px 55px;
+  max-width: 900px;
+  background-color: white;
+}
+
 .bg-white{
   background-color: white;
 }
