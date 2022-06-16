@@ -1,7 +1,4 @@
-<div class="row content-body">
-  <%= render "layouts/sidebar" %>
-
-  <div class="col-md-9 col-lg-10">
+<div class="admin-body mx-auto">
     <div class="row heading">
       <h2>New Reports</h2>
       <p class="mb-0 ml-auto pr-3"><%= link_to "See all reports", admin_reports_path %></p>
@@ -10,5 +7,4 @@
     <div class="row justify-content-center">
       <%= paginate @reports %>
     </div>
-  </div>
 </div>
