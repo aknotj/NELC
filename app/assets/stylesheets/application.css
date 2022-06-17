@@ -214,5 +214,6 @@ header, footer{
   text-shadow: 3px 2px 0 #fff;
 }
 
-
-
+.no-content{
+  color: #76A29C;
+}

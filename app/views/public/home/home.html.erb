@@ -23,12 +23,6 @@
       </p>
     </div>
     <div class="posts-index">
-      <div class="container">
-        <div class="row">
-          <h4 class="mr-3">New posts</h4>
-          <p><ruby>新しい投稿<rt>あたらしいとうこう</rt></ruby></p>
-        </div>
-      </div>
       <%= render "public/posts/index", posts: @posts %>
       <div class="row justify-content-center">
         <%= paginate @posts %>
