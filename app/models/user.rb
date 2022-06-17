@@ -24,7 +24,7 @@ class User < ApplicationRecord
   has_many :active_notifications, class_name: "Notification", foreign_key: "sender_id"
   has_many :passive_notifications, class_name: "Notification", foreign_key: "recipient_id"
 
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true
 
   #ゲストユーザー情報を探し、存在しなければ作成
   def self.guest
