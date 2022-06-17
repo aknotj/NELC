@@ -30,7 +30,8 @@ Rails.application.routes.draw do
     get '/search', to: "searches#search"
     resources :searches, only: [:new]
 
-    get "users/:id/posts" => "users#posts", as:"user_posts"
+    get "users/:id/posts" => "users#posts", as: "user_posts"
+    get "users/:id/welcome" => "users#welcome", as: "user_welcome"
     get "users/:id/confirm" => "users#confirm", as: "user_confirm"
     patch "users/:id/withdraw" => "users#withdraw", as: "user_withdraw"
     resources :users, only: [:index, :show, :edit, :update, :destroy] do

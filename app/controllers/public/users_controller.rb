@@ -40,14 +40,17 @@ class Public::UsersController < ApplicationController
     current_user.deactivate
     reset_session
     redirect_to root_path
-    flash[:notice] = "Your account has been successfully deleted! アカウントが削除されました" 
+    flash[:notice] = "Your account has been successfully deleted! アカウントが削除されました"
   end
 
+  def welcome
+    @user = current_user
+  end
 
   private
 
   def user_params
-    params.require(:user).permit(:name, :name_jap, :gender, :native_language, :learning_language, :introduction, :profile_image)
+    params.require(:user).permit(:name, :name_jap, :gender, :native_language, :learning_language, :introduction, :profile_image, :time_zone)
   end
 
   def ensure_correct_user
