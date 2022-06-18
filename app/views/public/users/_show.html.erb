@@ -22,6 +22,13 @@
           <% end %>
           <p class="h4"><%= user.name %></p>
         </div>
+        <div class="language px-2">
+          <% if user.native_language == "Japanese" %>
+            <%= image_tag "ja_icon.png", class: "flag" %>
+          <% elsif user.native_language == "English" %>
+            <%= image_tag "en_icon.png", class: "flag" %>
+          <% end %>
+        </div>
         <div class="small text-muted ml-2">
             <% if user.is_friend_with?(current_user) %>
               <small class="text-muted">Friend</small>
