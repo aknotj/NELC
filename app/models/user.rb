@@ -76,11 +76,10 @@ class User < ApplicationRecord
 
   #検索
   def self.search_for(name, language, gender, content)
-    user = User.where("name LIKE ?", "%"+name.to_s+"%")
+    user = User.where("name LIKE ?", "%"+name.to_s+"%").where("introduction LIKE ?", "%"+content.to_s+"%")
     scope :male, -> {where(gender: "male")}
     scope :female, -> {where(gender: "female")}
     scope :other, -> {where(gender: "other")}
-    scope :introduction, -> {where("introduction LIKE ?", "%"+content.to_s+"%")}
     if language == "Japanese"
       if gender == "male"
         user.male.where(native_language: "Japanese")
@@ -108,7 +107,7 @@ class User < ApplicationRecord
     elsif gender == "other"
         user.other
     else
-      user.introduction
+      user
     end
   end
 

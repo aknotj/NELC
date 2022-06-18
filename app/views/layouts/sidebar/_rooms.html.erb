@@ -5,6 +5,9 @@
         <%= link_to room_path(room) do %>
           <% user = room.users_except(current_user) %>
           <%= user.name %>
+          <% if room.unchecked_notifications(current_user).any? %>
+            <i class="fas fa-circle new-message"></i>
+          <% end %>
         <% end %>
       </li>
     <% end %>
