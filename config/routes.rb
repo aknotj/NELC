@@ -33,6 +33,7 @@ Rails.application.routes.draw do
     get "users/:id/posts" => "users#posts", as: "user_posts"
     get "users/:id/welcome" => "users#welcome", as: "user_welcome"
     get "users/:id/confirm" => "users#confirm", as: "user_confirm"
+    get "users/:id/by_category" => "users#by_category", as: "user_posts_by_category"
     patch "users/:id/withdraw" => "users#withdraw", as: "user_withdraw"
     resources :users, only: [:index, :show, :edit, :update, :destroy] do
       resource :relationship, only: [:create, :destroy]

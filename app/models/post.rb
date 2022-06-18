@@ -11,7 +11,7 @@ class Post < ApplicationRecord
   default_scope -> {order('created_at desc')}
   validates :user_id, presence: true
   validates :title, presence: true, length: {maximum: 50}
-  validates :body, presence: true, length: {maximum: 300}
+  validates :body, presence: true, length: {maximum: 3000}
 
   enum language: {english: 0, japanese: 1, other: 2}
 

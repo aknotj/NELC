@@ -1,0 +1,11 @@
+<ul class="list-unstyled m-2">
+  <% categories.each do |category| %>
+    <% if category.posts.any? %>
+      <li>
+        <%= link_to user_posts_by_category_path(user_id: params[:user_id], category_id: category.id) do %>
+          <%= category.name %> <span class="small">(<%= category.posts.count %>)</span>
+        <% end %>
+      </li>
+    <% end %>
+  <% end %>
+</ul>

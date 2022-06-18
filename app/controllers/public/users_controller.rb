@@ -32,6 +32,16 @@ class Public::UsersController < ApplicationController
     @categories = Category.tagged_by(@user).order_by_posts
   end
 
+  def by_category
+    @user = User.find(params[:id])
+    @category = Category.find(params[:category_id])
+    @posts = @category.posts.published.page(params[:page])
+    @latest_posts = @user.posts.published.limit(4)
+    @categories = @user.post_categories.order_by_posts
+
+  end
+
+
   def confirm
     @user = current_user
   end
@@ -50,7 +60,8 @@ class Public::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :name_jap, :gender, :native_language, :learning_language, :introduction, :profile_image, :time_zone)
+    params.require(:user)
+          .permit(:name, :name_jap, :gender, :native_language, :learning_language, :introduction, :profile_image, :time_zone)
   end
 
   def ensure_correct_user

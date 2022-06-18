@@ -41,7 +41,7 @@ class User < ApplicationRecord
       file_path = Rails.root.join('app/assets/images/no-image.jpg')
       profile_image.attach(io: File.open(file_path), filename: 'no-image.jpg', content_type: 'image/jpg')
     end
-    profile_image.variant(resize_to_limit: [width, height]).processed
+    profile_image.variant(resize_to_fill: [width, height]).processed
   end
 
   #friend follow関係
@@ -135,6 +135,13 @@ class User < ApplicationRecord
     messages.destroy_all
     acitve_notifications.destroy_all
     passive_notifications.destroy_all
+  end
+
+  #ユーザーの投稿のカテゴリー一覧
+  def post_categories
+    post_ids = Post.where(user_id: id).ids
+    category_ids = PostCategory.where(post_id: post_ids).pluck(:category_id)
+    Category.where(id: category_ids)
   end
 
 end

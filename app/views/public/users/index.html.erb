@@ -7,6 +7,9 @@
       <p>ユーザー<ruby>一覧<rt>いちらん</rt></ruby></p>
     </div>
     <%= render "index", users: @users %>
+    <div class="row justify-content-center my-4">
+      <%= paginate @users %>
+    </div>
   </div>
 
   <%= render "public/searches/search" %>

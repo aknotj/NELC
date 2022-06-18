@@ -19,6 +19,8 @@ class Public::PostsController < ApplicationController
         flash[:notice] = "Your post has been saved as draft. 下書きを保存しました"
       end
     else
+      @post.save_categories(categories)
+      @categories = params[:post][:name].split(/,|、/)
       render :new
     end
   end
