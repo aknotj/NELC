@@ -26,10 +26,6 @@ a:hover{
   color:inherit;
 }
 
-body{
-  background-color: #76A29C;
-}
-
 header, footer{
   background-color: #4D8880;
   color: white;
@@ -37,11 +33,6 @@ header, footer{
 
 
 /* 色・背景色 */
-
-.main-content{
-  background-color: rgba(255,255,255, 0.8);
-}
-
 .content-body{
   min-height: 100vh;
   padding-top: 55px;
@@ -73,16 +64,33 @@ header, footer{
   color: white;
 }
 
+.myrtle-darker{
+  color: #4D8880;
+}
+
 .btn-myrtle{
-  background-color: #4D8880;
+  border: 1px solid #346f67;
   border-radius: 5px;
   padding-left: 8px;
   padding-right: 8px;
 }
 
 .btn-myrtle:hover{
+  background-color: #142c29;
+  color: white;
+}
+
+.btn-outline-myrtle{
+  border: 1px solid #346F67;
+  border-radius: 5px;
+  padding-left: 8px;
+  padding-right: 8px;
+  color: #4D8880;
+}
+
+.btn-outline-myrtle:hover{
   background-color: #346F67;
-  color: black;
+  color: white;
 }
 
 .nav-link:hover{
@@ -140,7 +148,7 @@ header, footer{
 }
 
 .user-card:hover{
-  background-color: #f8f9fa;
+  background-color: #f7f9f8;
 }
 
 .post-content{

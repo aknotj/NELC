@@ -40,7 +40,7 @@
     </div>
     <div class="col flex-grow-1">
       <div class="row justify-content-center my-4">
-        <table class="col-9 col-md-4 align-self-start">
+        <table class="col-9 col-md-4 align-self-start mb-2">
           <tbody>
             <tr>
               <th>Gender</th>
@@ -86,33 +86,32 @@
 
   <div class="row justify-content-around">
     <% if user == current_user %>
-      <div class="col-8 col-md-5 btn btn-outline-dark my-1">
-        <%= link_to new_post_path, class: "btn-block" do %>
+      <div class="col-8 col-md-5 my-1 myrtle-darker">
+        <%= link_to new_post_path, class: "btn btn-block btn-outline-myrtle" do %>
           <i class="fas fa-edit"></i> New Post
         <% end %>
       </div>
-      <div class="col-8 col-md-5 btn btn-outline-dark my-1">
-        <%= link_to "Edit profile", edit_user_path(current_user), class: "btn-block" %>
+      <div class="col-8 col-md-5 my-1 myrtle-darker">
+        <%= link_to "Edit profile", edit_user_path(current_user), class: "btn btn-block btn-outline-myrtle" %>
       </div>
     <% end %>
   </div>
 </div>
 
 <hr>
+<div class="row">
+  <div class="col-lg-6 relationships py-3">
+    <h4>Friends <small>ともだち</small></h4>
+    <%= render "friends", user: user, users: users %>
+  </div>
 
-<div class="relationships my-3">
-  <h4>Friends <small>ともだち</small></h4>
-  <%= render "friends", user: user, users: users %>
-</div>
+  <hr>
 
-<hr>
-
-<div class="posts my-3">
-  <h4>Posts <small>とうこう</small></h4>
-  <%= render "public/posts/index", posts: user.posts %>
-  <div class="container mt-2">
-    <div class="btn btn-outline-dark btn-block">
-      <%= link_to "See all posts", user_posts_path(user), class: "btn-block" %>
+  <div class="col-lg-6 posts py-3">
+    <h4>Posts <small>とうこう</small></h4>
+    <%= render "public/posts/index", posts: user.posts %>
+    <div class="container mt-2 text-right">
+      <%= link_to "See all posts", user_posts_path(user), class: "btn btn-sm btn-outline-myrtle" %>
     </div>
   </div>
 </div>

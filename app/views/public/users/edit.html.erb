@@ -8,6 +8,16 @@
     </div>
     <div class="my-4">
       <%= render "edit", user: @user %>
+      <div class="container d-flex">
+        <div class="col">
+          <%= link_to "Back", user_path(current_user) %>
+        </div>
+        <div class="ml-auto small">
+          <%= link_to user_confirm_path do %>
+            Delete account <small>退会する</small>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
 
