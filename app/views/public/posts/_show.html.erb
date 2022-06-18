@@ -18,7 +18,12 @@
 
   <div class="row text-muted small m-2">
     <div class="col-8">
-      Posted on <%= post.created_at.strftime("%Y/%m/%d %H:%M") %> by <%= link_to post.user.name, user_path(post.user.id) %><br>
+      Posted on <%= post.created_at.strftime("%Y/%m/%d %H:%M") %>
+      by <%= link_to post.user.name, user_path(post.user.id) %>
+      <% if post.edited? %>
+        <small>(Edited)</small>
+      <% end %>
+      <br>
       Categories:
       <% if post.categories.any? %>
         <% post.categories.each do |category| %>

@@ -71,5 +71,10 @@ class Post < ApplicationRecord
       notification.save if notification.valid?
     end
   end
+  
+  #編集されている投稿
+  def edited?
+    created_at != updated_at
+  end
 
 end
