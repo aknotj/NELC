@@ -3,28 +3,29 @@
 
   <div class="col-md-9 col-lg-8">
     <div class="row">
-      <div class="col-md-8 posts">
+      <div class="col-md-8 posts mb-2">
         <div class="row heading mb-1">
-          <h3 class="mr-3">Category:</h3>
+          <h4 class="mr-3"><%= @user.name %>'s posts from category:</h4>
           <p class="my-auto"> "<%= @category.name %>" <small><%= @category.posts.count %> posts</small></p>
         </div>
         <div class="posts-index">
-          <%= render "index", posts: @posts %>
-    
+          <%= render "public/posts/index", posts: @posts %>
+
           <div class="row justify-content-center">
             <%= paginate @posts %>
           </div>
         </div>
       </div>
-      
-      <div class="col-md-4 side">
+
+      <div class="col-md-4 side mt-2">
+        <h4>More posts from <%= @user.name %></h4>
         <div class="latests my-3">
           <p class="my-2"><span class="h5">Latest Posts</span> 最新の投稿</p>
-          <%= render "public/posts/latest", posts: @posts %>
+          <%= render "public/posts/latest", posts: @latest_posts %>
         </div>
         <div class="categories my-3 border-top">
           <p class="my-2"><span class="h5">Categories</span> カテゴリー別</p>
-          <%= render "categories", categories: @categories %>
+          <%= render "public/users/categories", categories: @categories %>
         </div>
       </div>
     </div>

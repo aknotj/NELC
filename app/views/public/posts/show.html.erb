@@ -1,26 +1,27 @@
 <div class="row content-body">
   <%= render "layouts/sidebar" %>
 
-  <div class="col-md-9 col-lg-8 pb-3">
+  <div class="col-md-9 col-lg-8 pb-3 mb-2">
     <div class="row">
       <div class="col-md-8 posts">
         <%= render "show", post: @post %>
-        
+
         <% if @post.is_published? %>
           <%= render "public/comments/comment_area", comments: @comments,
                                                     comment: @comment,
                                                     post: @post %>
         <% end %>
       </div>
-    
-      <div class="col-md-4 side">
+
+      <div class="col-md-4 side mt-2">
+        <h4>More posts from <%= @post.user.name %></h4>
         <div class="latests my-3">
           <p class="my-2"><span class="h5">Latest Posts</span> 最新の投稿</p>
           <%= render "latest", posts: @latest_posts %>
         </div>
         <div class="categories my-3 border-top">
           <p class="my-2"><span class="h5">Categories</span> カテゴリー別</p>
-          <%= render "categories", categories: @categories %>
+          <%= render "public/users/categories", categories: @categories %>
         </div>
       </div>
     </div>
