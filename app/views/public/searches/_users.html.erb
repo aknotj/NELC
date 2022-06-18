@@ -16,8 +16,8 @@
       <%= f.select :language,
                     options_for_select({"English" => "English",
                                         "Japanese" => "Japanese"}),
-                                        {include_blank: "Select a language"},
-                                        {class: "form-control form-control-sm"} %>
+                    {include_blank: "Select a language"},
+                    {class: "form-control form-control-sm"} %>
     </div>
   </div>
 
@@ -29,6 +29,15 @@
                                                 "Other" => "other" }),
                                               {include_blank: "Select a gender"},
                                               {class: "form-control form-control-sm"} %>
+    </div>
+  </div>
+  
+  <div class="form-group row mb-1">
+    <div class="col-3">
+      <%= f.label :keyword %>
+    </div>
+    <div class="col-9">
+      <%= f.text_field :content, class: "form-control form-control-sm" %>
     </div>
   </div>
 

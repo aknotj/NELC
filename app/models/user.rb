@@ -75,39 +75,40 @@ class User < ApplicationRecord
   end
 
   #検索
-  def self.search_for(language, name, gender)
+  def self.search_for(name, language, gender, content)
     user = User.where("name LIKE ?", "%"+name.to_s+"%")
-    male = user.where(gender: "male")
-    female = user.where(gender: "female")
-    other = user.where(gender: "other")
-    if language == "japanese"
+    scope :male, -> {where(gender: "male")}
+    scope :female, -> {where(gender: "female")}
+    scope :other, -> {where(gender: "other")}
+    scope :introduction, -> {where("introduction LIKE ?", "%"+content.to_s+"%")}
+    if language == "Japanese"
       if gender == "male"
-        male.where(native_language: "Japanese")
+        user.male.where(native_language: "Japanese")
       elsif gender == "female"
-        female.where(native_language: "Japanese")
+        user.female.where(native_language: "Japanese")
       elsif gender == "other"
-        other.where(native_language: "Japanese")
+        user.other.where(native_language: "Japanese")
       else
         user.where(native_language: "Japanese")
       end
-    elsif language == "english"
+    elsif language == "English"
       if gender == "male"
-        male.where(native_language: "English")
+        user.male.where(native_language: "English")
       elsif gender == "female"
-        female.where(native_language: "English")
+        user.female.where(native_language: "English")
       elsif gender == "other"
-        other.where(native_language: "English")
+        user.other.where(native_language: "English")
       else
         user.where(native_language: "English")
       end
     elsif gender == "male"
-        male
+        user.male
     elsif gender == "female"
-        female
+        user.female
     elsif gender == "other"
-        other
+        user.other
     else
-      user
+      user.introduction
     end
   end
 
