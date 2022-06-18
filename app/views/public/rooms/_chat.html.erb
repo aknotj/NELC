@@ -1,13 +1,13 @@
-<div class="chat-screen">
+<div class="chat-screen small">
   <div class="row heading border-bottom">
     <h3 class="mr-3"><%= user.name %></h3>
   </div>
 
-  <div class="messages">
+  <div class="messages mx-width-50 mx-auto">
     <%= render "messages", room: room %>
   </div>
-  
-  <div class="message-form">
+
+  <div class="message-form mx-width-50 mx-auto">
     <div class="container">
       <%= form_with model: message, local: false do |f| %>
         <div class="input-group">

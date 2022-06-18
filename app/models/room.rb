@@ -11,4 +11,9 @@ class Room < ApplicationRecord
     users.where.not(id: user.id).first
   end
 
+  def last_sent
+    message_id = messages.pluck(:id).last
+    Message.find_by(room_id: id, id: message_id)
+  end
+
 end
