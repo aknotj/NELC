@@ -102,6 +102,7 @@ header, footer{
   text-decoration: none;
 }
 
+
 .top-image{
   max-height: 40vh;
   max-width: 100%;
@@ -239,4 +240,9 @@ header, footer{
 
 .no-content{
   color: #76A29C;
+}
+
+.new-message{
+  color: #ffbb33;
+  font-size: 8px;
 }

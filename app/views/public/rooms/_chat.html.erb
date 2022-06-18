@@ -12,7 +12,7 @@
       <%= form_with model: message, local: false do |f| %>
         <div class="input-group">
           <%= f.hidden_field :room_id, value: params[:id] %>
-          <%= f.text_field :message, class: "form-control" %>
+          <%= f.text_field :message, autofocus: true, class: "form-control" %>
           <div class="input-group-append">
             <%= f.submit "送信", id: "chat-btn", class: "btn btn-outline-secondary" %>
           </div>

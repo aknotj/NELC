@@ -8,11 +8,13 @@
             <% user = room.users_except(current_user) %>
             <%= image_tag user.get_profile_image(100,100), class: "rounded rounded-circle img-fluid" %>
           </div>
-
           <div class="flex-grow-1 p-2">
             <div class="d-flex mb-0">
               <h5><%= user.name %></h5>
               <span class="ml-auto small">
+                <% if room.unchecked_notifications(current_user).any? %>
+                  <span class="text-warning"><i class="fas fa-envelope"></i> New</span>
+                <% end %>
                 <small class="text-muted">
                   <%= room.last_sent.created_at.strftime('%m/%d/%y %H:%M') %>
                 </small>
