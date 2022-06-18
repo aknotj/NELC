@@ -31,11 +31,11 @@
           <%= f.label :password %>
           <small>
             <% if @minimum_password_length %>
-              <em>(<%= @minimum_password_length %> characters minimum)</em>
+              <em>(<%= @minimum_password_length %> characters minimum / 6文字以上)</em>
             <% end %>
           </small>
         </div>
-        <div class="col-10 ml-auto">
+        <div class="col-12 ml-auto">
           <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
         </div>
       </div>
