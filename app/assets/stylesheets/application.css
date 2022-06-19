@@ -246,3 +246,12 @@ header, footer{
   color: #ffbb33;
   font-size: 8px;
 }
+
+.delete-btn{
+  display: none;
+}
+
+.delete-user input[type="checkbox"]:checked + .delete-btn{
+  display: block;
+}
+
