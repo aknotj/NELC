@@ -1,7 +1,7 @@
 <div class="post-title">
   <div class="row heading mx-2">
     <h3 class="mr-3"><%= post.title %></h3>
-    <div class="text-align-middle">
+    <div class="my-auto">
       by <%= link_to post.user.name, admin_user_path(post.user.id) %>
     </div>
     <% if post.is_deleted? %>

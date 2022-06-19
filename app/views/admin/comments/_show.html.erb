@@ -4,7 +4,7 @@
     <div class="text-align-middle">
       by <%= link_to post.user.name, admin_user_path(post.user.id) %>
     </div>
-    <% if post.is_deleted? %>
+    <% if comment.is_deleted? %>
       <div class="ml-auto text-danger">
         <p>Deleted</p>
       </div>
