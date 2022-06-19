@@ -36,7 +36,11 @@
         <p><%= link_to "Edit post", edit_post_path(post), class: "text-muted" %></p>
       <% else %>
         <div id="bookmark-btn">
-          <%= render "public/bookmarks/bookmark-btn", post: post %>
+          <% if post.bookmarked_by?(current_user) %>
+            <p class="small text-right"><%= link_to "Remove from Bookmark", post_bookmark_path(post), method: :delete, remote: true, class: "text-muted" %></p>
+          <% else %>
+            <p class="small text-right"><%= link_to "Add to Bookmark", post_bookmark_path(post), method: :post, remote: true, class: "text-muted" %></p>
+          <% end %>
         </div>
       <% end %>
     </div>

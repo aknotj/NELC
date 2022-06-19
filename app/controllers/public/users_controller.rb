@@ -38,7 +38,6 @@ class Public::UsersController < ApplicationController
     @posts = @category.posts.published.page(params[:page])
     @latest_posts = @user.posts.published.limit(4)
     @categories = @user.post_categories.order_by_posts
-
   end
 
 

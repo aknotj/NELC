@@ -7,7 +7,7 @@ class User < ApplicationRecord
 
   enum gender: {male: 0, female: 1, other: 2}
 
-  scope :active, -> { where(is_deactivated: :false)}
+  scope :active, -> { where(is_deactivated: :false).where.not(name: "Guest User")}
 
   has_one_attached :profile_image
   has_many :posts, ->{order('created_at desc')}, dependent: :destroy

@@ -22,6 +22,13 @@
       </p>
     </div>
     <div class="posts-index">
+      <% unless @posts.any? %>
+        <h3 class="no-content text-center mt-3">Home</h3>
+        <p class="no-content text-center">
+          Follow more user to display more posts!<br>
+          <small>フォローしているユーザーの投稿が一覧表示されます</small>
+        </p>
+      <% end %>
       <%= render "public/posts/index", posts: @posts %>
       <div class="row justify-content-center">
         <%= paginate @posts %>
