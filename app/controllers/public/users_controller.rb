@@ -8,7 +8,7 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @users = @user.friends.take(5)
+    @users = @user.friends.take(6)
     @posts = @user.posts.limit(3)
   end
 
@@ -38,7 +38,6 @@ class Public::UsersController < ApplicationController
     @posts = @category.posts.published.page(params[:page])
     @latest_posts = @user.posts.published.limit(4)
     @categories = @user.post_categories.order_by_posts
-
   end
 
 

@@ -12,34 +12,34 @@
         <% end %>
       </div>
     <% end %>
-    <div class="btn btn-outline-dark btn-block">
-      <%= link_to "See all friends", user_friends_path(@user), class: "btn-block" %>
-    </div>
+  </div>
+  <div class="container text-right">
+    <%= link_to "See all friends", user_friends_path(@user), class: "btn btn-sm btn-outline-myrtle" %>
   </div>
 <% elsif user == current_user %>
   <div class="text-center no-content my-5">
     <h5 class="mb-0">Find people to become friends!</h5>
     <small>まだ友達はいません。ユーザーを検索して友達を作ろう！</small>
     <div class="my-3 d-lg-none">
-      <%= link_to "Search", new_search_path, class: "btn btn-sm btn-outline-dark" %>
+      <%= link_to "Search", new_search_path, class: "btn btn-sm btn-outline-myrtle" %>
     </div>
   </div>
 <% elsif user.followed_by?(current_user) %>
+  <div class="text-right small mb-2">
+    <%= link_to "Following", user_following_path(@user) %> |
+    <%= link_to "Followers", user_followers_path(@user) %>
+  </div>
   <div class="text-center no-content my-5">
     <h5 class="mb-0"><%= user.name %> has no friends yet.</h5>
     <small>まだ友達はいません。</small>
   </div>
-  <div class="text-center mb-2">
+<% else %>
+  <div class="text-right small mb-2">
     <%= link_to "Following", user_following_path(@user) %> |
     <%= link_to "Followers", user_followers_path(@user) %>
   </div>
-<% else %>
   <div class="text-center no-content my-5">
     <h5 class="mb-0">Follow them to become their first study buddy!</h5>
     <small>まだ友達はいません。フォローして話しかけてみよう！</small>
-  </div>
-  <div class="text-center mb-2">
-    <%= link_to "Following", user_following_path(@user) %> |
-    <%= link_to "Followers", user_followers_path(@user) %>
   </div>
 <% end %>

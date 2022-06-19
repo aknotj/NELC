@@ -4,13 +4,13 @@ class Public::BookmarksController < ApplicationController
   def create
     @post = Post.find(params[:post_id])
     current_user.bookmarks.create(post_id: @post.id)
-    render "bookmark"
+    redirect_to post_path(@post)
   end
 
   def destroy
     @post = Post.find(params[:post_id])
     current_user.bookmarks.find_by(post_id: @post.id).destroy
-    render "bookmark"
+    redirect_to post_path(@post)
   end
 
   def index

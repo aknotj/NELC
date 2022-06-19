@@ -10,6 +10,7 @@ class Public::RoomsController < ApplicationController
     @room = Room.find(params[:id])
     @user = @room.users_except(current_user)
     @message = Message.new
+    @room.read_all_messages(current_user)
   end
 
   def create

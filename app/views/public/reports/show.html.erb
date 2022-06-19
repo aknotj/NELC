@@ -7,7 +7,7 @@
       <p>よりよいコミュニティ作りに貢献いただきありがとうございます。</p>
 
       <small>
-        Your report has been submitted on <%= @report.created_at.strftime('%m/%d/%Y %H:%M') %></br>
+        Your report has been submitted on <%= @report.created_at.in_time_zone(current_user.time_zone).strftime('%m/%d/%Y %H:%M') %></br>
         あなたの通報は既に受理されています。
       </small>
     </div>

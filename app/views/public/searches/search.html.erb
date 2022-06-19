@@ -8,6 +8,11 @@
         <h2 class="mr-3">Search Results for <%= @model %></h2>
         <p><ruby>検索結果<rt>けんさくけっか</rt></ruby></p>
       </div>
+      <% if @records.any? %>
+        <div class="keywords small">
+          Keywords " <%= params[:name] %> <%= params[:gender] %> <%= params[:language] %> <%= params[:content] %> "
+        </div>
+      <% end %>
       <div class="d-block d-lg-none container my-3">
         <div class="collapse-btn text-right">
           <a data-toggle="collapse" href="#collapseSearch" role="button" aria-expanded="false" aria-controls="collapseSearch">
@@ -50,7 +55,7 @@
       <% if @records.blank? %>
         <div class="text-center my-2">
           <p class="mb-0">No <%= @model %> matched your search. Please try again!</p>
-          <small>内容を変えて検索しなおしてください</small>
+          <small>条件を変えて検索しなおしてください</small>
         </div>
       <% end %>
       <div class="row justify-content-center">

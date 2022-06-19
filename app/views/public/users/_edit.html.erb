@@ -97,19 +97,9 @@
       </div>
 
       <div class="actions row my-4">
-        <div class="col-12 col-sm-6">
-          <%= f.submit "Save / 保存", class: "btn btn-sm btn-block btn-dark" %>
+        <div class="mx-auto">
+          <%= f.submit "Save / 保存", class: "btn btn-sm btn-myrtle" %>
         </div>
       </div>
     <% end %>
-    <div class="row">
-      <div class="col">
-        <%= link_to "Back", user_path(user) %>
-      </div>
-      <div class="ml-auto">
-        <%= link_to user_confirm_path do %>
-          Delete account <small>退会する</small>
-        <% end %>
-      </div>
-    </div>
   </div>

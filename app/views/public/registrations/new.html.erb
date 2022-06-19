@@ -31,11 +31,11 @@
           <%= f.label :password %>
           <small>
             <% if @minimum_password_length %>
-              <em>(<%= @minimum_password_length %> characters minimum)</em>
+              <em>(<%= @minimum_password_length %> characters minimum / 6文字以上)</em>
             <% end %>
           </small>
         </div>
-        <div class="col-10 ml-auto">
+        <div class="col-12 ml-auto">
           <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
         </div>
       </div>
@@ -49,7 +49,7 @@
 
       <div class="actions row justify-content-center my-3">
         <div class="col-12 col-sm-6">
-          <%= f.submit "Sign up", class: "btn btn-sm btn-block btn-dark" %>
+          <%= f.submit "Sign up", class: "btn btn-sm btn-block btn-myrtle" %>
         </div>
       </div>
     <% end %>

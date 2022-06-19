@@ -13,7 +13,11 @@
               <% end %>
             </h5>
             <div class="language px-2">
-              <%= image_tag "ja_icon.png", class:"flag" %>
+              <% if user.native_language == "Japanese" %>
+                <%= image_tag "ja_icon.png", class:"flag" %>
+              <% elsif user.native_language == "English" %>
+                <%= image_tag "en_icon.png", class:"flag" %>
+              <% end %>
             </div>
             <div class="ml-auto">
               <small>

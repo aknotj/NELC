@@ -4,12 +4,12 @@
   <div class="col-md-9 col-lg-8">
     <div class="row heading">
       <h2 class="mr-3">Edit post</h2>
-      <p><ruby>編集<rt>編集</rt></ruby></p>
+      <p><ruby>編集<rt>へんしゅう</rt></ruby></p>
     </div>
     <div class="my-4">
       <%= render "form", post: @post %>
       <div class="text-right pr-3">
-        <%= link_to post_path(@post), method: :delete do %>
+        <%= link_to post_path(@post), method: :delete, data: {confirm: "Are you sure? 本当に削除しますか？"} do %>
           Delete post <small>削除</small>
         <% end %>
       </div>

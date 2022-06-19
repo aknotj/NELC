@@ -7,7 +7,7 @@ class User < ApplicationRecord
 
   enum gender: {male: 0, female: 1, other: 2}
 
-  scope :active, -> { where(is_deactivated: :false)}
+  scope :active, -> { where(is_deactivated: :false).where.not(name: "Guest User")}
 
   has_one_attached :profile_image
   has_many :posts, ->{order('created_at desc')}, dependent: :destroy
@@ -75,37 +75,37 @@ class User < ApplicationRecord
   end
 
   #検索
-  def self.search_for(language, name, gender)
-    user = User.where("name LIKE ?", "%"+name.to_s+"%")
-    male = user.where(gender: "male")
-    female = user.where(gender: "female")
-    other = user.where(gender: "other")
-    if language == "japanese"
+  def self.search_for(name, language, gender, content)
+    user = User.where("name LIKE ?", "%"+name.to_s+"%").where("introduction LIKE ?", "%"+content.to_s+"%")
+    scope :male, -> {where(gender: "male")}
+    scope :female, -> {where(gender: "female")}
+    scope :other, -> {where(gender: "other")}
+    if language == "Japanese"
       if gender == "male"
-        male.where(native_language: "Japanese")
+        user.male.where(native_language: "Japanese")
       elsif gender == "female"
-        female.where(native_language: "Japanese")
+        user.female.where(native_language: "Japanese")
       elsif gender == "other"
-        other.where(native_language: "Japanese")
+        user.other.where(native_language: "Japanese")
       else
         user.where(native_language: "Japanese")
       end
-    elsif language == "english"
+    elsif language == "English"
       if gender == "male"
-        male.where(native_language: "English")
+        user.male.where(native_language: "English")
       elsif gender == "female"
-        female.where(native_language: "English")
+        user.female.where(native_language: "English")
       elsif gender == "other"
-        other.where(native_language: "English")
+        user.other.where(native_language: "English")
       else
         user.where(native_language: "English")
       end
     elsif gender == "male"
-        male
+        user.male
     elsif gender == "female"
-        female
+        user.female
     elsif gender == "other"
-        other
+        user.other
     else
       user
     end

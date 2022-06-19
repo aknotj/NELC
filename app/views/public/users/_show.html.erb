@@ -13,41 +13,41 @@
   </div>
 
   <div class="row">
-    <div class="col-lg-5 mb-2">
-      <div class="row justify-content-center">
-        <div class="col-4">
-          <%= image_tag user.get_profile_image(100,100), class: "rounded rounded-circle" %>
+    <div class="col-lg-4 mb-2">
+      <div class="col d-flex align-items-center justify-content-center justify-content-lg-start">
+        <%= image_tag user.get_profile_image(100,100), class: "rounded rounded-circle" %>
+        <div class="ml-3 flex-grow">
+          <% unless user.name_jap.blank? %>
+            <small><%= user.name_jap %></small>
+          <% end %>
+          <p class="h4"><%= user.name %></p>
         </div>
-        <div class="col-5">
-          <div class="row">
-            <div class="mr-2">
-              <% unless user.name_jap.blank? %>
-                <small><%= user.name_jap %></small>
-              <% end %>
-              <p class="h4"><%= user.name %></p>
-            </div>
-            <div class="small text-muted my-auto">
-                <% if user.is_friend_with?(current_user) %>
-                  <small class="text-muted">Friend</small>
-                <% elsif user.followed_by?(current_user) %>
-                  <small class="text-muted">Following</small>
-                <% elsif current_user.followed_by?(user) %>
-                  <small class="text-muted">Follows you</small>
-                <% end %>
-            </div>
-          </div>
+        <div class="language px-2">
+          <% if user.native_language == "Japanese" %>
+            <%= image_tag "ja_icon.png", class: "flag" %>
+          <% elsif user.native_language == "English" %>
+            <%= image_tag "en_icon.png", class: "flag" %>
+          <% end %>
+        </div>
+        <div class="small text-muted ml-2">
+            <% if user.is_friend_with?(current_user) %>
+              <small class="text-muted">Friend</small>
+            <% elsif user.followed_by?(current_user) %>
+              <small class="text-muted">Following</small>
+            <% elsif current_user.followed_by?(user) %>
+              <small class="text-muted">Follows you</small>
+            <% end %>
+        </div>
+      </div>
+      <div class="text-center mt-3">
+        <div id="follow-btn">
+          <%= render "public/relationships/follow-btn", user: user %>
         </div>
       </div>
     </div>
-    <div class="col-lg-1 text-center">
-      <div id="follow-btn">
-        <%= render "public/relationships/follow-btn", user: user %>
-      </div>
-    </div>
-
-    <div class="col-lg-6">
+    <div class="col flex-grow-1">
       <div class="row justify-content-center my-4">
-        <table class="col-9 col-md-5 align-self-start">
+        <table class="col-9 col-md-4 align-self-start mb-2">
           <tbody>
             <tr>
               <th>Gender</th>
@@ -78,7 +78,7 @@
             </tr>
           </tbody>
         </table>
-        <div class="col-10 col-md-6 py-1">
+        <div class="col-10 col-md-6 mt-2 text-box">
           <small class="introduction">
             <% if user == current_user && current_user.introduction.blank? %>
               <%= link_to "Add introduction", edit_user_path(current_user) %>
@@ -93,33 +93,34 @@
 
   <div class="row justify-content-around">
     <% if user == current_user %>
-      <div class="col-8 col-md-5 btn btn-outline-dark my-1">
-        <%= link_to new_post_path, class: "btn-block" do %>
+      <div class="col-8 col-md-5 my-1 myrtle-darker">
+        <%= link_to new_post_path, class: "btn btn-block btn-outline-myrtle" do %>
           <i class="fas fa-edit"></i> New Post
         <% end %>
       </div>
-      <div class="col-8 col-md-5 btn btn-outline-dark my-1">
-        <%= link_to "Edit profile", edit_user_path(current_user), class: "btn-block" %>
+      <div class="col-8 col-md-5 my-1 myrtle-darker">
+        <%= link_to "Edit profile", edit_user_path(current_user), class: "btn btn-block btn-outline-myrtle" %>
       </div>
     <% end %>
-
   </div>
 </div>
 
-
-<div class="relationships my-3 ">
-  <h4>Friends <small>ともだち</small></h4>
-  <%= render "friends", user: user, users: users %>
-</div>
-
 <hr>
+<div class="row">
+  <div class="col flex-grow-1 relationships py-3">
+    <h4>Friends <small>ともだち</small></h4>
+    <%= render "friends", user: user, users: users %>
+  </div>
 
-<div class="posts my-3">
-  <h4>Posts <small>とうこう</small></h4>
-  <%= render "public/posts/index", posts: user.posts %>
-  <div class="container mt-2">
-    <div class="btn btn-outline-dark btn-block">
-      <%= link_to "See all posts", user_posts_path(user), class: "btn-block" %>
+  <div class="divider d-none d-lg-block">
+    <div class="line"></div>
+  </div>
+
+  <div class="col-lg-6 posts py-3">
+    <h4>Posts <small>とうこう</small></h4>
+    <%= render "public/posts/index", posts: user.posts %>
+    <div class="container mt-2 text-right">
+      <%= link_to "See all posts", user_posts_path(user), class: "btn btn-sm btn-outline-myrtle" %>
     </div>
   </div>
 </div>

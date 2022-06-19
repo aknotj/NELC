@@ -3,8 +3,10 @@ class Public::MessagesController < ApplicationController
 
   def create
     @message = current_user.messages.new(message_params)
-    @message.save
-    redirect_back(fallback_location: root_path)
+    if @message.save
+      @message.create_notification_message(current_user, @message.id)
+      redirect_back(fallback_location: root_path)
+    end
   end
   
   private
