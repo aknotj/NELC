@@ -8,8 +8,12 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @users = @user.friends.take(6)
-    @posts = @user.posts.limit(3)
+    unless @user.is_deactivated == true
+      @users = @user.friends.take(6)
+      @posts = @user.posts.limit(3)
+    else
+      redirect_to users_path
+    end
   end
 
   def edit

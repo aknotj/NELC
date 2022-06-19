@@ -76,7 +76,7 @@ class User < ApplicationRecord
 
   #検索
   def self.search_for(name, language, gender, content)
-    user = User.where("name LIKE ?", "%"+name.to_s+"%").where("introduction LIKE ?", "%"+content.to_s+"%")
+    user = User.active.where("name LIKE ?", "%"+name.to_s+"%").where("introduction LIKE ?", "%"+content.to_s+"%")
     scope :male, -> {where(gender: "male")}
     scope :female, -> {where(gender: "female")}
     scope :other, -> {where(gender: "other")}
@@ -133,7 +133,7 @@ class User < ApplicationRecord
     bookmarks.destroy_all
     entries.destroy_all
     messages.destroy_all
-    acitve_notifications.destroy_all
+    active_notifications.destroy_all
     passive_notifications.destroy_all
   end
 

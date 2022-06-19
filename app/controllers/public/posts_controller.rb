@@ -61,8 +61,8 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.published.page(params[:page])
-    @categories = Category.order_by_posts.limit(10)
+    @posts = Post.published.includes(:user).page(params[:page])
+    @categories = Category.limit(10)
   end
 
   def by_category

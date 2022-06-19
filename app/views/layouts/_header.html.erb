@@ -20,7 +20,7 @@
               <i class="fas fa-comment-dots"></i>
               <ruby>Chat<rt>チャット</rt></ruby>
               <% if current_user.passive_notifications.chat.any? %>
-                <span class="notification-badge"><%= current_user.passive_notifications.chat.count %></span>
+                <span class="notification-badge"><%= current_user.passive_notifications.chat.size %></span>
               <% end %>
             <% end %>
           </li>
@@ -34,7 +34,7 @@
             <%= link_to notifications_path do %>
               <i class="fas fa-bell"></i>
               <% if current_user.passive_notifications.alerts.any? %>
-                <span class="notification-badge"><%= current_user.passive_notifications.alerts.count %></span>
+                <span class="notification-badge"><%= current_user.passive_notifications.alerts.size %></span>
               <% end %>
             <% end %>
           </li>
@@ -84,7 +84,7 @@
             <%= link_to notifications_path do %>
               <i class="fas fa-bell"></i>
               <% if current_user.passive_notifications.alerts.any? %>
-                <span class="notification-badge"><%= current_user.passive_notifications.alerts.count %></span>
+                <span class="notification-badge"><%= current_user.passive_notifications.alerts.size %></span>
               <% end %>
             <% end %>
           </li>
