@@ -2,7 +2,7 @@
 
 class Public::SessionsController < Devise::SessionsController
   #before_action :configure_sign_in_params, only: [:create]
-  before_action :check_user_status, only: [:create]
+  prepend_before_action :check_user_status, only: [:create]
 
   # GET /resource/sign_in
   # def new
@@ -29,11 +29,9 @@ class Public::SessionsController < Devise::SessionsController
   protected
 
   def check_user_status
-    user = User.find_by(name: params[:user][:name])
-    if user
-      if user.valid_password?(params[:user][:password]) && user.is_deactivated == true
+    user = User.find_by(email: params[:user][:email])
+    if user.valid_password?(params[:user][:password]) && user.is_deactivated == true
         redirect_to new_user_registration_path
-      end
     end
   end
   # If you have extra params to permit, append them to the sanitizer.
