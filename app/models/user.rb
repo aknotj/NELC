@@ -8,6 +8,7 @@ class User < ApplicationRecord
   enum gender: {male: 0, female: 1, other: 2}
 
   scope :active, -> { where(is_deactivated: :false).where.not(name: "Guest User")}
+  scope :with_attached_profile_image, -> {includes(profile_image_attachment: :blob)}
 
   has_one_attached :profile_image
   has_many :posts, ->{order('created_at desc')}, dependent: :destroy
@@ -76,7 +77,10 @@ class User < ApplicationRecord
 
   #検索
   def self.search_for(name, language, gender, content)
-    user = User.where("name LIKE ?", "%"+name.to_s+"%").where("introduction LIKE ?", "%"+content.to_s+"%")
+    user = User.active.where("name LIKE ?", "%"+name.to_s+"%")
+                      .where("introduction LIKE ?", "%"+content.to_s+"%")
+                      .with_attached_profile_image
+                      .includes(:following, :followers)
     scope :male, -> {where(gender: "male")}
     scope :female, -> {where(gender: "female")}
     scope :other, -> {where(gender: "other")}
@@ -126,14 +130,18 @@ class User < ApplicationRecord
 
   def deactivate
     update(is_deactivated: true)
-    posts.update_all(is_deleted: true)
+    posts.destroy_all(is_deleted: true)
     comments.update_all(is_deleted: true)
     active_relationships.destroy_all
     passive_relationships.destroy_all
     bookmarks.destroy_all
-    entries.destroy_all
     messages.destroy_all
-    acitve_notifications.destroy_all
+    entries.each do |entry|
+      room = entry.room
+      room.entries.destroy_all
+      room.destroy
+    end
+    active_notifications.destroy_all
     passive_notifications.destroy_all
   end
 

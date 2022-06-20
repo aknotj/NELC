@@ -36,9 +36,13 @@
 
     <hr>
       <div class="user-status">
-        <p><u>Deactivate User</u></p>
-        <%= link_to "Activate", admin_user_path(user), method: :patch, class: "btn btn-light" %>
-        <%= link_to "deactivate", admin_user_confirm_path(user), class: "btn btn-warning" %>
+        <% if user.is_deactivated? %>
+          <p><u>Activate User</u></p>
+          <%= link_to "Activate", admin_user_path(user), method: :patch, class: "btn btn-light" %>
+        <% else %>
+          <p><u>Deactivate User</u></p>
+          <%= link_to "deactivate", admin_user_confirm_path(user), class: "btn btn-warning" %>
+        <% end %>
       </div>
     <hr>
   </div>

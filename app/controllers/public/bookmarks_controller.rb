@@ -15,15 +15,7 @@ class Public::BookmarksController < ApplicationController
 
   def index
     bookmarks = current_user.bookmarks.pluck(:post_id)
-    posts = Post.find(bookmarks)
+    posts = Post.published.where(id: bookmarks).includes(user: {profile_image_attachment: :blob})
     @posts = Kaminari.paginate_array(posts).page(params[:page])
   end
-
-  def ensure_post_visibility
-    post = Post.find(params[:post_id])
-    unless post.is_deleted == false
-      redirect_to bookmarks_path
-    end
-  end
-
 end

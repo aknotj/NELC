@@ -3,12 +3,16 @@ class Public::UsersController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update, :confirm, :withdraw]
 
   def index
-    @users = User.active.page(params[:page])
+    @users = User.active
+                .includes(:following, :followers)
+                .with_attached_profile_image
+                .page(params[:page])
   end
 
   def show
     @user = User.find(params[:id])
-    @users = @user.friends.take(6)
+    friends_ids = @user.friends.pluck(:id)
+    @users = User.where(id: friends_ids).includes(profile_image_attachment: :blob).take(6)
     @posts = @user.posts.limit(3)
   end
 
@@ -29,15 +33,15 @@ class Public::UsersController < ApplicationController
   def posts
     @user = User.find(params[:id])
     @posts = @user.posts.published.page(params[:page])
-    @categories = Category.tagged_by(@user).order_by_posts
+    @categories = Category.tagged_by(@user).includes(:posts).order_by_posts
   end
 
   def by_category
     @user = User.find(params[:id])
     @category = Category.find(params[:category_id])
-    @posts = @category.posts.published.page(params[:page])
+    @posts = @category.posts.published.where(user_id: @user.id).includes(user: {profile_image_attachment: :blob}).page(params[:page])
     @latest_posts = @user.posts.published.limit(4)
-    @categories = @user.post_categories.order_by_posts
+    @categories = Category.tagged_by(@user).includes(:posts).order_by_posts
   end
 
 

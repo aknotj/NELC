@@ -4,6 +4,7 @@ class Public::RoomsController < ApplicationController
 
   def index
     @rooms = current_user.rooms
+                        .includes(:messages, entries: {user: {profile_image_attachment: :blob}})
   end
 
   def show

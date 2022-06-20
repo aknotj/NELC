@@ -5,10 +5,10 @@ class ApplicationController < ActionController::Base
     if user_signed_in?
       home_path
     else
-      admin_users_path
+      admin_reports_pending_path
     end
   end
-  
+
   private
   def user_time_zone(&block)
     Time.use_zone(current_user.time_zone, &block)

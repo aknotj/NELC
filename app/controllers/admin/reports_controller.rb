@@ -17,7 +17,7 @@ class Admin::ReportsController < ApplicationController
   def update
     @report = Report.find(params[:id])
     @report.update(report_params)
-    redirect_to admin_report_path(@report)
+    redirect_to request.referer
     flash[:notice] = "The report has been successfully updated"
   end
 

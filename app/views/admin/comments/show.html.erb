@@ -18,7 +18,7 @@
       </div>
       <hr>
       <div class="container">
-        Other Comments on this post (<%= @post.comments.count %>)
+        All Comments on this post (<%= @post.comments.count %>)
         <div class="comments small my-3">
           <%= render "admin/comments/index", comments: @comments %>
         </div>

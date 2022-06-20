@@ -48,10 +48,10 @@ class Public::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @comment = Comment.new
-    @comments = @post.comments.valid.all
-    user = @post.user
-    @latest_posts = user.posts.published.all.limit(4)
-    @categories = Category.tagged_by(user).order_by_posts.limit(10)
+    @comments = @post.comments.valid.includes(user: {profile_image_attachment: :blob})
+    @user = @post.user
+    @latest_posts = @user.posts.published.limit(4)
+    @categories = Category.tagged_by(@user).includes(:posts).order_by_posts.limit(10)
   end
 
   def drafts
@@ -61,18 +61,19 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.published.page(params[:page])
-    @categories = Category.order_by_posts.limit(10)
+    @posts = Post.published.includes(user: {profile_image_attachment: :blob}).page(params[:page])
+    @categories = Category.includes(:posts).order_by_posts.limit(10)
   end
 
   def by_category
     @category = Category.find(params[:category_id])
-    @posts = @category.posts.published.page(params[:page])
-    @latest_posts = Post.all.limit(4)
-    @categories = Category.order_by_posts.limit(10)
+    @posts = @category.posts.published.includes(user: {profile_image_attachment: :blob}).page(params[:page])
+    @latest_posts = Post.published.limit(4)
+    @categories = Category.includes(:posts).order_by_posts.limit(10)
   end
 
   def destroy
+    @post.categories.delete
     @post = Post.find(params[:id]).destroy
     redirect_to user_posts_path(@post.user)
     flash[:notice] = "Your post has been successfully deleted. 投稿を削除しました"
