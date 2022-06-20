@@ -23,11 +23,15 @@ class Post < ApplicationRecord
     add_categories = entered_categories - current_categories
 
     old_categories.each do |old_name|
-      self.categories.delete Category.find_by(name:old_name)
+      self.categories.delete Category.find_by(name: old_name)
+      old_categroy = Category.find_by(name: old_name)
+      if old_categroy.posts.count == 0
+        old_categroy.destroy
+      end
     end
-
+    
     add_categories.each do |category|
-      post_category = Category.find_or_create_by(name:category)
+      post_category = Category.find_or_create_by(name: category)
       self.categories << post_category
     end
   end
@@ -47,7 +51,10 @@ class Post < ApplicationRecord
 
   #検索
   def self.search_for(language, content)
-    posts = Post.published.where("title LIKE ?", "%"+content.to_s+"%").or(Post.published.where("body LIKE ?", "%"+content.to_s+"%"))
+    posts = Post.published.where("title LIKE ?", "%"+content.to_s+"%")
+                          .or(Post.published
+                          .where("body LIKE ?", "%"+content.to_s+"%"))
+                          .includes(user: {profile_image_attachment: :blob})
     if language == "japanese"
       posts.where(language: "japanese")
     elsif language == "english"

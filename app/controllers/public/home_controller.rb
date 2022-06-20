@@ -5,7 +5,9 @@ class Public::HomeController < ApplicationController
   end
 
   def home
-    @posts = Post.published.where(user_id: [current_user.id, *current_user.following_ids]).includes(:user).page(params[:page])
+    @posts = Post.published.where(user_id: [current_user.id, *current_user.following_ids])
+                            .includes(user: {profile_image_attachment: :blob})
+                            .page(params[:page])
     @time = Time.zone.now
   end
 end

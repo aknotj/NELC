@@ -16,17 +16,21 @@ class Public::RelationshipsController < ApplicationController
 
   def friends
     @user = User.find(params[:user_id])
-    @users = @user.friends
+    friends_ids = @user.friends.pluck(:id)
+    @users = User.where(id: friends_ids).includes(:following, :followers, profile_image_attachment: :blob)
   end
 
   def following
     @user = User.find(params[:user_id])
-    @users = @user.following
+    following_ids = @user.following.pluck(:id)
+    @users = User.where(id: following_ids).includes(:following, :followers, profile_image_attachment: :blob)
   end
 
   def followers
     @user = User.find(params[:user_id])
     @users = @user.followers
+    followers_ids = @user.followers.pluck(:id)
+    @users = User.where(id: followers_ids).includes(:following, :followers, profile_image_attachment: :blob)
   end
 
 end
