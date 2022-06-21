@@ -57,7 +57,7 @@ class Public::PostsController < ApplicationController
   def drafts
     @posts = current_user.posts.draft.page(params[:page])
     @latest_posts = current_user.posts.published.limit(4)
-    @categories = current_user.post_categories.order_by_posts
+    @categories = Category.tagged_by(current_user).includes(:posts).order_by_posts
   end
 
   def index

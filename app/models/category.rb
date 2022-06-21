@@ -10,9 +10,9 @@ class Category < ApplicationRecord
   end
 
   def self.tagged_by(user)
-    posts = user.posts.published.select(:id)
-    categories = PostCategory.where(post_id: posts).pluck(:category_id)
-    Category.where(id: categories).includes(:posts)
+    post_ids = Post.where(user_id: user.id).published.pluck(:id)
+    categories = PostCategory.where(post_id: post_ids).pluck(:category_id)
+    Category.where(id: categories)
   end
 
 end
