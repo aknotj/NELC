@@ -2,12 +2,12 @@ class Admin::PostsController < ApplicationController
   before_action :authenticate_admin!
   
   def index
-    @posts = Post.page(params[:page])
+    @posts = Post.page(params[:page]).includes(user: {profile_image_attachment: :blob})
   end
 
   def show
     @post = Post.find(params[:id])
-    @comments = @post.comments.page(params[:page])
+    @comments = @post.comments.page(params[:page]).includes(:post, user: {profile_image_attachment: :blob})
   end
 
   def update

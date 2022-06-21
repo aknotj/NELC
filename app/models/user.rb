@@ -132,13 +132,13 @@ class User < ApplicationRecord
 
   def deactivate
     update(is_deactivated: true)
-    posts.destroy_all(is_deleted: true)
+    posts.update_all(is_deleted: true)
     comments.update_all(is_deleted: true)
     active_relationships.destroy_all
     passive_relationships.destroy_all
-    bookmarks.destroy_all
+    bookmarks.includes(:post).destroy_all
     messages.destroy_all
-    entries.each do |entry|
+    entries.includes(room: :entries).each do |entry|
       room = entry.room
       room.entries.destroy_all
       room.destroy
