@@ -1,6 +1,7 @@
 class Public::ReportsController < ApplicationController
   before_action :authenticate_user!
   before_action :ensure_correct_user, only: [:show]
+  around_action :user_time_zone, if: :user_time_zone_present?
 
   def new
     @report = current_user.reports.new
@@ -33,6 +34,14 @@ class Public::ReportsController < ApplicationController
     unless report.user == current_user
       redirect_to root_path
     end
+  end
+
+  def user_time_zone(&block)
+    Time.use_zone(current_user.time_zone, &block)
+  end
+
+  def user_time_zone_present?
+    current_user.try(:time_zone).present?
   end
 
 end
