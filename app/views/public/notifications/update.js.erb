@@ -1,1 +1,2 @@
-$("#delete-btn").html("<%= j(render 'public/notifications/delete-btn', notifications: @notifications) %>");
+$("#notification_icon").html("<%= j(render 'layouts/notification_icon') %>");
+$("#delete-btn").html("<%= j(render 'public/notifications/delete-btn', notification: notification) %>");

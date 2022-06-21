@@ -31,8 +31,9 @@ class Public::CommentsController < ApplicationController
 
   def ensure_correct_user
     post = Post.find(params[:post_id])
-    unless post.user == current_user
-      redirect_to root_path
+    comment = Comment.find_by(post_id: post.id, id: params[:id])
+    unless post.user == current_user || comment.user == current_user
+      redirect_to post_path(post)
     end
   end
 end

@@ -2,7 +2,9 @@ class Public::NotificationsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @notifications = current_user.passive_notifications.alerts.all
+    @notifications = current_user.passive_notifications.alerts
+                                  .includes(:comment, :post, sender: {profile_image_attachment: :blob})
+                                  .all
   end
 
   def update

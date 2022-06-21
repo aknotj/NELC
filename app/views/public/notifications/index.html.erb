@@ -21,7 +21,7 @@
                 <% elsif notification.action == "comment" %>
                   <span>新着コメントがあります</span><span class="ml-3 text-muted"><%= time_ago_in_words(notification.created_at) %> ago</span><br>
                   <strong><%= link_to notification.sender.name, user_path(notification.sender) %></strong>
-                  left a comment on you post "<%= link_to notification.comment.post.title, post_path(notification.post_id) %>" !
+                  left a comment on your post "<%= link_to notification.post.title, post_path(notification.post_id) %>" !
                 <% end %>
               </div>
             </div>
