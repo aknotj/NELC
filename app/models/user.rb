@@ -22,6 +22,7 @@ class User < ApplicationRecord
   has_many :rooms, through: :entries
   has_many :messages, dependent: :destroy
   has_many :reports
+  has_many :notifications
   has_many :active_notifications, class_name: "Notification", foreign_key: "sender_id"
   has_many :passive_notifications, class_name: "Notification", foreign_key: "recipient_id"
 

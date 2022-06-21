@@ -55,8 +55,8 @@ Rails.application.routes.draw do
     resources :messages, only: [:create]
     get "reports/en/new" => "reports#new_en", as: "new_report_en"
     resources :reports, only: [:new, :create, :show]
-    patch "notifications/update_all"
-    resources :notifications, only: [:index, :update]
+    patch "notifications/destroy_all"
+    resources :notifications, only: [:index, :destroy]
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
