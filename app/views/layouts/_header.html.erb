@@ -6,7 +6,7 @@
           NELC
         <% end %>
       </div>
-      
+
         <ul class="nav">
           <li class="nav-link d-none d-sm-block">
             <%= link_to new_post_path do %>
@@ -35,10 +35,10 @@
               <ruby>Search<rt>けんさく</rt></ruby>
             <% end %>
           </li>
-          <li class="nav-link">
+          <li class="nav-link" id="notification_icon">
             <%= link_to notifications_path do %>
               <i class="fas fa-bell"></i>
-              <% if current_user.passive_notifications.alerts.any? %>
+              <% if current_user.passive_notifications.alerts.present? %>
                 <span class="notification-badge"><%= current_user.passive_notifications.alerts.size %></span>
               <% end %>
             <% end %>

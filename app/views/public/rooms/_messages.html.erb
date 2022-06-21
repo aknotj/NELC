@@ -7,7 +7,7 @@
 </script>
 
 <div class="overflow-auto conversation" id="scroll">
-  <% room.messages.each do |message| %>
+  <% messages.each do |message| %>
   <!-- 自分の投稿を右に表示 -->
     <% if message.user_id == current_user.id %>
     <div class="d-flex flex-row-reverse">

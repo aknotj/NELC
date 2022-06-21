@@ -8,7 +8,7 @@ class Public::CommentsController < ApplicationController
     @comment.post_id = @post.id
     if @comment.save
       @comment.post.create_notification_comment(current_user, @comment.id)
-      @comments = @post.comments
+      @comments = @post.comments.includes(post: {user: {profile_image_attachment: :blob}})
       render "comments"
     else
       render "error"
@@ -19,7 +19,7 @@ class Public::CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @comment = Comment.find(params[:id])
     @comment.destroy
-    @comments = @post.comments
+    @comments = @post.comments.includes(post: {user: {profile_image_attachment: :blob}})
     render "comments"
   end
 
@@ -31,8 +31,9 @@ class Public::CommentsController < ApplicationController
 
   def ensure_correct_user
     post = Post.find(params[:post_id])
-    unless post.user == current_user
-      redirect_to root_path
+    comment = Comment.find_by(post_id: post.id, id: params[:id])
+    unless post.user == current_user || comment.user == current_user
+      redirect_to post_path(post)
     end
   end
 end

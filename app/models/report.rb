@@ -1,5 +1,8 @@
 class Report < ApplicationRecord
   belongs_to :user
+  belongs_to :subject_user, class_name: "User", optional: true, foreign_key: "subject_id"
+  belongs_to :post, optional: true
+  belongs_to :comment, optional: true
 
   validates :user_id, presence: true
   validates :model, presence: true
@@ -16,16 +19,6 @@ class Report < ApplicationRecord
                   }
 
   default_scope -> {order('created_at desc')}
-
-  def subject
-    if model == "user"
-      User.find(subject_id).name
-    elsif model == "post"
-      Post.find(post_id).title
-    elsif model == "comment"
-      Comment.find(id: subject_id, post_id: post_id)
-    end
-  end
 
   def self.pending
     where(is_closed: false)

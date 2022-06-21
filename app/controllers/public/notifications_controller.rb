@@ -1,16 +1,23 @@
 class Public::NotificationsController < ApplicationController
   before_action :authenticate_user!
-
   def index
-    @notifications = current_user.passive_notifications.alerts.all
+    @notifications = current_user.passive_notifications
+                                  .includes(:comment, 
+                                            :post, 
+                                            :user, 
+                                            sender: {profile_image_attachment: :blob})
+                                  .all
+    @notifications.where(is_checked: false).each do |notification|
+      notification.update(is_checked: true)
+    end
   end
 
-  def update
-    @notification = Notification.find(params[:id]).update(is_checked: true)
+  def destroy
+    @notification = Notification.find(params[:id]).destroy
   end
 
-  def update_all
-    current_user.passive_notifications.update_all(is_checked: true)
+  def destroy_all
+    current_user.passive_notifications.destroy_all
+    redirect_to notifications_path
   end
-
 end

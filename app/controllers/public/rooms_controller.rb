@@ -9,9 +9,10 @@ class Public::RoomsController < ApplicationController
 
   def show
     @room = Room.find(params[:id])
+    @messages = @room.messages.includes(user: {profile_image_attachment: :blob})
     @user = @room.users_except(current_user)
     @message = Message.new
-    @room.read_all_messages(current_user)
+    current_user.passive_notifications.where(room_id: @room.id).destroy_all
   end
 
   def create

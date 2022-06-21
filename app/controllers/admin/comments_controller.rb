@@ -4,7 +4,7 @@ class Admin::CommentsController < ApplicationController
   def show
     @comment = Comment.find(params[:id])
     @post = @comment.post
-    @comments = @post.comments.page(params[:page])
+    @comments = @post.comments.page(params[:page]).includes(:post, user: {profile_image_attachment: :blob})
   end
 
   def update

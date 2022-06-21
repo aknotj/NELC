@@ -24,11 +24,12 @@
                 <%= @report.model %>:
               </span>
               <% if @report.model == "user" %>
-                <%= link_to @report.subject, admin_user_path(@report.subject_id) %>
+                <%= link_to @report.subject_user.name, admin_user_path(@report.subject_id) %>
               <% elsif @report.model == "post" %>
-                <%= link_to @report.subject, admin_post_path(@report.post_id) %>
+                <%= link_to @report.post.title, admin_post_path(@report.post_id) %>
               <% elsif @report.model == "comment" %>
-                comment: "<%= link_to @report.subject, admin_post_comment_path(id: @report.subject_id, post_id: @subject.post_id) %>" on post <%= link_to @report.subject.post.title, admin_post_path(@report.post_id) %>
+                comment: "<%= link_to @report.comment.content, admin_post_comment_path(id: @report.comment_id, post_id: @report.comment.post_id) %>"
+                on post <%= link_to @report.comment.post.title, admin_post_path(@report.post_id) %>
               <% end %>
             </td>
           </tr>

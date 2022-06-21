@@ -22,8 +22,10 @@ class User < ApplicationRecord
   has_many :rooms, through: :entries
   has_many :messages, dependent: :destroy
   has_many :reports
-  has_many :active_notifications, class_name: "Notification", foreign_key: "sender_id"
-  has_many :passive_notifications, class_name: "Notification", foreign_key: "recipient_id"
+  has_many :passive_reports, class_name: "Report", foreign_key: "subject_id"
+  has_many :notifications
+  has_many :active_notifications, class_name: "Notification", foreign_key: "sender_id", dependent: :destroy
+  has_many :passive_notifications, class_name: "Notification", foreign_key: "recipient_id", dependent: :destroy
 
   validates :name, presence: true
 
@@ -130,13 +132,13 @@ class User < ApplicationRecord
 
   def deactivate
     update(is_deactivated: true)
-    posts.destroy_all(is_deleted: true)
+    posts.update_all(is_deleted: true)
     comments.update_all(is_deleted: true)
     active_relationships.destroy_all
     passive_relationships.destroy_all
-    bookmarks.destroy_all
+    bookmarks.includes(:post).destroy_all
     messages.destroy_all
-    entries.each do |entry|
+    entries.includes(room: :entries).each do |entry|
       room = entry.room
       room.entries.destroy_all
       room.destroy

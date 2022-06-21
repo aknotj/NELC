@@ -10,7 +10,7 @@
       <small class="text-muted">
         <i class="far fa-flag"></i>
         <%= link_to "Report Post", new_report_path(model: "post",
-                                                  post_id: params[:post_id],
+                                                  post_id: post.id,
                                                   subject: "#{post.title}") %>
       </small>
     </p>
@@ -33,7 +33,7 @@
     </div>
     <div class="col-4 text-right">
       <% if post.user == current_user %>
-        <p><%= link_to "Edit post", edit_post_path(post), class: "text-muted" %></p>
+        <p>< <%= link_to "Edit", edit_post_path(post), class: "text-muted font-weight-bold" %> ></p>
       <% else %>
         <div id="bookmark-btn">
           <% if post.bookmarked_by?(current_user) %>

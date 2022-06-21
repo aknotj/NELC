@@ -23,9 +23,9 @@
               <small>
                 <% if user.friends.include?(current_user) %>
                   Friend
-                <% elsif user.following.include?(current_user) %>
-                  Following
                 <% elsif user.followers.include?(current_user) %>
+                  Following
+                <% elsif user.following.include?(current_user) %>
                   Follows you
                 <% end %>
               </small>

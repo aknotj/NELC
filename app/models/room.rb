@@ -12,10 +12,6 @@ class Room < ApplicationRecord
     message_id = messages.pluck(:id).last
     Message.find_by(room_id: id, id: message_id)
   end
-  
-  def read_all_messages(current_user)
-    current_user.passive_notifications.where(room_id: id).update(is_checked: true)
-  end
 
   def unchecked_notifications(current_user)
     current_user.passive_notifications.where(room_id: id).where(is_checked: false)

@@ -3,7 +3,9 @@ class Post < ApplicationRecord
   has_many :post_categories, dependent: :destroy
   has_many :categories, through: :post_categories
   has_many :comments, ->{order('created_at desc')}, dependent: :destroy
+  has_many :notifications
   has_many :bookmarks, dependent: :destroy
+  has_many :reports
 
   scope :published, -> { where(is_deleted: false, is_published: true) }
   scope :draft, -> { where(is_published: false) }
