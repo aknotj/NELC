@@ -69,7 +69,7 @@ class Public::UsersController < ApplicationController
 
   def ensure_correct_user
     @user = User.find(params[:id])
-    unless @user == current_user
+    if @user != current_user || @user.email == "guest@nelc.com"
       redirect_to user_path(@user)
     end
   end
