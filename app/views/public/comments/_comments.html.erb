@@ -6,13 +6,13 @@
     </div>
     <div class="col">
       <div class="d-flex">
-        <h6 class="fw-bold mb-1"><%= comment.user.name %></h6>
+        <h6 class="fw-bold mb-1"><%= link_to comment.user.name, user_path(comment.user_id) %></h6>
         <p class="ml-auto px-3 small">
           <small class="text-muted">
             <i class="far fa-flag"></i>
             <%= link_to "Report", new_report_path(model: "comment",
-                                                  subject_id: params[:id],
-                                                  post_id: params[:post_id],
+                                                  comment_id: comment.id,
+                                                  post_id: comment.post_id,
                                                   subject: "a comment by #{comment.user.name}") %>
           </small>
         </p>

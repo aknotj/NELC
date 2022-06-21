@@ -2,11 +2,11 @@ class Admin::ReportsController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @reports = Report.page(params[:page])
+    @reports = Report.includes(:user, :post, :comment, :subject_user).page(params[:page])
   end
-  
+
   def pending
-    @reports = Report.pending.page(params[:page])
+    @reports = Report.pending.includes(:user, :post, :comment, :subject_user).page(params[:page])
   end
 
   def show

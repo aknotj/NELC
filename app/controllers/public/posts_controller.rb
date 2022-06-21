@@ -48,7 +48,7 @@ class Public::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @comment = Comment.new
-    @comments = @post.comments.valid.includes(user: {profile_image_attachment: :blob})
+    @comments = @post.comments.valid.includes(:post, user: {profile_image_attachment: :blob})
     @user = @post.user
     @latest_posts = @user.posts.published.limit(4)
     @categories = Category.tagged_by(@user).includes(:posts).order_by_posts.limit(10)

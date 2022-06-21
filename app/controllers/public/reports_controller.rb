@@ -26,7 +26,7 @@ class Public::ReportsController < ApplicationController
   private
 
   def report_params
-   params.require(:report).permit(:category, :detail, :model, :subject_id, :post_id)
+   params.require(:report).permit(:category, :detail, :model, :subject_id, :post_id, :comment_id)
   end
   
   def ensure_correct_user

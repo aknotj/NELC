@@ -8,7 +8,15 @@
   <% reports.each do |report| %>
     <div class="row mb-2 small">
       <div class="col-1"><%= report.id %></div>
-      <div class="col-5"><%= report.subject %></div>
+      <div class="col-5">
+        <% if report.model == "user" %>
+          <%= report.subject_user.name %>
+        <% elsif report.model == "post" %>
+          <%= report.post.title %>
+        <% elsif report.model == "comment" %>
+          Comment on <%= report.post.title %>
+        <% end %>
+      </div>
       <div class="col-3"><%= report.created_at.strftime('%m/%d/%y %H:%M') %></div>
       <div class="col-2">
         <% if report.is_closed? %>

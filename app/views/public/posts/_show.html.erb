@@ -10,7 +10,7 @@
       <small class="text-muted">
         <i class="far fa-flag"></i>
         <%= link_to "Report Post", new_report_path(model: "post",
-                                                  post_id: params[:post_id],
+                                                  post_id: post.id,
                                                   subject: "#{post.title}") %>
       </small>
     </p>

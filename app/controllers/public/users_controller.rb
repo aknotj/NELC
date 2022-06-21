@@ -13,7 +13,7 @@ class Public::UsersController < ApplicationController
     @user = User.find(params[:id])
     friends_ids = @user.friends.pluck(:id)
     @users = User.where(id: friends_ids).includes(profile_image_attachment: :blob).take(6)
-    @posts = @user.posts.limit(3)
+    @posts = @user.posts.published.includes(user: {profile_image_attachment: :blob}).limit(3)
   end
 
   def edit
