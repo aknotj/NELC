@@ -12,10 +12,18 @@ require 'rails_helper'
         it 'root_pathが"/"であるか' do
           expect(current_path).to eq('/')
         end
-        it 'TOP画面に新規登録ページ・ログインページへのリンクが表示されているか' do
-          expect(page).to have_link "", href: new_user_registration_path
-          expect(page).to have_link "", href: new_user_session_path
+        it 'ヘッダーに新規登録ページ・ログインページへのリンクが表示されているか' do
+          join_link = find_all('a')[1]
+          expect(join_link.native.inner_text).to match(/Join新規登録/i)
+          login_link = find_all('a')[2]
+          expect(login_link.native.inner_text).to match(/Log in/i)
         end
+        it 'TOP画面に新規登録ページ・ログインページへのリンクが表示されているか' do
+          join_link = find_all('a')[3]
+          expect(join_link.native.inner_text).to match(/Join now/i)
+          login_link = find_all('a')[4]
+          expect(login_link.native.inner_text).to match(/Log in/i) 
+          end
       end
     end
     describe '新規登録画面のテスト' do
@@ -87,17 +95,48 @@ require 'rails_helper'
         it 'プロフィールの情報が表示される' do
           expect(page).to have_content user.name
         end
+        it 'ヘッダーのリンクが表示される' do
+          root_link = find_all('a')[0]
+          expect(root_link.native.inner_text).to match(/NELC/i)
+          post_link = find_all('a')[1]
+          expect(post_link.native.inner_text).to match(/New Post/i)
+          chat_link = find_all('a')[2]
+          expect(chat_link.native.inner_text).to match(/Chat Room/i)
+          friends_link = find_all('a')[3]
+          expect(friends_link.native.inner_text).to match(/Friends/i)
+          search_link = find_all('a')[4]
+          expect(search_link.native.inner_text).to match(/Search/i)
+          profile_link = find_all('a')[7]
+          expect(profile_link.native.inner_text).to match(/Profile/i)
+          post_link = find_all('a')[8]
+          expect(post_link.native.inner_text).to match(/New Post/i)
+          bookmarks_link = find_all('a')[9]
+          expect(bookmarks_link.native.inner_text).to match(/bookmarks/i)
+          friends_link = find_all('a')[10]
+          expect(friends_link.native.inner_text).to match(/My Friends/i)
+          logout_link = find_all('a')[11]
+          expect(logout_link.native.inner_text).to match(/log out/i)
+        end
         it '新規投稿・プロフィール編集リンクが表示される' do
-          expect(page).to have_link 'New Post'
-          expect(page).to have_link 'Edit profile'
+          post_link = find_all('a')[20]
+          expect(post_link.native.inner_text).to match(/New post/i)
+          edit_link = find_all('a')[21]
+          expect(edit_link.native.inner_text).to match(/edit profile/i) 
         end
         it 'Friendsヘディング・リンクが表示される' do
           expect(page).to have_content 'Friends'
           expect(page).to have_button 'Search'
+          friends_link = find_all('a')[22]
+          expect(friends_link.native.inner_text).to match(/Search/i)
         end
         it 'Postsヘディング・リンクが表示される' do
           expect(page).to have_content 'Posts'
-          expect(page).to have_link 'See all posts'
+          post_link = find_all('a')[23]
+          expect(post_link.native.inner_text).to match(/See all posts/i)
+        end
+        it 'プロフィールへ正しく遷移する' do
+          click_link 'Profile'
+          expect(current_path).to eq user_path(user)
         end
         it 'プロフィール編集へ正しく遷移する' do
           click_link 'Edit profile'
