@@ -13,7 +13,7 @@
           Keywords " <%= params[:name] %> <%= params[:gender] %> <%= params[:language] %> <%= params[:content] %> "
         </div>
       <% end %>
-      <div class="d-block d-lg-none container my-3">
+      <div class="d-block d-lg-none container mb-3">
         <div class="collapse-btn text-right">
           <a data-toggle="collapse" href="#collapseSearch" role="button" aria-expanded="false" aria-controls="collapseSearch">
             < New Search <small>新しく検索する</small> >
@@ -37,15 +37,23 @@
               <div class="p-3 bg-light">
                 <%= render "public/searches/users" %>
               </div>
+              <div class="text-right small text-muted">
+                <span><i class="fas fa-lightbulb text-warning"></i></span> Leave all fields blank to show all users. <small>空欄検索で全てのユーザーを表示します。</small>
+              </div>
+
             </div>
             <div class="tab-pane fade" id="posts" role="tabpanel" aria-labelledby="posts-tab">
               <div class="p-3 bg-light">
                 <%= render "public/searches/posts" %>
               </div>
+              <div class="text-right small text-muted">
+                <span><i class="fas fa-lightbulb text-warning"></i></span> Leave all fields blank to show all posts. <small>空欄検索で全ての投稿を表示します。</small>
+              </div>
             </div>
           </div>
         </div>
       </div>
+
 
       <% if @model == "Users" %>
         <%= render 'public/users/index', users: @records %>
