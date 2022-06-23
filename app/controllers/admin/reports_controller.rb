@@ -11,7 +11,6 @@ class Admin::ReportsController < ApplicationController
 
   def show
     @report = Report.find(params[:id])
-    @report_note = @report.note
   end
 
   def update

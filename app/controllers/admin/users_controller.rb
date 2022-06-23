@@ -2,7 +2,7 @@ class Admin::UsersController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @users = User.page(params[:page])
+    @users = User.page(params[:page]).includes(profile_image_attachment: :blob).page(params[:page])
   end
 
   def show
