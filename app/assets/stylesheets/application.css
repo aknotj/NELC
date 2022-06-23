@@ -225,6 +225,17 @@ header, footer{
   font-size: 12px;
 }
 
+.top-bg{
+  background-color: #76A29C;
+}
+
+.top-body{
+  background-color: #fff;
+  border: 1px solid #cacaca;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+}
+
 .top-lead-en{
   font-family: "Trebuchet MS", "Lucia Grande", Arial, Sans-serif;
   font-size: 46px;
