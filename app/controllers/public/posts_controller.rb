@@ -42,6 +42,9 @@ class Public::PostsController < ApplicationController
         redirect_to posts_drafts_path
         flash[:notice] = "Your post has been saved as draft. 下書きを保存しました"
       end
+    else
+      @categories = @post.categories.pluck(:name).join(',')
+      render :edit
     end
   end
 
