@@ -1,105 +1,106 @@
 <div class="col-10 container small">
-    <%= form_with model: user, method: :patch do |f| %>
-      <div id="user-error">
-        <%= render "layouts/errors", obj: user %>
+  <p class="text-danger text-right">* Required fields</p>
+  <%= form_with model: user, method: :patch do |f| %>
+    <div id="user-error">
+      <%= render "layouts/errors", obj: user %>
+    </div>
+    <div class="form-group row">
+      <div class="col-3">
+        <%= f.label :name %> <span class="text-danger">*</span>
       </div>
-      <div class="form-group row">
-        <div class="col-3">
-          <%= f.label :name %>
-        </div>
-        <div class="col-12 col-sm-9">
-          <%= f.text_field :name, autofocus: true, class: "form-control" %>
-        </div>
+      <div class="col-12 col-sm-9">
+        <%= f.text_field :name, autofocus: true, class: "form-control" %>
       </div>
+    </div>
 
-      <div class="form-group row">
-        <div class="col-3">
-          <ruby>名前<rt>なまえ</rt></ruby>
-        </div>
-        <div class="col-12 col-sm-9">
-          <%= f.text_field :name_jap, class: "form-control" %>
-        </div>
+    <div class="form-group row">
+      <div class="col-3">
+        <ruby>名前<rt>なまえ</rt></ruby>
       </div>
+      <div class="col-12 col-sm-9">
+        <%= f.text_field :name_jap, class: "form-control" %>
+      </div>
+    </div>
 
-      <div class="form-group row">
-        <div class="col-3">
-          <ruby>Gender<rt>性別</rt></ruby>
-        </div>
-        <div class="col-12 col-sm-9">
-          <%= f.select :gender, options_for_select({"Male" => "male",
-                                                    "Female" => "female",
-                                                    "Other" => "other" }),
-                                                  {include_blank: "Select a gender"},
-                                                  {class: "form-control"} %>
-        </div>
+    <div class="form-group row">
+      <div class="col-3">
+        <ruby>Gender<rt>性別</rt></ruby>
       </div>
+      <div class="col-12 col-sm-9">
+        <%= f.select :gender, options_for_select({"Male" => "male",
+                                                  "Female" => "female",
+                                                  "Other" => "other" }),
+                                                {include_blank: "Select a gender"},
+                                                {class: "form-control"} %>
+      </div>
+    </div>
 
-      <div class="form-group row">
-        <div class="col-3">
-          <ruby>Speaks<rt>話せる言語</rt></ruby>
-        </div>
-        <div class="col-12 col-sm-9">
-          <%= f.select :native_language,
-                        options_for_select({"English" => "English",
-                                            "Japanese" => "Japanese"}),
-                                            {include_blank: "Select a language"},
-                                            {class: "form-control"} %>
-        </div>
+    <div class="form-group row">
+      <div class="col-3">
+        <ruby>Speaks<rt>話せる言語</rt></ruby>
       </div>
+      <div class="col-12 col-sm-9">
+        <%= f.select :native_language,
+                      options_for_select({"English" => "English",
+                                          "Japanese" => "Japanese"}),
+                                          {include_blank: "Select a language"},
+                                          {class: "form-control"} %>
+      </div>
+    </div>
 
-      <div class="form-group row">
-        <div class="col-3">
-          <ruby>Learning<rt>学習中の言語</rt></ruby>
-        </div>
-        <div class="col-12 col-sm-9">
-          <%= f.select :learning_language,
-                        options_for_select({"English" => "English",
-                                            "Japanese" => "Japanese"}),
-                                            {include_blank: "Select a language"},
-                                            {class: "form-control"} %>
-        </div>
+    <div class="form-group row">
+      <div class="col-3">
+        <ruby>Learning<rt>学習中の言語</rt></ruby>
       </div>
+      <div class="col-12 col-sm-9">
+        <%= f.select :learning_language,
+                      options_for_select({"English" => "English",
+                                          "Japanese" => "Japanese"}),
+                                          {include_blank: "Select a language"},
+                                          {class: "form-control"} %>
+      </div>
+    </div>
 
-      <div class="form-group row">
-        <div class="col-12">
-          <ruby>Introduction<rt>自己紹介</rt></ruby>
-        </div>
-        <div class="col-12">
-          <%= f.text_area :introduction, class: "form-control" %>
-        </div>
+    <div class="form-group row">
+      <div class="col-12">
+        <ruby>Introduction<rt>自己紹介</rt></ruby>
       </div>
+      <div class="col-12">
+        <%= f.text_area :introduction, class: "form-control" %>
+      </div>
+    </div>
 
-      <div class="form-group row">
-        <div class="col-3">
-          <%= f.label :email %>
-        </div>
-        <div class="col-12 col-sm-9">
-          <%= f.email_field :email, class: "form-control" %>
-        </div>
+    <div class="form-group row">
+      <div class="col-3">
+        <%= f.label :email %> <span class="text-danger">*</span>
       </div>
+      <div class="col-12 col-sm-9">
+        <%= f.email_field :email, class: "form-control" %>
+      </div>
+    </div>
 
-      <div class="form-group row">
-        <div class="col-12">
-          <ruby>Time Zone<rt>タイムゾーン</rt></ruby>
-        </div>
-        <div class="col-12 col-sm-9">
-          <%= f.time_zone_select(:time_zone, ActiveSupport::TimeZone.all.sort, {default: "Tokyo"}, {class: "form-control"}) %>
-        </div>
+    <div class="form-group row">
+      <div class="col-12">
+        <ruby>Time Zone<rt>タイムゾーン</rt></ruby>
       </div>
+      <div class="col-12 col-sm-9">
+        <%= f.time_zone_select(:time_zone, ActiveSupport::TimeZone.all.sort, {default: "Tokyo"}, {class: "form-control"}) %>
+      </div>
+    </div>
 
-      <div class="form-group row">
-        <div class="col-12">
-          <ruby>Profile Picture<rt>プロフィール写真</rt></ruby>
-        </div>
-        <div class="col-12 col-sm-9">
-          <%= f.file_field :profile_image, class: "form-control-file", accept: "image/*" %>
-        </div>
+    <div class="form-group row">
+      <div class="col-12">
+        <ruby>Profile Picture<rt>プロフィール写真</rt></ruby>
       </div>
+      <div class="col-12 col-sm-9">
+        <%= f.file_field :profile_image, class: "form-control-file", accept: "image/*" %>
+      </div>
+    </div>
 
-      <div class="actions row my-4">
-        <div class="mx-auto">
-          <%= f.submit "Save / 保存", class: "btn btn-sm btn-myrtle" %>
-        </div>
+    <div class="actions row my-4">
+      <div class="mx-auto">
+        <%= f.submit "Save / 保存", class: "btn btn-sm btn-myrtle" %>
       </div>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
+</div>
