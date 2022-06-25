@@ -8,7 +8,7 @@
                       user: @user %>
 
     <div class="fixed-bottom">
-      <div class="sm-chat-area">
+      <div class="chat-form-area">
         <div class="mx-auto chat-field pt-1">
           <%= form_with model: @message, local: false do |f| %>
             <%= f.hidden_field :room_id, value: params[:id] %>
