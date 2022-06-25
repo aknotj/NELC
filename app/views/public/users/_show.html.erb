@@ -3,12 +3,14 @@
     <h2 class="mr-3">Profile</h2>
     <p class="mt-auto">プロフィール</p>
     <p class="ml-auto px-3 small">
-      <small class="text-muted">
-        <i class="far fa-flag"></i>
-        <%= link_to "Report User", new_report_path(model: "user",
-                                                  subject_id: user.id,
-                                                  subject: "#{user.name}") %>
-      </small>
+      <% if user != current_user %>
+        <small class="text-muted">
+          <i class="far fa-flag"></i>
+          <%= link_to "Report User", new_report_path(model: "user",
+                                                    subject_id: user.id,
+                                                    subject: "#{user.name}") %>
+        </small>
+      <% end %>
     </p>
   </div>
 
