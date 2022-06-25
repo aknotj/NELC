@@ -1,0 +1,50 @@
+<div class="mx-width-50 content-body mx-auto">
+  <div class="text-center mt-3">
+    <h4>Report <%= params[:subject] %></h4>
+    <div class="small text-right">
+      <%= link_to "日本語", new_report_path(model: params[:model],
+                                          subject_id: params[:subject_id],
+                                          post_id: params[:post_id],
+                                          subject: params[:subject]) %>
+    </div>
+  </div>
+  <div class="container">
+    <%= form_with model: @report do |f| %>
+      <div class="form-group">
+        <%= f.label :category %>
+        <%= f.select :category,
+                      options_for_select({"The user/content is offensive to you or someone else" => "offensive",
+                                          "The user is sexually harrassing you or someone else" => "sexual",
+                                          "The user is displaying discriminatory attitudes toward people of specific category" => "discriminatory",
+                                          "The user is pretending to be someone else" => "impersonation",
+                                          "The user/content is inappropriate" => "inappropriate",
+                                          "Other: Please specify below" => "other"
+                                          }),
+                                          {},
+                                          {class: "form-control"} %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :detail %> <small>*please specify below</small>
+        <%= f.text_area :detail, class: "form-control" %>
+      </div>
+
+      <div class="checkbox">
+        <%= f.check_box :complete, unchecked:false, required: true %>
+        I have read and understood the policy.
+      </div>
+
+      <div class="hidden_field">
+        <%= f.hidden_field :model, value: params[:model] %>
+        <%= f.hidden_field :subject_id, value: params[:subject_id] %>
+        <%= f.hidden_field :post_id, value: params[:post_id] %>
+      </div>
+
+      <div class="actions row justify-content-center my-3">
+        <div class="col-12 col-sm-6">
+          <%= f.submit "Submit", class: "btn btn-sm btn-block btn-dark" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

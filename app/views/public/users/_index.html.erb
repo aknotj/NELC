@@ -1,0 +1,43 @@
+<% users.each do |user| %>
+  <div class="card mb-1">
+    <div class="row justify-content-center">
+      <div class="col-2 align-self-center">
+        <%= image_tag user.get_profile_image(100,100), class: "rounded rounded-circle img-fluid" %>
+      </div>
+      <div class="col-9">
+        <div class="card-body">
+          <div class="card-title d-flex">
+            <h5>
+              <%= link_to user_path(user) do %>
+                <ruby><%= user.name %><rt><%= user.name_jap %></rt></ruby>
+              <% end %>
+            </h5>
+            <div class="language px-2">
+              <% if user.native_language == "Japanese" %>
+                <%= image_tag "ja_icon.png", class:"flag" %>
+              <% elsif user.native_language == "English" %>
+                <%= image_tag "en_icon.png", class:"flag" %>
+              <% end %>
+            </div>
+            <div class="ml-auto">
+              <small>
+                <% if user.friends.include?(current_user) %>
+                  Friend
+                <% elsif user.followers.include?(current_user) %>
+                  Following
+                <% elsif user.following.include?(current_user) %>
+                  Follows you
+                <% end %>
+              </small>
+            </div>
+          </div>
+          <div class="card-text">
+            <p><%= user.introduction %></p>
+          </div>
+          <p class="card-text"><small class="text-muted">Member since <%= user.created_at.strftime("%B %Y")%></small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<% end %>

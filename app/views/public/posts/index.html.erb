@@ -1,0 +1,29 @@
+<div class="row content-body">
+  <%= render "layouts/sidebar" %>
+
+  <div class="col-md-9 col-lg-8">
+    <div class="row">
+      <div class="col-md-8 posts">
+        <div class="row heading">
+            <h2 class="mr-3">All posts</h2>
+            <p><ruby>全ての投稿<rt>すべてのとうこう</rt></ruby></p>
+        </div>
+        <div class="posts-index">
+          <%= render "index", posts: @posts %>
+          <div class="row justify-content-center">
+            <%= paginate @posts %>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 side">
+        <div class="categories my-3 border-top">
+          <p class="my-2"><span class="h5">Top categories</span> 人気カテゴリー別</p>
+          <%= render "categories", categories: @categories %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%= render "public/searches/search" %>
+</div>

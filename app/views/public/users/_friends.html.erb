@@ -1,0 +1,45 @@
+<% if user.friends.any? %>
+  <div class="container flex-user-cards">
+    <% users.each do |user| %>
+      <div class="card user-card pt-3">
+        <%= link_to user_path(user) do %>
+          <div class="card-img-top"><%= image_tag user.get_profile_image(50,50), class: "rounded rounded-circle" %></div>
+          <div class="card-body">
+            <p class="card-text">
+              <ruby><%= user.name %><rt><%= user.name_jap %></rt></ruby>
+            </p>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <div class="container text-right">
+    <%= link_to "See all friends", user_friends_path(@user), class: "btn btn-sm btn-outline-myrtle" %>
+  </div>
+<% elsif user == current_user %>
+  <div class="text-center no-content my-5">
+    <h5 class="mb-0">Find people to become friends!</h5>
+    <small>まだ友達はいません。ユーザーを検索して友達を作ろう！</small>
+    <div class="my-3 d-lg-none">
+      <%= link_to "Search", new_search_path, class: "btn btn-sm btn-outline-myrtle" %>
+    </div>
+  </div>
+<% elsif user.followed_by?(current_user) %>
+  <div class="text-right small mb-2">
+    <%= link_to "Following", user_following_path(@user) %> |
+    <%= link_to "Followers", user_followers_path(@user) %>
+  </div>
+  <div class="text-center no-content my-5">
+    <h5 class="mb-0"><%= user.name %> has no friends yet.</h5>
+    <small>まだ友達はいません。</small>
+  </div>
+<% else %>
+  <div class="text-right small mb-2">
+    <%= link_to "Following", user_following_path(@user) %> |
+    <%= link_to "Followers", user_followers_path(@user) %>
+  </div>
+  <div class="text-center no-content my-5">
+    <h5 class="mb-0">Follow them to become their first study buddy!</h5>
+    <small>まだ友達はいません。フォローして話しかけてみよう！</small>
+  </div>
+<% end %>

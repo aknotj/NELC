@@ -1,0 +1,52 @@
+<div class="mx-width-50 content-body mx-auto">
+  <div class="text-center mt-3">
+    <h4>Report: <%= params[:subject] %></h4>
+    <p><%= params[:subject] %> を通報</p>
+    <div class="small text-right">
+      <%= link_to "English", new_report_en_path(model: params[:model],
+                                          subject_id: params[:subject_id],
+                                          post_id: params[:post_id],
+                                          subject: params[:subject]) %>
+    </div>
+  </div>
+  <div class="container">
+    <%= form_with model: @report do |f| %>
+      <div class="form-group">
+        <%= f.label :通報の内容 %>
+        <%= f.select :category,
+                      options_for_select({"攻撃的な行動、またはその内容を含む投稿" => "offensive",
+                                          "性的嫌がらせ" => "sexual",
+                                          "人種や性別などを対象とした差別的な行為、またはその内容を含む投稿" => "discriminatory",
+                                          "自分あるいは他人へのなりすまし" => "impersonation",
+                                          "不適切な内容" => "inappropriate",
+                                          "その他：下記に記載してください" => "other"
+                                          }),
+                                          {},
+                                          {class: "form-control"} %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :詳細 %>
+        <%= f.text_area :detail, class: "form-control" %>
+      </div>
+
+      <div class="checkbox">
+        <%= f.check_box :complete, unchecked:false, required: true %>
+        ポリシーを確認しました。
+      </div>
+
+      <div class="hidden_field">
+        <%= f.hidden_field :model, value: params[:model] %>
+        <%= f.hidden_field :subject_id, value: params[:subject_id] %>
+        <%= f.hidden_field :post_id, value: params[:post_id] %>
+      </div>
+
+      <div class="actions row justify-content-center my-3">
+        <div class="col-12 col-sm-6">
+          <%= f.submit "通報", class: "btn btn-sm btn-block btn-dark" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+

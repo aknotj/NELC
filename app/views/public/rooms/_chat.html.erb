@@ -1,0 +1,23 @@
+<div class="chat-screen small">
+  <div class="row heading border-bottom">
+    <h3 class="mr-3"><%= user.name %></h3>
+  </div>
+
+  <div class="messages mx-width-50 mx-auto">
+    <%= render "messages", messages: messages %>
+  </div>
+
+  <div class="message-form mx-width-50 mx-auto">
+    <div class="container">
+      <%= form_with model: message, local: false do |f| %>
+        <div class="input-group">
+          <%= f.hidden_field :room_id, value: params[:id] %>
+          <%= f.text_field :message, autofocus: true, class: "form-control" %>
+          <div class="input-group-append">
+            <%= f.submit "Send", id: "chat-btn", class: "btn btn-outline-secondary" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+<div class="row content-body">
+  <%= render "layouts/sidebar" %>
+  <div class="col-md-9 col-lg-8">
+    <div class="row heading align-items-center justify-content-center">
+      <p class="mr-3 lead">
+        <% if Time.zone.now >= Time.zone.parse("6:00") and Time.zone.now <= Time.zone.parse("11:59") %>
+          Good Morning! <br>
+        <% elsif Time.zone.now >= Time.zone.parse("12:00") and Time.zone.now <= Time.zone.parse("17:59") %>
+          Good Afternoon!
+        <% else %>
+          Good Evening!
+        <% end %>
+      </p>
+      <p class="small d-block">
+        <% if Time.zone.now >= Time.zone.parse("6:00") and Time.zone.now <= Time.zone.parse("11:59") %>
+          おはようございます、<%= current_user.name %>さん! <br>
+        <% elsif Time.zone.now >= Time.zone.parse("12:00") and Time.zone.now <= Time.zone.parse("17:59") %>
+          こんにちは、<%= current_user.name %>さん!
+        <% else %>
+          こんばんは、<%= current_user.name %>さん!
+        <% end %>
+      </p>
+    </div>
+    <div class="posts-index">
+      <% unless @posts.any? %>
+        <h3 class="no-content text-center mt-3">Home</h3>
+        <p class="no-content text-center">
+          Follow more user to display more posts!<br>
+          <small>フォローしているユーザーの投稿が一覧表示されます</small>
+        </p>
+      <% end %>
+      <%= render "public/posts/index", posts: @posts %>
+      <div class="row justify-content-center">
+        <%= paginate @posts %>
+      </div>
+    </div>
+  </div>
+
+  <%= render "public/searches/search" %>
+</div>

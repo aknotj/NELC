@@ -1,0 +1,25 @@
+<div class="row content-body">
+  <%= render "layouts/sidebar" %>
+
+  <div class="col-md-9 col-lg-8">
+    <div class="row heading">
+      <h2 class="mr-3">Edit profile</h2>
+      <p>プロフィール<ruby>編集<rt>へんしゅう</rt></ruby></p>
+    </div>
+    <div class="mt-2 mb-4">
+      <%= render "edit", user: @user %>
+      <div class="container d-flex">
+        <div class="col">
+          <%= link_to "Back", user_path(current_user) %>
+        </div>
+        <div class="ml-auto small">
+          <%= link_to user_confirm_path do %>
+            Delete account <small>退会する</small>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%= render "public/searches/search" %>
+</div>

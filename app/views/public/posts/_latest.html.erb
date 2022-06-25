@@ -1,0 +1,17 @@
+<% if posts.present? %>
+<div class="list-group my-2">
+  <% posts.each do |post| %>
+    <%= link_to post_path(post), class: "btn-light" do %>
+      <div class="flex-grow py-2 px-3">
+        <p><%= post.title %></p>
+        <div class="small text-muted text-right"><%= post.created_at.strftime("%Y-%m-%d") %></div>
+      </div>
+    <% end %>
+<% end %>
+</div>
+<% else %>
+  <div class="text-center no-content">
+    <p class="mb-0">No posts available</p>
+    <small>表示できる投稿がありません</small>
+  </div>
+<% end %>

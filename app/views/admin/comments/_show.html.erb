@@ -1,0 +1,42 @@
+<div class="comment-details">
+  <div class="row heading mx-2">
+    <h3 class="mr-3">Comment</h3>
+    <div class="text-align-middle">
+      by <%= link_to post.user.name, admin_user_path(post.user.id) %>
+    </div>
+    <% if comment.is_deleted? %>
+      <div class="ml-auto text-danger">
+        <p>Deleted</p>
+      </div>
+    <% end %>
+  </div>
+  <hr class="my-0">
+  <div class="row text-muted small m-2">
+    <div class="mr-3">id: <%= comment.id %></div>
+    <div>
+      Comment posted on <%= comment.created_at.strftime("%Y/%m/%d %H:%M") %><br>
+    </div>
+  </div>
+</div>
+
+<div class="comment-content container">
+  <p><%= comment.content %></p>
+</div>
+
+
+
+<div class="post-details card container mt-5">
+  <div class="d-flex heading">
+    <p class="mb-0">Commented on post</p>
+    <h5 class="mx-3">"<%= link_to post.title, admin_post_path(post) %>"</h5>
+    <div class="text-align-middle">
+      by <%= link_to @post.user.name, admin_user_path(@post.user.id) %>
+    </div>
+  </div>
+  <div class="small mx-2">
+    <p class="row text-muted small ml-auto">
+      Posted on <%= post.created_at.strftime("%Y%m/%d %H:%M") %>
+    </p>
+    <p class="text-break"><%=safe_join(@post.body.split("\n"),tag(:br))%></p>
+  </div>
+</div>

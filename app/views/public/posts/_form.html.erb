@@ -1,0 +1,65 @@
+<div class="col-10 container">
+    <p class="text-danger text-right small">* Required fields</p>
+    <%= form_with model: post do |f| %>
+      <div id="post-error">
+        <%= render "layouts/errors", obj: post %>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-sm-2 col-md-3 col-lg-2">
+          <ruby>Title<rt>タイトル</rt></ruby> <span class="text-danger">*</span>
+        </div>
+        <div class="col-sm-10 col-md-9 col-lg-10">
+          <%= f.text_field :title, autofocus: true, class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-12 mb-2">
+          <ruby>Body<rt>内容</rt></ruby> <span class="text-danger">*</span>
+        </div>
+        <div class="col-12">
+          <%= f.text_area :body, class: "form-control", rows: "13"%>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-lg-2">
+          <ruby>Category<rt>カテゴリー</rt></ruby>
+        </div>
+        <div class="col-lg-10">
+          <small>Separate categories with a commma. カンマで区切ってください。</small>
+        </div>
+        <div class="col-12">
+          <%= f.text_field :name, value: @categories, class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-sm-3 col-lg-2">
+          <ruby>Language<rt>　言語　</rt></ruby> <span class="text-danger">*</span>
+        </div>
+        <div class="col-sm-9 col-lg-10">
+          <%= f.select :language,
+                        options_for_select({"English" => "english",
+                                            "Japanese" => "japanese",
+                                            "Other" => "other"
+                                            }),
+                                            {},
+                                            {class: "form-control"} %>
+        </div>
+      </div>
+      <div class="form-group text-center my-2">
+          <%= f.radio_button :is_published, "false", value: :false %>
+          <%= f.label :is_published, "Save to Draft" %> <small>(下書き保存)</small>
+          <%= f.radio_button :is_published, "true", value: :true %>
+          <%= f.label :is_published, "Publish" %> <small>(投稿)</small>
+      </div>
+
+      <div class="actions row justify-content-center">
+        <div class="col-12 col-sm-6">
+          <%= f.submit "Submit", class: "btn btn-sm btn-block btn-dark" %>
+        </div>
+      </div>
+    <% end %>
+  </div>

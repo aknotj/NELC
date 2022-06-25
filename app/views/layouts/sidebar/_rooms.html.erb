@@ -1,0 +1,18 @@
+<ul class="mx-3 list-unstyled">
+  <% current_user.rooms.first(5).each do |room| %>
+    <% if room.is_valid? %>
+      <li>
+        <%= link_to room_path(room) do %>
+          <% user = room.users_except(current_user) %>
+          <%= user.name %>
+          <% if room.unchecked_notifications(current_user).any? %>
+            <i class="fas fa-circle new-message"></i>
+          <% end %>
+        <% end %>
+      </li>
+    <% end %>
+  <% end %>
+  <li><%= link_to "See all rooms", rooms_path %></li>
+</ul>
+
+

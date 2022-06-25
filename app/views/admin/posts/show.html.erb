@@ -1,0 +1,28 @@
+<div class="admin-body mx-auto">
+    <div class="row">
+      <div class="col-lg-8">
+        <%= render "show", post: @post %>
+      </div>
+
+      <div class="col-lg-4">
+        <hr>
+        <div class="post-status text-center">
+          <p><u>Delete post</u></p>
+          <%= form_with model: @post, url: admin_post_path(@post.id), method: :patch do |f| %>
+            <%= f.radio_button :is_deleted, false %>
+            <%= f.label :is_deleted, "Visible" %>
+            <%= f.radio_button :is_deleted, true %>
+            <%= f.label :is_deleted, "Delete" %><br>
+            <%= f.submit "update" %>
+          <% end %>
+        </div>
+        <hr>
+        <div class="container">
+          Comments on this post (<%= @post.comments.count %>)
+          <div class="comments small my-3">
+            <%= render "admin/comments/index", comments: @comments %>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

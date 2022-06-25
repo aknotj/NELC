@@ -1,0 +1,57 @@
+<div class="row content-body">
+  <%= render "layouts/sidebar" %>
+
+  <div class="col-md-9 col-lg-8">
+    <div class="row heading pr-3 mb-2">
+      <h2 class="mr-3">Following</h2>
+      <p class="my-auto">フォロー</p>
+      <div class="ml-auto my-auto">
+        <% unless @user == current_user %>
+          <h5 class="mb-0"><%= @user.name %></h5>
+        <% end %>
+        <small>
+        <%= link_to "Friends", user_friends_path(@user) %> |
+        <%= link_to "Followers", user_followers_path(@user) %>
+        </small>
+      </div>
+    </div>
+    <% if @user.following.any? %>
+      <%= render "public/users/index", users: @users %>
+    <% elsif @user == current_user %>
+      <div class="text-center p-5">
+        <div class="row justify-content-center">
+          <p class="mb-0">You are not following anyone.&nbsp;</p>
+          <p>Find people to become friends!</p>
+        </div>
+        <div class="row justify-content-center">
+          <small>フォローしているユーザーはいません。</small>
+          <small>ユーザーを検索してフォローしよう！</small>
+        </div>
+        <div class="my-3  d-lg-none">
+          <%= link_to "Search", new_search_path, class: "btn btn-sm btn-outline-dark" %>
+        </div>
+      </div>
+    <% elsif @user.followed_by?(current_user) %>
+      <div class="text-center p-2">
+        <p class="mb-0"><%= @user.name %> is not following anyone yet.</p>
+        <small>まだ誰もフォローしてません。</small>
+      </div>
+    <% else %>
+      <div class="text-center p-2">
+        <div class="row justify-content-center">
+          <p class="mb-0"><%= @user.name %> is not following anyone yet.&nbsp;</p>
+          <p>Follow them to become their first study buddy!</p>
+        </div>
+        <div class="row justify-content-center">
+          <small>まだ誰もフォローしてません。</small>
+          <small>フォローして話しかけてみよう！</small>
+        </div>
+        <div class="my-3">
+          <%= link_to "Follow", user_relationship_path(@user), method: :post, class: "btn btn-sm btn-outline-dark" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <%= render "public/searches/search" %>
+</div>

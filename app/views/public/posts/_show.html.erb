@@ -1,0 +1,68 @@
+<div class="post-title">
+  <div class="row heading border-bottom">
+    <h3 class="mr-3"><%= post.title %></h3>
+    <% unless post.is_published? %>
+      <h5 class="mx-auto text-danger my-auto">
+        DRAFT <small>下書き</small>
+      <h5>
+    <% end %>
+    <p class="ml-auto px-3 small">
+      <small class="text-muted">
+        <i class="far fa-flag"></i>
+        <%= link_to "Report Post", new_report_path(model: "post",
+                                                  post_id: post.id,
+                                                  subject: "#{post.title}") %>
+      </small>
+    </p>
+  </div>
+
+  <div class="row text-muted small m-2">
+    <div class="col-8">
+      Posted on <%= post.created_at.strftime("%Y/%m/%d %H:%M") %>
+      by <%= link_to post.user.name, user_path(post.user.id) %>
+      <% if post.edited? %>
+        <small>(Edited)</small>
+      <% end %>
+      <br>
+      Categories:
+      <% if post.categories.any? %>
+        <% post.categories.each do |category| %>
+         <span><%= category.name %> </span>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="col-4 text-right">
+      <% if post.user == current_user %>
+        <p>< <%= link_to "Edit", edit_post_path(post), class: "text-muted font-weight-bold" %> ></p>
+      <% else %>
+        <div id="bookmark-btn">
+          <% if post.bookmarked_by?(current_user) %>
+            <p class="small text-right"><%= link_to "Remove from Bookmark", post_bookmark_path(post), method: :delete, remote: true, class: "text-muted" %></p>
+          <% else %>
+            <p class="small text-right"><%= link_to "Add to Bookmark", post_bookmark_path(post), method: :post, remote: true, class: "text-muted" %></p>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="post-content text-box">
+  <p class="text-break"><%=safe_join(post.body.split("\n"),tag(:br))%></p>
+</div>
+
+<div class="pagination row small">
+    <div class="mx-auto">
+    <p><% if post.previous.present? %>
+      <%= link_to "Previous", post_path(post.previous) %>
+    <% else %>
+      <span class="text-muted">Previous</span>
+    <% end %> |
+    <% if post.next.present? %>
+      <%= link_to "Next", post_path(post.next) %>
+    <% else %>
+      <span class="text-muted">Next</span>
+    <% end %>
+    </p>
+  </div>
+</div>

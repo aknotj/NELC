@@ -1,0 +1,3 @@
+$("#comment-form")[0].reset();
+$('.post_comments').html("<%= j(render "public/comments/comments", post: @post, comment: @comment, comments: @comments) %>");
+$('#comment-error').html("<%= j(render 'layouts/errors', obj: @comment) %>");

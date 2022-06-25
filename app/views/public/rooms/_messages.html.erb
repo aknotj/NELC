@@ -1,0 +1,34 @@
+<!-- ページ読み込み時にスクロールする -->
+<script>
+  $(function () {
+    const element = document.getElementById('scroll');
+    element.scrollTo(0, element.scrollHeight);
+  });
+</script>
+
+<div class="overflow-auto conversation" id="scroll">
+  <% messages.each do |message| %>
+  <!-- 自分の投稿を右に表示 -->
+    <% if message.user_id == current_user.id %>
+    <div class="d-flex flex-row-reverse">
+      <div class="p-2"><%= image_tag message.user.get_profile_image(30,30), class: "rounded rounded-circle" %></div>
+      <div class="message-from">
+        <p><%= message.message %></br>
+          <small class="text-muted"><%= message.created_at.strftime("%m/%d/%y %H:%M") %></small>
+        </p>
+      </div>
+    </div>
+
+    <% else %>
+  <!-- 相手の投稿を左に表示 -->
+    <div class="d-flex flex-row">
+      <div class="p-2"><%= image_tag message.user.get_profile_image(30,30), class: "rounded rounded-circle" %></div>
+      <div class="message-to">
+        <p><%= message.message %></br>
+          <small><%= message.created_at.strftime("%m/%d/%y %H:%M") %></small>
+        </p>
+      </div>
+    </div>
+    <% end %>
+  <% end %>
+</div>

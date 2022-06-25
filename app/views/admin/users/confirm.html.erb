@@ -1,0 +1,24 @@
+<div class="admin-body mx-auto">
+    <div class="container py-5 mx-auto">
+      <h4 class="text-center">Deactivate <%= link_to @user.name, admin_user_path(@user) %> ?</h4>
+
+      <div class="my-5">
+        <p>Deactivating a user also affects the following:</p>
+        <ul>
+          <li>All posts created by the user will be flaged as "deleted"</li>
+          <li>All comments created by the user will be flaged as "deleted"</li>
+          <li>All relationships, such as following and followed, asocciated with this user will be destroyed</li>
+          <li>All bookmarks created by the user will be destroyed</li>
+          <li>All room entries data of the user will be destroyed</li>
+        </ul>
+      </div>
+      <div class="text-center">
+        <div class="delete-user">
+          <input type="checkbox"> Confirm to proceed
+          <div class="delete-btn my-2">
+            <%= link_to "Delete", admin_user_deactivate_path(@user), method: :patch, class: "btn btn-warning" %>
+          </div>
+      </div>
+    </div>
+</div>
+

@@ -1,24 +1,39 @@
-# README
+# NELC
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
+### サイトテーマ
 
-Things you may want to cover:
+他のユーザーと交流したり、ブログを使用し、ライティングの練習や学習の記録を付けることができるコミュニティサイト
 
-* Ruby version
+### テーマを選んだ理由
 
-* System dependencies
+語学学習者がパートナーを探し、チャットなどを通して語学を学習することのできるランゲージエクスチェンジの機会を提供するサービスは既に実在するが、チャットだけでは学習方法に偏りができてしまったり、またまだチャットできるほどの語学力のない学習者には向いていません。
 
-* Configuration
+そのため、ランゲージエクスチェンジはもちろん、同じ言語を学習するユーザーとの交流や、学習の記録を付けることで、独学ともに実践的な語学学習ができる機会を提供するサイトがあったらよいと思い、このサービスを制作することにしました。
 
-* Database creation
+### ターゲットユーザ
 
-* Database initialization
+  - 英語学習中の日本人
 
-* How to run the test suite
+  - 日本語学習中の英語話者
 
-* Services (job queues, cache servers, search engines, etc.)
+### 主な利用シーン
 
-* Deployment instructions
+  - 他の学習者と交流
 
-* ...
+  - 学習に関する記事を投稿する
+
+## 設計書
+
+
+## 開発環境
+  
+  - OS：Linux(CentOS)
+
+  - 言語：HTML,CSS,JavaScript,Ruby,SQL
+
+  - フレームワーク：Ruby on Rails
+
+  - JSライブラリ：jQuery
+
+  - IDE：Cloud9

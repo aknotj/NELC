@@ -1,0 +1,30 @@
+<div class="list-group">
+  <% comments.each do |comment| %>
+    <%= link_to admin_post_comment_path(comment.post, comment), class: "btn btn-light border-bottom" do %>
+      <div class="list-item d-flex">
+        <div class="flex-grow-1 p-2">
+          <div class="d-flex mb-0">
+            <div>
+              <p>
+                <%= image_tag comment.user.get_profile_image(20,20), class: "rounded rounded-circle" %>
+                <%= comment.user.name %>
+              </p>
+            </div>
+            <% if comment.is_deleted? %>
+              <span class="text-danger small ml-auto">
+                Deleted
+              </span>
+            <% end %>
+          </div>
+          <div class="d-flex small mw-100">
+            <p class="text-left mb-1 mr-1"><%= comment.content %></p>
+            <span class="small text-muted my-auto"><%= comment.created_at.strftime("%m/%d/%y %H:%M") %></span>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+<div class="row justify-content-center">
+  <%= paginate comments %>
+</div>
