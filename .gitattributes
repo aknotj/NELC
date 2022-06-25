@@ -7,11 +7,11 @@ db/schema.rb linguist-generated
 yarn.lock linguist-generated
 
 # Mark any vendored files as having been vendored.
-vendor/* linguist-vendored
-sqlite-autoconf-3290000/* linguist-vendored
+vendor/* linguist-documentation
+sqlite-autoconf-3290000/* linguist-documentation
 
 *.c linguist-detectable=false
-*.Shell linguist-detectable=false
+*.sh linguist-detectable=false
 *.m4 linguist-detectable=false
 *.Makefile linguist-detectable=false
 
