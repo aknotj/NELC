@@ -190,11 +190,12 @@ footer{
 
 .sm-chat-area{
   height: 100px;
-  background-color: #fff;
 }
 
 .chat-field{
   max-width: 550px;
+  background-color: #fff;
+  height: 50px;
 }
 
 .conversation{
