@@ -5,7 +5,7 @@
         <li class="list-item d-flex">
           <div class="container py-1 px-0">
             <div class="d-flex mb-0">
-              <div class="col-8 h5 text-left"><%= post.title %></div>
+              <div class="col-8 h5 text-left p-0"><%= post.title %></div>
               <div class="ml-auto">
                 <small>
                   <%= image_tag post.user.get_profile_image(20,20), class: "rounded rounded-circle" %>
@@ -14,7 +14,7 @@
               </div>
             </div>
             <div class="d-flex small">
-              <div class="col-9 text-left">
+              <div class="col-9 text-left p-0">
                 <p class="text-truncate"><%= post.body %></p>
               </div>
               <div class="ml-auto">
