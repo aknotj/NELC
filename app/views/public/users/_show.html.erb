@@ -78,15 +78,19 @@
             </tr>
           </tbody>
         </table>
-        <div class="col-10 col-md-6 mt-2 text-box">
-          <small class="introduction">
-            <% if user == current_user && current_user.introduction.blank? %>
-              <%= link_to "Add introduction", edit_user_path(current_user) %>
-            <% else %>
+        <% if user.introduction.present? %>
+          <div class="col-10 col-md-6 mt-2 text-box">
+            <small class="introduction">
               <%= user.introduction %>
-            <% end %>
-          </small>
-        </div>
+            </small>
+          </div>
+        <% elsif user == current_user %>
+          <div class="col-10 col-md-6 mt-2 text-box">
+            <small class="introduction">
+              <%= link_to "Add introduction", edit_user_path(current_user) %>
+            </small>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>
