@@ -8,13 +8,15 @@
       <div class="d-flex">
         <h6 class="fw-bold mb-1"><%= link_to comment.user.name, user_path(comment.user_id) %></h6>
         <p class="ml-auto px-3 small">
-          <small class="text-muted">
-            <i class="far fa-flag"></i>
-            <%= link_to "Report", new_report_path(model: "comment",
-                                                  comment_id: comment.id,
-                                                  post_id: comment.post_id,
-                                                  subject: "a comment by #{comment.user.name}") %>
-          </small>
+          <% if comment.user != current_user %>
+            <small class="text-muted">
+              <i class="far fa-flag"></i>
+              <%= link_to "Report", new_report_path(model: "comment",
+                                                    comment_id: comment.id,
+                                                    post_id: comment.post_id,
+                                                    subject: "a comment by #{comment.user.name}") %>
+            </small>
+          <% end %>
         </p>
       </div>
       <div class="d-flex align-items-center mb-2">

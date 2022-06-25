@@ -31,7 +31,7 @@
           <%= f.label :password %>
           <small>
             <% if @minimum_password_length %>
-              <em>(<%= @minimum_password_length %> characters minimum / 6文字以上)</em>
+              <em class="small">(<%= @minimum_password_length %> characters minimum / 6文字以上)</em>
             <% end %>
           </small>
         </div>
@@ -55,10 +55,10 @@
     <% end %>
 
     <div class="links text-center">
-      <p>Already a member? <%= link_to "Log in", new_user_session_path %> &nbsp;
+      <p>Already a member? <%= link_to "Log in here", new_user_session_path %></br>
         <small>既に会員の方は<%= link_to "こちら", new_user_session_path %>から</small>
       </p>
-      <small class="text-muted"><%= link_to "Guest login", users_guest_sign_in_path, method: :post %></small>
+      <small class="text-muted"><%= link_to "Guest Log in", users_guest_sign_in_path, method: :post %></small>
     </div>
   </div>
 </div>

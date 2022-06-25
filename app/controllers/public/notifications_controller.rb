@@ -2,9 +2,9 @@ class Public::NotificationsController < ApplicationController
   before_action :authenticate_user!
   def index
     @notifications = current_user.passive_notifications
-                                  .includes(:comment, 
-                                            :post, 
-                                            :user, 
+                                  .includes(:comment,
+                                            :post,
+                                            :user,
                                             sender: {profile_image_attachment: :blob})
                                   .all
     @notifications.where(is_checked: false).each do |notification|
@@ -14,6 +14,13 @@ class Public::NotificationsController < ApplicationController
 
   def destroy
     @notification = Notification.find(params[:id]).destroy
+    @notifications = current_user.passive_notifications
+                                  .includes(:comment,
+                                            :post,
+                                            :user,
+                                            sender: {profile_image_attachment: :blob})
+                                  .all
+    render "destroy"
   end
 
   def destroy_all

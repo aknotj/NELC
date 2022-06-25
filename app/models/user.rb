@@ -44,7 +44,7 @@ class User < ApplicationRecord
       file_path = Rails.root.join('app/assets/images/no-image.jpg')
       profile_image.attach(io: File.open(file_path), filename: 'no-image.jpg', content_type: 'image/jpg')
     end
-    profile_image.variant(resize_to_fill: [width, height]).processed
+    profile_image.variant(auto_orient: true, resize_to_fill: [width, height]).processed
   end
 
   #friend follow関係

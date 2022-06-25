@@ -7,7 +7,7 @@
         <% end %>
       </div>
 
-        <ul class="nav">
+        <ul class="nav ml-auto">
           <li class="nav-link d-none d-sm-block">
             <%= link_to new_post_path do %>
               <i class="fas fa-edit"></i>
@@ -17,7 +17,7 @@
           <li class="nav-link">
             <%= link_to rooms_path do %>
               <i class="fas fa-comment-dots"></i>
-              <ruby>Chat Rooms<rt>チャットルーム</rt></ruby>
+              <ruby>Chat<rt>チャット</rt></ruby>
               <% if current_user.passive_notifications.chat.any? %>
                 <span class="notification-badge"><%= current_user.passive_notifications.chat.size %></span>
               <% end %>
@@ -32,7 +32,6 @@
           <li class="nav-link d-lg-none">
             <%= link_to new_search_path do %>
               <i class="fas fa-search"></i>
-              <ruby>Search<rt>けんさく</rt></ruby>
             <% end %>
           </li>
           <li class="nav-link" id="notification_icon">

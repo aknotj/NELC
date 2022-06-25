@@ -1,4 +1,4 @@
-<div class="row content-body">
+<div class="row content-body main">
   <%= render "layouts/sidebar" %>
 
   <div class="col-md-9 col-lg-8">
@@ -6,7 +6,26 @@
                       messages: @messages,
                       message: @message,
                       user: @user %>
+
+    <div class="fixed-bottom">
+      <div class="chat-form-area">
+        <div class="mx-auto chat-field pt-1">
+          <%= form_with model: @message, local: false do |f| %>
+            <%= f.hidden_field :room_id, value: params[:id] %>
+            <div class="col input-group">
+              <%= f.text_field :message, autofocus: true, class: "form-control" %>
+              <div class="input-group-append">
+                <%= f.submit "Send", id: "chat-btn", class: "btn btn-secondary" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+
+      </div>
+    </div>
   </div>
+
+
 
   <%= render "public/searches/search" %>
 </div>
