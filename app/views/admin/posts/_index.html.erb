@@ -1,10 +1,10 @@
 <ul class="list-group">
   <% posts.each do |post| %>
     <%= link_to admin_post_path(post), class: "btn btn-light border-bottom" do %>
-      <li class="list-item d-flex">
+      <li class="list-item">
         <div class="container py-1 px-0">
           <div class="d-flex mb-0">
-            <div class="col-7 h5 text-left text-truncate"><%= post.title %></div>
+            <div class="col-7 h6 text-left text-truncate"><%= post.title %></div>
             <% if post.is_deleted? %>
               <div class="text-danger">
                 <p>Deleted</p>
@@ -25,6 +25,7 @@
               <span class="small text-muted"><%= post.created_at.strftime("%m/%d/%y %H:%M") %></span>
             </div>
           </div>
+        </div>
       </li>
     <% end %>
   <% end %>

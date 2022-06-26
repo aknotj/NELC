@@ -58,9 +58,10 @@ footer{
 
 .admin-body{
   min-height: 100vh;
-  padding: 55px 20px 55px;
+  padding: 0 20px;
   max-width: 900px;
   background-color: white;
+  font-size: small;
 }
 
 .bg-white{

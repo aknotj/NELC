@@ -23,20 +23,33 @@
   <p><%= comment.content %></p>
 </div>
 
-
-
-<div class="post-details card container mt-5">
-  <div class="d-flex heading">
-    <p class="mb-0">Commented on post</p>
-    <h5 class="mx-3">"<%= link_to post.title, admin_post_path(post) %>"</h5>
-    <div class="text-align-middle">
-      by <%= link_to @post.user.name, admin_user_path(@post.user.id) %>
+<div class="post-details container mt-5 col-10">
+  Commented on post
+  <div class="card container pt-2">
+    <div class="d-flex">
+      <div class="col-7 h6 text-left text-truncate">
+        <%= link_to admin_post_path(post) do %>
+          <%= post.title %>
+        <% end %>
+      </div>
+      <% if post.is_deleted? %>
+        <div class="text-danger">
+          <p>Deleted</p>
+        </div>
+      <% end %>
+      <div class="ml-auto">
+        <small>
+          by <%= link_to @post.user.name, admin_user_path(@post.user.id) %>
+        </small>
+      </div>
     </div>
-  </div>
-  <div class="small mx-2">
-    <p class="row text-muted small ml-auto">
-      Posted on <%= post.created_at.strftime("%Y%m/%d %H:%M") %>
-    </p>
-    <p class="text-break"><%=safe_join(@post.body.split("\n"),tag(:br))%></p>
+    <div class="d-flex small">
+      <div class="col-9 text-left">
+        <p class="text-truncate"><%= post.body %></p>
+      </div>
+      <div class="ml-auto">
+        <span class="small text-muted"><%= post.created_at.strftime("%m/%d/%y %H:%M") %></span>
+      </div>
+    </div>
   </div>
 </div>

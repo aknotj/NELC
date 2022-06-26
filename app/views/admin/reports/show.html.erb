@@ -11,18 +11,19 @@
     </div>
   </div>
   <div class="container py-2">
-    <table class="table table-borderless mx-5">
+    <table class="table col-7 mx-auto">
       <tbody>
         <tr>
           <td class="col-3">Reported by</td>
           <td><%= link_to @report.user.name, admin_user_path(@report.user) %></td>
         </tr>
         <tr>
-          <td>Reported Subject</td>
-          <td>
+          <td>Reported
             <span class="text-capitalize">
-              <%= @report.model %>:
+              <%= @report.model %>
             </span>
+          </td>
+          <td>
             <% if @report.model == "user" %>
               <%= link_to @report.subject_user.name, admin_user_path(@report.subject_id) %>
             <% elsif @report.model == "post" %>
@@ -50,11 +51,11 @@
         <div class="container">
           <p><%= @report.note %></p>
         </div>
-  
+
         <a data-toggle="collapse" href="#update_report" role="button" aria-expanded="false" aria-controls="update_report">
           <small>Reopen this case?</small>
         </a>
-  
+
         <div class="collapse" id="update_report">
           <%= form_with model: @report, url: admin_report_path(@report.id), method: :patch do |f| %>
             <div class="field">
