@@ -31,7 +31,7 @@
 
       <div class="checkbox">
         <%= f.check_box :complete, unchecked:false, required: true %>
-        I have read and understood the policy.
+        I have read and understood the <%= link_to "policy", policy_path %>.
       </div>
 
       <div class="hidden_field">
