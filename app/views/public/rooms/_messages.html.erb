@@ -14,7 +14,7 @@
       <div class="p-2"><%= image_tag message.user.get_profile_image(30,30), class: "rounded rounded-circle" %></div>
       <div class="message-from">
         <p><%= message.message %></br>
-          <small class="text-muted"><%= message.created_at.strftime("%m/%d/%y %H:%M") %></small>
+          <small class="text-muted"><%= message.created_at.in_time_zone(current_user.time_zone).strftime("%m/%d/%y %H:%M") %></small>
         </p>
       </div>
     </div>
@@ -25,7 +25,7 @@
       <div class="p-2"><%= image_tag message.user.get_profile_image(30,30), class: "rounded rounded-circle" %></div>
       <div class="message-to">
         <p><%= message.message %></br>
-          <small><%= message.created_at.strftime("%m/%d/%y %H:%M") %></small>
+          <small><%= message.created_at.in_time_zone(current_user.time_zone).strftime("%m/%d/%y %H:%M") %></small>
         </p>
       </div>
     </div>

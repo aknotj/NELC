@@ -18,7 +18,7 @@
 
   <div class="row text-muted small m-2">
     <div class="col-8">
-      Posted on <%= post.created_at.strftime("%Y/%m/%d %H:%M") %>
+      Posted on <%= post.created_at.in_time_zone(current_user.time_zone).strftime("%Y/%m/%d %H:%M") %>
       by <%= link_to post.user.name, user_path(post.user.id) %>
       <% if post.edited? %>
         <small>(Edited)</small>
