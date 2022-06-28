@@ -1,4 +1,6 @@
-# NELC
+<p align="center">
+  <img width="306" alt="NELC_LOGO" src="https://user-images.githubusercontent.com/100099666/176119848-4f7276e9-5dbf-4053-a3be-c6fa29b5a65e.PNG">
+</p>
 
 ## サイト概要
 ### サイトテーマ
