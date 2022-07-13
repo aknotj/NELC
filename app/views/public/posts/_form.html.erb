@@ -4,7 +4,6 @@
       <div id="post-error">
         <%= render "layouts/errors", obj: post %>
       </div>
-
       <div class="form-group row">
         <div class="col-sm-2 col-md-3 col-lg-2">
           <ruby>Title<rt>タイトル</rt></ruby> <span class="text-danger">*</span>
@@ -13,7 +12,6 @@
           <%= f.text_field :title, autofocus: true, class: "form-control" %>
         </div>
       </div>
-
       <div class="form-group row">
         <div class="col-12 mb-2">
           <ruby>Body<rt>内容</rt></ruby> <span class="text-danger">*</span>
@@ -22,7 +20,6 @@
           <%= f.text_area :body, class: "form-control", rows: "13"%>
         </div>
       </div>
-
       <div class="form-group row">
         <div class="col-lg-2">
           <ruby>Category<rt>カテゴリー</rt></ruby>
@@ -55,7 +52,6 @@
           <%= f.radio_button :is_published, "true", value: :true %>
           <%= f.label :is_published, "Publish" %> <small>(投稿)</small>
       </div>
-
       <div class="actions row justify-content-center">
         <div class="col-12 col-sm-6">
           <%= f.submit "Submit", class: "btn btn-sm btn-block btn-dark" %>

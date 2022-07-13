@@ -13,7 +13,6 @@
       <% end %>
     </p>
   </div>
-
   <div class="row">
     <div class="col-lg-4 mb-2">
       <div class="col d-flex align-items-center justify-content-center justify-content-lg-start">
@@ -96,7 +95,6 @@
       </div>
     </div>
   </div>
-
   <div class="row justify-content-around">
     <% if user == current_user %>
       <div class="col-8 col-md-5 my-1 myrtle-darker">
@@ -112,18 +110,15 @@
     <% end %>
   </div>
 </div>
-
 <hr>
 <div class="row">
   <div class="col flex-grow-1 relationships py-3">
     <h4>Friends <small>ともだち</small></h4>
     <%= render "friends", user: user, users: users %>
   </div>
-
   <div class="divider d-none d-lg-block">
     <div class="line"></div>
   </div>
-
   <div class="col-lg-6 posts py-3">
     <h4>Posts <small>とうこう</small></h4>
     <%= render "public/posts/index", posts: user.posts %>

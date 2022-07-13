@@ -15,7 +15,6 @@
       </small>
     </p>
   </div>
-
   <div class="row text-muted small m-2">
     <div class="col-8">
       Posted on <%= post.created_at.in_time_zone(current_user.time_zone).strftime("%Y/%m/%d %H:%M") %>
@@ -46,11 +45,9 @@
     </div>
   </div>
 </div>
-
 <div class="post-content text-box">
   <p class="text-break"><%=safe_join(post.body.split("\n"),tag(:br))%></p>
 </div>
-
 <div class="pagination row small">
     <div class="mx-auto">
     <p><% if post.previous.present? %>
