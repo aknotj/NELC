@@ -1,18 +1,15 @@
 <div id="accordion">
-  <div>
-    <div id="headingFriends">
-      <div class="d-flex">
-        <p class="my-auto ml-2">Friends</p>
-        <button class="btn collapsed ml-auto" data-toggle="collapse" data-target="#friends" aria-expanded="true" aria-controls="friends">
-          <i class="fas fa-angle-down"></i>
-        </button>
-      </div>
-    </div>
-    <div id="friends" class="collapse" aria-labelledby="headingFriends" data-parent="#accordion">
-      <%= render "layouts/sidebar/friends" %>
+  <div id="headingFriends">
+    <div class="d-flex">
+      <p class="my-auto ml-2">Friends</p>
+      <button class="btn collapsed ml-auto" data-toggle="collapse" data-target="#friends" aria-expanded="true" aria-controls="friends">
+        <i class="fas fa-angle-down"></i>
+      </button>
     </div>
   </div>
-
+  <div id="friends" class="collapse" aria-labelledby="headingFriends" data-parent="#accordion">
+    <%= render "layouts/sidebar/friends" %>
+  </div>
   <div>
     <div id="headingPosts">
       <div class="d-flex">
