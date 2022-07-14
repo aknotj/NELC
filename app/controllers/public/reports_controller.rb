@@ -43,5 +43,4 @@ class Public::ReportsController < ApplicationController
   def user_time_zone_present?
     current_user.try(:time_zone).present?
   end
-
 end

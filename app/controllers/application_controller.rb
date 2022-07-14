@@ -7,5 +7,4 @@ class ApplicationController < ActionController::Base
       admin_reports_pending_path
     end
   end
-
 end

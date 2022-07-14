@@ -280,4 +280,3 @@ footer{
 .delete-user input[type="checkbox"]:checked + .delete-btn{
   display: block;
 }
-

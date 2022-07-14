@@ -32,5 +32,4 @@ class Public::RelationshipsController < ApplicationController
     followers_ids = @user.followers.pluck(:id)
     @users = User.where(id: followers_ids).includes(:following, :followers, profile_image_attachment: :blob)
   end
-
 end
