@@ -3,8 +3,6 @@
     <h2>Admin</h2>
     <p>管理者ログイン</p>
   </div>
-
-
   <div class="container">
     <%= form_with model: @admin, url: admin_session_path, method: :post do |f| %>
       <div class="form-group row">
@@ -31,7 +29,6 @@
         </div>
       </div>
     <% end %>
-
     <div class="links text-center pb-3">
       <small class="text-muted"><%= link_to "Guest login", users_guest_sign_in_path, method: :post %></small>
     </div>
