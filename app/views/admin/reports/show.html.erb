@@ -29,7 +29,7 @@
             <% elsif @report.model == "post" %>
               <%= link_to @report.post.title, admin_post_path(@report.post_id) %>
             <% elsif @report.model == "comment" %>
-              comment: "<%= link_to @report.comment.content, admin_post_comment_path(id: @report.comment_id, post_id: @report.comment.post_id) %>"
+              comment: "<%= link_to @report.comment.content, admin_post_comment_path(id: @report.comment_id, post_id: @report.comment.post_id) %>" </br>
               on post <%= link_to @report.comment.post.title, admin_post_path(@report.post_id) %>
             <% end %>
           </td>
@@ -44,18 +44,15 @@
         </tr>
       </tbody>
     </table>
-
     <div class="report-status">
       <% if @report.is_closed? %>
         Note
         <div class="container">
           <p><%= @report.note %></p>
         </div>
-
         <a data-toggle="collapse" href="#update_report" role="button" aria-expanded="false" aria-controls="update_report">
           <small>Reopen this case?</small>
         </a>
-
         <div class="collapse" id="update_report">
           <%= form_with model: @report, url: admin_report_path(@report.id), method: :patch do |f| %>
             <div class="field">

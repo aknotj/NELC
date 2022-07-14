@@ -1,24 +1,18 @@
 <div class="row content-body">
   <%= render "layouts/sidebar" %>
-
   <div class="col-md-9 col-lg-8">
     <div class="row heading">
       <h3 class="mr-3">Welcome to <strong>NELC</strong>,
       <%= @user.name %> !</h3>
       <p class="my-auto">NELCへようこそ！</p>
-
-    <div class="message lead mt-3 px-2">
-      <p class="mb-0">First, let us know a little bit about you...<br></p>
-      <p><small>まずはプロフィールを<ruby>充実<rt>じゅうじつ</rt></ruby>させよう！</small></p>
+      <div class="message lead mt-3 px-2">
+        <p class="mb-0">First, let us know a little bit about you...<br></p>
+        <p><small>まずはプロフィールを<ruby>充実<rt>じゅうじつ</rt></ruby>させよう！</small></p>
+      </div>
     </div>
-
-
-    </div>
-
     <div class="my-4">
       <%= render "edit", user: @user %>
     </div>
   </div>
-
   <%= render "public/searches/search" %>
 </div>

@@ -1,8 +1,6 @@
 <div class="row content-body">
   <%= render "layouts/sidebar" %>
-
   <div class="col-md-9 col-lg-8">
-
     <div class="search-form container">
       <div class="heading">
         <h2 class="mr-3">Search Results for <%= @model %></h2>
@@ -53,8 +51,6 @@
           </div>
         </div>
       </div>
-
-
       <% if @model == "Users" %>
         <%= render 'public/users/index', users: @records %>
       <% elsif @model == "Posts" %>
@@ -71,6 +67,5 @@
       </div>
     </div>
   </div>
-
   <%= render "public/searches/search" %>
 </div>

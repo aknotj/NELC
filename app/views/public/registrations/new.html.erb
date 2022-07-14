@@ -3,11 +3,9 @@
     <h2>Sign up</h2>
     <p>新規登録</p>
   </div>
-
   <div class="container">
     <%= form_with model: @user, url: user_registration_path, method: :post do |f| %>
       <%= render "layouts/errors", obj: @user %>
-
       <div class="form-group row">
         <div class="col-2">
           <%= f.label :name %>
@@ -16,7 +14,6 @@
           <%= f.text_field :name, autofocus: true, class: "form-control" %>
         </div>
       </div>
-
       <div class="form-group row">
         <div class="col-2">
           <%= f.label :email %>
@@ -25,7 +22,6 @@
           <%= f.email_field :email, autocomplete: "email", class: "form-control" %>
         </div>
       </div>
-
       <div class="form-group row">
         <div class="col-10">
           <%= f.label :password %>
@@ -39,21 +35,18 @@
           <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
         </div>
       </div>
-
       <% if devise_mapping.rememberable? %>
         <div class="field">
           <%= f.check_box :remember_me %>
           <%= f.label :remember_me %>
         </div>
       <% end %>
-
       <div class="actions row justify-content-center my-3">
         <div class="col-12 col-sm-6">
           <%= f.submit "Sign up", class: "btn btn-sm btn-block btn-myrtle" %>
         </div>
       </div>
     <% end %>
-
     <div class="links text-center">
       <p>Already a member? <%= link_to "Log in here", new_user_session_path %></br>
         <small>既に会員の方は<%= link_to "こちら", new_user_session_path %>から</small>

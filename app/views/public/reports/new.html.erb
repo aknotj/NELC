@@ -6,7 +6,8 @@
       <%= link_to "English", new_report_en_path(model: params[:model],
                                           subject_id: params[:subject_id],
                                           post_id: params[:post_id],
-                                          subject: params[:subject]) %>
+                                          comment_id: params[:comment_id],
+                                          subject: params[:subject],) %>
     </div>
   </div>
   <div class="container">
@@ -24,23 +25,20 @@
                                           {},
                                           {class: "form-control"} %>
       </div>
-
       <div class="form-group">
         <%= f.label :詳細 %>
         <%= f.text_area :detail, class: "form-control" %>
       </div>
-
       <div class="checkbox">
         <%= f.check_box :complete, unchecked:false, required: true %>
         <%= link_to "ポリシー", policy_path %>を確認しました。
       </div>
-
       <div class="hidden_field">
         <%= f.hidden_field :model, value: params[:model] %>
         <%= f.hidden_field :subject_id, value: params[:subject_id] %>
         <%= f.hidden_field :post_id, value: params[:post_id] %>
+        <%= f.hidden_field :comment_id, value: params[:comment_id] %>
       </div>
-
       <div class="actions row justify-content-center my-3">
         <div class="col-12 col-sm-6">
           <%= f.submit "通報", class: "btn btn-sm btn-block btn-dark" %>
