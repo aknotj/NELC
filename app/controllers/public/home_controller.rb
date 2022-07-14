@@ -13,6 +13,7 @@ class Public::HomeController < ApplicationController
   end
   
   private
+  
   def user_time_zone(&block)
     Time.use_zone(current_user.time_zone, &block)
   end
@@ -20,5 +21,4 @@ class Public::HomeController < ApplicationController
   def user_time_zone_present?
     current_user.try(:time_zone).present?
   end
-  
 end

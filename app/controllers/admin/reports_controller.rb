@@ -20,7 +20,7 @@ class Admin::ReportsController < ApplicationController
     flash[:notice] = "The report has been successfully updated"
   end
 
-private
+  private
   def report_params
     params.require(:report).permit(:is_closed, :note)
   end

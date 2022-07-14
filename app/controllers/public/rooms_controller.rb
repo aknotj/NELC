@@ -42,5 +42,4 @@ class Public::RoomsController < ApplicationController
       redirect_to rooms_path
     end
   end
-
 end

@@ -27,6 +27,4 @@ class Admin::UsersController < ApplicationController
     redirect_to admin_user_path(@user)
     flash[:notice] = "The user has been deactivated"
   end
-
-  private
 end
