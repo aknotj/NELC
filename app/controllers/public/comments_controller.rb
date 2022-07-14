@@ -18,6 +18,10 @@ class Public::CommentsController < ApplicationController
   def destroy
     @post = Post.find(params[:post_id])
     @comment = Comment.find(params[:id])
+    @reports = Report.where(comment_id: @comment.id).where(post_id: @comment.post_id)
+    if @reports.any?
+      @reports.destroy_all
+    end
     @comment.destroy
     @comments = @post.comments.includes(post: {user: {profile_image_attachment: :blob}})
     render "comments"

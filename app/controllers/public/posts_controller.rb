@@ -77,7 +77,10 @@ class Public::PostsController < ApplicationController
 
   def destroy
     @post.categories.delete
-    @post = Post.find(params[:id]).destroy
+    @post = Post.find(params[:id])
+    if @post.destroy
+      Report.where(post_id: @post.id).destroy_all
+    end
     redirect_to user_posts_path(@post.user)
     flash[:notice] = "Your post has been successfully deleted. 投稿を削除しました"
   end

@@ -5,6 +5,7 @@
       <%= link_to "日本語", new_report_path(model: params[:model],
                                           subject_id: params[:subject_id],
                                           post_id: params[:post_id],
+                                          comment_id: params[:comment_id],
                                           subject: params[:subject]) %>
     </div>
   </div>
@@ -35,6 +36,7 @@
         <%= f.hidden_field :model, value: params[:model] %>
         <%= f.hidden_field :subject_id, value: params[:subject_id] %>
         <%= f.hidden_field :post_id, value: params[:post_id] %>
+        <%= f.hidden_field :comment_id, value: params[:comment_id] %>
       </div>
       <div class="actions row justify-content-center my-3">
         <div class="col-12 col-sm-6">
